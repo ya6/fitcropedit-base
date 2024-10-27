@@ -1,19 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" type="image/x-icon" href="public/favicon.ico">
+	<link rel="stylesheet" href="public/style.css">
 	<link rel="stylesheet" href="public/fitcropedit.css">
 	<title>Fitcropedit-base</title>
 </head>
+
 <body>
 
-	<div id="fitcrop"></div>
-	
+	<header>
+		<div class="container">
+			<h1>FitCropEdit</h1>
+			<p>The photo editor for quick editing and cropping of images directly in the browser</p>
+			<button onclick="startEditing()">Try It Now</button>
+		</div>
+	</header>
+
+	<main>
+		<section class="promo">
+			<h2>Quick & Easy Image Editing</h2>
+			<p>The editor is designed to be embedded into an application or website</p>
+		</section>
+
+		<!-- Placeholder for fitcropedit -->
+		<div id="fitcropedit">
+		</div>
+
+	</main>
+
+	<footer>
+		<p>2024 Aliaksandr Yakubouski</p>
+	</footer>
+
 	<script type="module" src="public/fitcropedit.js"></script>
 	<script>  onload = () => {
-		// init
+			// init
 		} </script>
 </body>
+
 </html>
