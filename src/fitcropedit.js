@@ -3,10 +3,18 @@ import MainCanvas from "./MainCanvas";
 
 console.log("fitcropedit.js");
 
-const stateManager = new StateManager()
+const stateManager = new StateManager();
 
-const { canvasMultiplier } = stateManager.state;
+function main() {
+  const container = document.getElementById("fitcropedit");
 
-const container = document.getElementById("fitcropedit");
+  //
+  const mainCanvas = new MainCanvas(container, stateManager);
+}
 
-const mainCanvas = new MainCanvas(container, canvasMultiplier);
+window.fitcropedit = {
+  init(params) {
+    stateManager.updateState(params);
+    main();
+  },
+};

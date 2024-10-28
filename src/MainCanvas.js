@@ -1,13 +1,13 @@
 export default class MainCanvas {
-  constructor(container, canvasMultiplier) {
+  constructor(container, stateManager) {
     this.container = container;
-    this.canvasMultiplier = canvasMultiplier;
+    this.appState = stateManager.state;
 
     //
     this.canvas = document.createElement("canvas");
     this.ctx = this.canvas.getContext("2d");
 
-    this.canvas.setAttribute("id", "fc-main-canvas");
+    this.canvas.setAttribute("id", this.appState.selectors.mainCanvasSelector);
     this.container.appendChild(this.canvas);
 
     //
@@ -19,9 +19,9 @@ export default class MainCanvas {
     const containerWidth = entries[0].target.clientWidth;
     const containerHeight = entries[0].target.clientHeight;
 
-    this.canvas.width = containerWidth * this.canvasMultiplier;
-    this.canvas.height = containerHeight * this.canvasMultiplier;
-
+    this.canvas.width = containerWidth * this.appState.canvasMultiplier;
+    this.canvas.height = containerHeight * this.appState.canvasMultiplier;
+  
     this.draw();
   }
 

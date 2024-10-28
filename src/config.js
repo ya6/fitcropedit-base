@@ -1,4 +1,6 @@
 export const initParams = {
-	
-	 canvasMultiplier:  1,
-}
+  canvasMultiplier: 0.5,
+  selectors: {
+    mainCanvasSelector: "fc-main-canvas", // is used by fitcropedit.css
+  },
+};
