@@ -1,4 +1,4 @@
-export class MainCanvas {
+export default class MainCanvas {
   constructor(container, canvasMultiplier) {
     this.container = container;
     this.canvasMultiplier = canvasMultiplier;

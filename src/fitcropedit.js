@@ -1,12 +1,12 @@
-
-import { initParams } from "./config";
-import { MainCanvas } from './MainCanvas';
+import StateManager from "./StateManager";
+import MainCanvas from "./MainCanvas";
 
 console.log("fitcropedit.js");
 
-const { canvasMultiplier } = initParams;
+const stateManager = new StateManager()
+
+const { canvasMultiplier } = stateManager.state;
+
 const container = document.getElementById("fitcropedit");
 
 const mainCanvas = new MainCanvas(container, canvasMultiplier);
-
-
