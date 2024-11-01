@@ -8,7 +8,7 @@ console.log("fitcropedit.js");
 const container = document.getElementById("fitcropedit");
 const stateManager = new StateManager();
 
-function bootstrap(params) {
+function bootstrap(params) { 
   stateManager.updateState(params);
 
   container.style.width = stateManager.state.template.containerWidth;
@@ -27,16 +27,7 @@ function bootstrap(params) {
   });
 
   resizeObserver.observe(container);
-
-  //
 }
-
-// function main() {
-//   //template
-//   new Navbar(container, stateManager);
-//   new LeftSidebar(container, stateManager);
-//   new MainCanvas(container, stateManager);
-// }
 
 window.fitcropedit = {
   init(params) {

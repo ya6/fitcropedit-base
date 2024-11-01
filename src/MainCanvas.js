@@ -20,14 +20,11 @@ export default class MainCanvas {
 
   init() {
     this.canvas.width =
-      this.container.clientWidth * this.appState.canvasMultiplier - this.appState.template.leftSidebarWidth;
+    this.appState.template.containerWidth * this.appState.canvasMultiplier - this.appState.template.leftSidebarWidth;
     this.canvas.height =
-      this.container.clientHeight * this.appState.canvasMultiplier - this.appState.template.appbarHeight;
+    this.appState.template.containerHeight * this.appState.canvasMultiplier - this.appState.template.appbarHeight;
     this.canvas.style.top = `${this.appState.template.appbarHeight}px`;
     this.canvas.style.left = `${this.appState.template.leftSidebarWidth}px`;
-
-    this.canvas.setAttribute("id", this.appState.selectors.mainCanvasSelector);
-    this.container.appendChild(this.canvas);
 
     this.draw();
   }

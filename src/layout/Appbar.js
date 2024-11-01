@@ -10,7 +10,8 @@ appbar;
 
   init() {
     // setLocation() ?
-    this.injectElement(this.container, this.template());
+    this.createTemplate();
+    this.injectElement(this.container, this.appbar);
     this.getAllControls();
     this.dispatch();
   }
@@ -45,7 +46,7 @@ appbar;
     });
   }
 
-  template() {
+  createTemplate() {
     this.appbar = document.createElement("div");
     this.appbar.setAttribute("id", "fc-appbar");
     this.injectString(this.appbar, this.innerTemplate());
