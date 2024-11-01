@@ -8,29 +8,32 @@ export default class MainCanvas {
     this.ctx = this.canvas.getContext("2d");
 
     this.canvas.setAttribute("id", this.appState.selectors.mainCanvasSelector);
-    this.container.appendChild(this.canvas);
-
+    this.injectElement(this.container, this.canvas)
     //
-    this.resizeObserver = new ResizeObserver(this.handleResize.bind(this));
-    this.resizeObserver.observe(this.container);
+    this.init();
   }
 
-  handleResize(entries) {
-    const containerWidth = entries[0].target.clientWidth;
-    const containerHeight = entries[0].target.clientHeight;
+   //
+   injectElement(host, element) {
+    host.appendChild(element);
+  }
 
-    this.canvas.width = containerWidth * this.appState.canvasMultiplier;
-    this.canvas.height = containerHeight * this.appState.canvasMultiplier;
-  
+  init() {
+    this.canvas.width =
+      this.container.clientWidth * this.appState.canvasMultiplier - this.appState.template.leftSidebarWidth;
+    this.canvas.height =
+      this.container.clientHeight * this.appState.canvasMultiplier - this.appState.template.navbarHeight;
+    this.canvas.style.top = `${this.appState.template.navbarHeight}px`;
+    this.canvas.style.left = `${this.appState.template.leftSidebarWidth}px`;
+
+    this.canvas.setAttribute("id", this.appState.selectors.mainCanvasSelector);
+    this.container.appendChild(this.canvas);
+
     this.draw();
   }
 
   draw() {
     this.ctx.fillStyle = "green";
     this.ctx.fillRect(10, 10, 150, 100);
-  }
-
-  disconnect() {
-    this.resizeObserver.disconnect();
   }
 }
