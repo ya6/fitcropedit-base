@@ -22,8 +22,8 @@ export default class MainCanvas {
     this.canvas.width =
       this.container.clientWidth * this.appState.canvasMultiplier - this.appState.template.leftSidebarWidth;
     this.canvas.height =
-      this.container.clientHeight * this.appState.canvasMultiplier - this.appState.template.navbarHeight;
-    this.canvas.style.top = `${this.appState.template.navbarHeight}px`;
+      this.container.clientHeight * this.appState.canvasMultiplier - this.appState.template.appbarHeight;
+    this.canvas.style.top = `${this.appState.template.appbarHeight}px`;
     this.canvas.style.left = `${this.appState.template.leftSidebarWidth}px`;
 
     this.canvas.setAttribute("id", this.appState.selectors.mainCanvasSelector);

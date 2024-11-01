@@ -17,9 +17,9 @@ export default class LeftSidebar {
   }
 
   setLocation() {
-    this.leftSidebar.style.top = `${this.appState.template.navbarHeight}px`;
+    this.leftSidebar.style.top = `${this.appState.template.appbarHeight}px`;
     this.leftSidebar.style.width = `${this.appState.template.leftSidebarWidth}px`
-    this.leftSidebar.style.height = `${this.container.clientHeight-this.appState.template.navbarHeight }px`
+    this.leftSidebar.style.height = `${this.container.clientHeight-this.appState.template.appbarHeight }px`
   }
 
   getAllControls() {

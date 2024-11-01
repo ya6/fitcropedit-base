@@ -6,7 +6,7 @@ export const initParams = {
   template: {
     containerWidth: '80%',
     containerHeight: '600px',
-    navbarHeight: 32,
+    appbarHeight: 32,
     leftSidebarWidth: 100,
   },
 };

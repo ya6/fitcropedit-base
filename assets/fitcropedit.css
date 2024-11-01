@@ -25,7 +25,7 @@
 
 /* ----------Navbar---------- */
 
-#fc-navbar {
+#fc-appbar {
   position: absolute;
   width: 100%;
   top: 0;
@@ -36,7 +36,7 @@
   background: #f5f5f5;
 }
 
-.navbar-item {
+.appbar-item {
   position: relative;
   display: flex;
   align-items: center;

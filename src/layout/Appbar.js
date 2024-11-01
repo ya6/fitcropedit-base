@@ -1,6 +1,6 @@
-export default class Navbar {
-  navbar;
-  navbarItems;
+export default class Appbar {
+appbar;
+  appbarItems;
 
   constructor(container, stateManager) {
     this.container = container;
@@ -16,17 +16,17 @@ export default class Navbar {
   }
 
   getAllControls() {
-    this.navbarItems = this.navbar.querySelectorAll('[data-role="navbar-item"]');
+    this.appbarItems = this.appbar.querySelectorAll('[data-role="appbar-item"]');
   }
 
   dispatch() {
-    this.navbar.addEventListener("click", (e) => {
+    this.appbar.addEventListener("click", (e) => {
       const targetElement = e.target;
 
-      if (targetElement.dataset.role == "navbar-item") {
+      if (targetElement.dataset.role == "appbar-item") {
         // open dropdown
         // manage icons
-        this.navbarItems.forEach((el) => {
+        this.appbarItems.forEach((el) => {
           const curentOpenIcon = el.querySelector('[data-role="custom-toggle-icon-open"]');
           const curentcloseIcon = el.querySelector('[data-role="custom-toggle-icon-close"]');
           const curentDropdown = el.querySelector('[data-role="dropdown-box"]');
@@ -46,15 +46,15 @@ export default class Navbar {
   }
 
   template() {
-    this.navbar = document.createElement("div");
-    this.navbar.setAttribute("id", "fc-navbar");
-    this.injectString(this.navbar, this.innerTemplate());
-    return this.navbar;
+    this.appbar = document.createElement("div");
+    this.appbar.setAttribute("id", "fc-appbar");
+    this.injectString(this.appbar, this.innerTemplate());
+    return this.appbar;
   }
 
   innerTemplate() {
     return `
-  <div class="navbar-item" data-role="navbar-item">
+  <div class="appbar-item" data-role="appbar-item">
     <div class="avoid-clicks">File</div>
 
   <div class="custom-icon ms-05" data-role="custom-toggle-icon-open">
@@ -72,9 +72,9 @@ export default class Navbar {
   <div class="dropdown-box absolute hidden" data-role="dropdown-box">
     <ul>
       <li class="items-link">
-      <input type="file" id="navbarImageInput" class="hidden action" accept="image/png, image/jpeg">
+      <input type="file" id="appbarImageInput" class="hidden action" accept="image/png, image/jpeg">
       <div class="">
-        <label for="navbarImageInput" class="">
+        <label for="appbarImageInput" class="">
           Open
         </label>
       </div> 

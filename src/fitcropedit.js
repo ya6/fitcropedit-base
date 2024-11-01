@@ -1,6 +1,6 @@
 import StateManager from "./StateManager";
 import MainCanvas from "./MainCanvas";
-import Navbar from "./layout//Navbar";
+import Appbar from "./layout/Appbar";
 import LeftSidebar from "./layout/LeftSidebar";
 
 console.log("fitcropedit.js");
@@ -15,7 +15,7 @@ function bootstrap(params) {
   container.style.height = stateManager.state.template.containerHeight;
 
   //template
-  const navbar = new Navbar(container, stateManager);
+  const appbar = new Appbar(container, stateManager);
   const leftSidebar = new LeftSidebar(container, stateManager);
   const mainCanvas = new MainCanvas(container, stateManager);
 
