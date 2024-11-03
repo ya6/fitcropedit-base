@@ -1,13 +1,13 @@
 export default class MainCanvas {
-  constructor(container, stateManager) {
+  constructor(container, stateService) {
     this.container = container;
-    this.appState = stateManager.state;
+    this.appState = stateService.state;
 
     //
     this.canvas = document.createElement("canvas");
     this.ctx = this.canvas.getContext("2d");
 
-    this.canvas.setAttribute("id", this.appState.selectors.mainCanvasSelector);
+    this.canvas.setAttribute("id", this.appState.mainCanvasSelector);
     this.injectElement(this.container, this.canvas)
     //
     this.init();
@@ -19,6 +19,11 @@ export default class MainCanvas {
   }
 
   init() {
+    this.configure() 
+    this.draw();
+  }
+
+  configure() {
     this.canvas.width =
     this.appState.template.containerWidth * this.appState.canvasMultiplier - (this.appState.template.leftSidebarWidth + this.appState.template.rightSidebarWidth);
     this.canvas.height =
@@ -26,7 +31,6 @@ export default class MainCanvas {
     this.canvas.style.top = `${this.appState.template.appbarHeight}px`;
     this.canvas.style.left = `${this.appState.template.leftSidebarWidth}px`;
 
-    this.draw();
   }
 
   draw() {

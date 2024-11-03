@@ -2,9 +2,9 @@ export default class Appbar {
   appbar;
   appbarItems;
 
-  constructor(container, stateManager) {
+  constructor(container, stateService) {
     this.container = container;
-    this.stateManager = stateManager;
+    this.stateService = stateService;
     this.init();
   }
 
@@ -29,7 +29,7 @@ export default class Appbar {
     `;
 
     const fileMenuItem = `
-    <div class="fc-appbar-item" data-role="appbar-item">
+    <div class="fc-appbar-item" data-role="appbar-item" data-action="file">
     <div class="avoid-clicks">File</div>
 
   <div class="custom-icon ms-05" data-role="custom-toggle-icon-open">
@@ -46,17 +46,17 @@ export default class Appbar {
 
   <div class="dropdown-box absolute hidden" data-role="dropdown-box">
     <ul>
-      <li class="items-link">
-      <input type="file" id="appbarImageInput" class="hidden action" accept="image/png, image/jpeg">
-      <div class="">
-        <label for="appbarImageInput" class="">
+      <li class="items-link" data-role="dropdown-item">
+      <input type="file" id="${this.stateService.state.selectors.appbarFileInputSelector}" data-role="dropdown-item"  class="hidden" accept="image/png, image/jpeg, image/webp, image/gif">
+      <div>
+        <label class="item-link-text" for="${this.stateService.state.selectors.appbarFileInputSelector}">
           Open
         </label>
       </div> 
       </li>
-      <li class="items-link action action-save" >Save</li>
-      <li class="items-link action action-reset" >Reset</li>
-      <li class="items-link action action-close" >Close</li>
+      <li class="items-link"><span class="item-link-text" data-role="dropdown-item">Save</span></li>
+      <li class="items-link"><span class="item-link-text" data-role="dropdown-item">Reset</span></li>
+      <li class="items-link"><span class="item-link-text" data-role="dropdown-item">Close</span></li>
     </ul>
   </div>
 </div>
@@ -76,13 +76,14 @@ export default class Appbar {
     this.appbar.addEventListener("click", (e) => {
       const targetElement = e.target;
 
-      if (targetElement.dataset.role == "appbar-item") {
+      if (targetElement.dataset.role === "appbar-item") {
         // open dropdown
         // manage icons
         this.appbarItems.forEach((el) => {
           const curentOpenIcon = el.querySelector('[data-role="custom-toggle-icon-open"]');
           const curentcloseIcon = el.querySelector('[data-role="custom-toggle-icon-close"]');
           const curentDropdown = el.querySelector('[data-role="dropdown-box"]');
+          console.log();
 
           if (el === targetElement) {
             this.toggeElements(curentOpenIcon);
@@ -95,6 +96,22 @@ export default class Appbar {
           }
         });
       }
+
+      if (targetElement.dataset.role === "dropdown-item") {
+        this.closeAllMenuItems();
+      }
+    });
+  }
+
+  closeAllMenuItems() {
+    this.appbarItems.forEach((el) => {
+      const curentOpenIcon = el.querySelector('[data-role="custom-toggle-icon-open"]');
+      const curentcloseIcon = el.querySelector('[data-role="custom-toggle-icon-close"]');
+      const curentDropdown = el.querySelector('[data-role="dropdown-box"]');
+
+      this.showhiddenElements(curentOpenIcon);
+      this.hideElements(curentcloseIcon);
+      this.hideElements(curentDropdown);
     });
   }
 

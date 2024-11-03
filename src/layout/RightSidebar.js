@@ -1,15 +1,15 @@
 export default class RightSidebar {
   rightSidebar;
 
-  constructor(container, stateManager) {
+  constructor(container, stateService) {
     this.container = container;
-    this.appState = stateManager.state;
+    this.appState = stateService.state;
     this.init();
   }
 
   init() {
     this.createTemplate();
-    this.setLocation();
+    this.configure();
     this.injectElement(this.container, this.rightSidebar);
     this.getAllControls();
     this.dispatch();
@@ -55,7 +55,7 @@ controls
 	`;
   }
 
-  setLocation() {
+  configure() {
     this.rightSidebar.style.top = `${this.appState.template.appbarHeight}px`;
     this.rightSidebar.style.right = `0px`;
     this.rightSidebar.style.width = `${this.appState.template.rightSidebarWidth}px`;

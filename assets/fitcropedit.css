@@ -79,7 +79,7 @@ ul {
 
 .inner-dropdown-master {
   font-size: 0.9rem;
-  cursor: pointer;
+  /* cursor: pointer; */
   white-space: nowrap;
 }
 
@@ -93,13 +93,17 @@ ul {
 }
 
 .items-link {
-  cursor: pointer;
   margin: 0.2rem;
   padding: 0.3rem;
 }
 
 .items-link:hover {
   background-color: #eeeeee;
+}
+
+.item-link-text {
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
 }
 
 .hidden {

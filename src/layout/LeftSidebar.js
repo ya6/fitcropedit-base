@@ -2,21 +2,21 @@ export default class LeftSidebar {
   leftSidebar;
   leftSidebarItems;
 
-  constructor(container, stateManager) {
+  constructor(container, stateService) {
     this.container = container;
-    this.appState = stateManager.state;
+    this.appState = stateService.state;
     this.init();
   }
 
   init() {
     this.createTemplate();
-    this.setLocation();
+    this.configure();
     this.injectElement(this.container, this.leftSidebar);
     this.getAllControls();
     this.dispatch();
   }
 
-  setLocation() {
+  configure() {
     this.leftSidebar.style.top = `${this.appState.template.appbarHeight}px`;
     this.leftSidebar.style.width = `${this.appState.template.leftSidebarWidth}px`;
     this.leftSidebar.style.height = `${this.container.clientHeight - this.appState.template.appbarHeight}px`;

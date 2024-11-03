@@ -1,30 +1,36 @@
-import StateManager from "./StateManager";
+import StateService from "./services/StateService";
 import MainCanvas from "./MainCanvas";
 import Appbar from "./layout/Appbar";
 import LeftSidebar from "./layout/LeftSidebar";
-import Rightsidebar from './layout/RightSidebar';
+import Rightsidebar from "./layout/RightSidebar";
+import TemplateService from "./services/TemplateService";
+import ImageService from "./services/ImageService";
 
 console.log("fitcropedit.js");
 
-const container = document.getElementById("fitcropedit");
-const stateManager = new StateManager();
+function bootstrap(params) {
 
-function bootstrap(params) { 
-  stateManager.updateState(params);
-
-  container.style.width = stateManager.state.template.containerWidth;
-  container.style.height = stateManager.state.template.containerHeight;
-
+  const container = document.getElementById("fitcropedit");
+  const stateService = new StateService();
+  
+  stateService.updateState(params);
+  
+  container.style.width = stateService.state.template.containerWidth;
+  container.style.height = stateService.state.template.containerHeight;
+  
   //template
-  const appbar = new Appbar(container, stateManager);
-  const leftSidebar = new LeftSidebar(container, stateManager);
-  const rightSidebar = new Rightsidebar(container, stateManager);
-
-  const mainCanvas = new MainCanvas(container, stateManager);
+  const appbar = new Appbar(container, stateService);
+  const leftSidebar = new LeftSidebar(container, stateService);
+  const rightSidebar = new Rightsidebar(container, stateService);
+  const mainCanvas = new MainCanvas(container, stateService);
+  
+  //setup
+  const templateService = new TemplateService(container, stateService);
+  const imageService = new ImageService(container, stateService);
 
   const resizeObserver = new ResizeObserver((entries) => {
-    stateManager.state.template.containerWidth = entries[0].target.clientWidth;
-    stateManager.state.template.containerHeight = entries[0].target.clientHeight;
+    stateService.state.template.containerWidth = entries[0].target.clientWidth;
+    stateService.state.template.containerHeight = entries[0].target.clientHeight;
 
     mainCanvas.init();
   });
