@@ -1,3 +1,13 @@
+/* ----------for development ---------- */
+
+.brd {
+  border: 1px solid gold;
+}
+
+.brd-1 {
+  border: 1px solid blue;
+}
+
 #fitcropedit {
   position: relative;
   background-color: #fff;
@@ -14,9 +24,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  /* width: 100%; */
-  /* height: 100%; */
-  border: 1px solid gold;
+  border: 1px solid #bdbdbd;
 }
 
 .avoid-clicks {
@@ -148,7 +156,7 @@ ul {
   font-weight: 500;
   font-family: inherit;
   cursor: pointer;
-  padding: 0.5rem 0.8rem;
+  padding: 0.5rem 0rem;
   background: #eeeeee;
   border: none;
   transition: background-color 0.25s;
@@ -307,7 +315,6 @@ ul {
   margin-top: 0.5rem;
 }
 
-
 .mt-2 {
   margin-top: 1rem;
 }
@@ -360,8 +367,23 @@ ul {
   margin-right: 0.5rem;
 }
 
-
 .no-mp {
   margin: 0;
   padding: 0;
 }
+
+/* ----------Text---------- */
+
+.text-center {
+  text-align: center;
+}
+
+
+/* ---------- ---------- */
+
+.delimeter {
+  margin: 0.3rem 0 0.5rem;
+  height: 1px;
+  background: #eeeeee;
+}
+

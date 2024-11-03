@@ -30,7 +30,7 @@ export default class MainCanvas {
   }
 
   draw() {
-    this.ctx.fillStyle = "green";
+    this.ctx.fillStyle = "gray";
     this.ctx.fillRect(10, 10, 150, 100);
   }
 }
