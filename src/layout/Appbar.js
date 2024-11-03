@@ -1,5 +1,5 @@
 export default class Appbar {
-appbar;
+  appbar;
   appbarItems;
 
   constructor(container, stateManager) {
@@ -16,36 +16,6 @@ appbar;
     this.dispatch();
   }
 
-  getAllControls() {
-    this.appbarItems = this.appbar.querySelectorAll('[data-role="appbar-item"]');
-  }
-
-  dispatch() {
-    this.appbar.addEventListener("click", (e) => {
-      const targetElement = e.target;
-
-      if (targetElement.dataset.role == "appbar-item") {
-        // open dropdown
-        // manage icons
-        this.appbarItems.forEach((el) => {
-          const curentOpenIcon = el.querySelector('[data-role="custom-toggle-icon-open"]');
-          const curentcloseIcon = el.querySelector('[data-role="custom-toggle-icon-close"]');
-          const curentDropdown = el.querySelector('[data-role="dropdown-box"]');
-
-          if (el === targetElement) {
-            this.toggeElements(curentOpenIcon);
-            this.toggeElements(curentcloseIcon);
-            this.toggeElements(curentDropdown);
-          } else {
-            this.showhiddenElements(curentOpenIcon);
-            this.hideElements(curentcloseIcon);
-            this.hideElements(curentDropdown);
-          }
-        });
-      }
-    });
-  }
-
   createTemplate() {
     this.appbar = document.createElement("div");
     this.appbar.setAttribute("id", "fc-appbar");
@@ -54,8 +24,12 @@ appbar;
   }
 
   innerTemplate() {
-    return `
-  <div class="appbar-item" data-role="appbar-item">
+    const logo = `
+    <div class="fc-appbar-logo">Fitcropedit</div>
+    `;
+
+    const fileMenuItem = `
+    <div class="fc-appbar-item" data-role="appbar-item">
     <div class="avoid-clicks">File</div>
 
   <div class="custom-icon ms-05" data-role="custom-toggle-icon-open">
@@ -87,6 +61,41 @@ appbar;
   </div>
 </div>
 `;
+
+    return `
+  ${logo}
+  ${fileMenuItem}
+    `;
+  }
+
+  getAllControls() {
+    this.appbarItems = this.appbar.querySelectorAll('[data-role="appbar-item"]');
+  }
+
+  dispatch() {
+    this.appbar.addEventListener("click", (e) => {
+      const targetElement = e.target;
+
+      if (targetElement.dataset.role == "appbar-item") {
+        // open dropdown
+        // manage icons
+        this.appbarItems.forEach((el) => {
+          const curentOpenIcon = el.querySelector('[data-role="custom-toggle-icon-open"]');
+          const curentcloseIcon = el.querySelector('[data-role="custom-toggle-icon-close"]');
+          const curentDropdown = el.querySelector('[data-role="dropdown-box"]');
+
+          if (el === targetElement) {
+            this.toggeElements(curentOpenIcon);
+            this.toggeElements(curentcloseIcon);
+            this.toggeElements(curentDropdown);
+          } else {
+            this.showhiddenElements(curentOpenIcon);
+            this.hideElements(curentcloseIcon);
+            this.hideElements(curentDropdown);
+          }
+        });
+      }
+    });
   }
 
   //

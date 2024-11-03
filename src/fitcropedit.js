@@ -2,6 +2,7 @@ import StateManager from "./StateManager";
 import MainCanvas from "./MainCanvas";
 import Appbar from "./layout/Appbar";
 import LeftSidebar from "./layout/LeftSidebar";
+import Rightsidebar from './layout/RightSidebar';
 
 console.log("fitcropedit.js");
 
@@ -17,6 +18,8 @@ function bootstrap(params) {
   //template
   const appbar = new Appbar(container, stateManager);
   const leftSidebar = new LeftSidebar(container, stateManager);
+  const rightSidebar = new Rightsidebar(container, stateManager);
+
   const mainCanvas = new MainCanvas(container, stateManager);
 
   const resizeObserver = new ResizeObserver((entries) => {

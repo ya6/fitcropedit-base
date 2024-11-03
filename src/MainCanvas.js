@@ -20,7 +20,7 @@ export default class MainCanvas {
 
   init() {
     this.canvas.width =
-    this.appState.template.containerWidth * this.appState.canvasMultiplier - this.appState.template.leftSidebarWidth;
+    this.appState.template.containerWidth * this.appState.canvasMultiplier - (this.appState.template.leftSidebarWidth + this.appState.template.rightSidebarWidth);
     this.canvas.height =
     this.appState.template.containerHeight * this.appState.canvasMultiplier - this.appState.template.appbarHeight;
     this.canvas.style.top = `${this.appState.template.appbarHeight}px`;
