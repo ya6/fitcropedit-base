@@ -1,5 +1,5 @@
 export const initParams = {
-  canvasMultiplier: 0.5,
+  canvasMultiplier: 1,
   rootSelector: "fitcropedit",
   rootElement: null,
   mainCanvasSelector: "fc-main-canvas",

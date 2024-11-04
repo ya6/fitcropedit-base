@@ -20,11 +20,16 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#fc-main-canvas {
+.fc-canvas-container {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+#fc-main-canvas {
   border: 1px solid #bdbdbd;
+  height: 100%;
+  width: 100%;
 }
 
 .avoid-clicks {
@@ -382,7 +387,6 @@ ul {
   text-align: center;
 }
 
-
 /* ---------- ---------- */
 
 .delimeter {
@@ -390,4 +394,3 @@ ul {
   height: 1px;
   background: #eeeeee;
 }
-
