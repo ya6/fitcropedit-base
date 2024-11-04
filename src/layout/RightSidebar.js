@@ -1,9 +1,9 @@
 export default class RightSidebar {
   rightSidebar;
 
-  constructor(container, stateService) {
-    this.container = container;
+  constructor(stateService) {
     this.appState = stateService.state;
+    this.container = this.appState.rootElement;
     this.init();
   }
 

@@ -2,9 +2,9 @@ export default class Appbar {
   appbar;
   appbarItems;
 
-  constructor(container, stateService) {
-    this.container = container;
-    this.stateService = stateService;
+  constructor(stateService) {
+    this.appState = stateService.state;
+    this.container = this.appState.rootElement;
     this.init();
   }
 
@@ -47,9 +47,9 @@ export default class Appbar {
   <div class="dropdown-box absolute hidden" data-role="dropdown-box">
     <ul>
       <li class="items-link" data-role="dropdown-item">
-      <input type="file" id="${this.stateService.state.selectors.appbarFileInputSelector}" data-role="dropdown-item"  class="hidden" accept="image/png, image/jpeg, image/webp, image/gif">
+      <input type="file" id="${this.appState.selectors.appbarFileInputSelector}" data-role="dropdown-item"  class="hidden" accept="image/png, image/jpeg, image/webp, image/gif">
       <div>
-        <label class="item-link-text" for="${this.stateService.state.selectors.appbarFileInputSelector}">
+        <label class="item-link-text" for="${this.appState.selectors.appbarFileInputSelector}">
           Open
         </label>
       </div> 
@@ -83,7 +83,6 @@ export default class Appbar {
           const curentOpenIcon = el.querySelector('[data-role="custom-toggle-icon-open"]');
           const curentcloseIcon = el.querySelector('[data-role="custom-toggle-icon-close"]');
           const curentDropdown = el.querySelector('[data-role="dropdown-box"]');
-          console.log();
 
           if (el === targetElement) {
             this.toggeElements(curentOpenIcon);

@@ -6,7 +6,7 @@ export default class StateService {
     if (StateService.instance) {
       return StateService.instance;
     }
-    this.state = { ...initParams };
+    this.state = structuredClone(initParams);
     StateService.instance = this;
   }
 

@@ -1,7 +1,7 @@
 export default class MainCanvas {
-  constructor(container, stateService) {
-    this.container = container;
+  constructor(stateService) {
     this.appState = stateService.state;
+    this.container = this.appState.rootElement;
 
     //
     this.canvas = document.createElement("canvas");

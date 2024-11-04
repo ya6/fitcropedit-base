@@ -1,5 +1,7 @@
 export const initParams = {
   canvasMultiplier: 0.5,
+  rootSelector: "fitcropedit",
+  rootElement: null,
   mainCanvasSelector: "fc-main-canvas",
   selectors: { // Ensure that the selectors match those in fitcropedit.css
     appbarFileInputSelector: "fc-appbar-file-input",

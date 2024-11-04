@@ -9,24 +9,19 @@ import ImageService from "./services/ImageService";
 console.log("fitcropedit.js");
 
 function bootstrap(params) {
-
-  const container = document.getElementById("fitcropedit");
   const stateService = new StateService();
-  
   stateService.updateState(params);
-  
-  container.style.width = stateService.state.template.containerWidth;
-  container.style.height = stateService.state.template.containerHeight;
-  
+
   //template
-  const appbar = new Appbar(container, stateService);
-  const leftSidebar = new LeftSidebar(container, stateService);
-  const rightSidebar = new Rightsidebar(container, stateService);
-  const mainCanvas = new MainCanvas(container, stateService);
-  
+  const templateService = new TemplateService(stateService);
+  const appbar = new Appbar(stateService);
+  const leftSidebar = new LeftSidebar(stateService);
+  const rightSidebar = new Rightsidebar(stateService);
+  const mainCanvas = new MainCanvas(stateService);
+  templateService.getElements();
+
   //setup
-  const templateService = new TemplateService(container, stateService);
-  const imageService = new ImageService(container, stateService);
+  const imageService = new ImageService(stateService);
 
   const resizeObserver = new ResizeObserver((entries) => {
     stateService.state.template.containerWidth = entries[0].target.clientWidth;
@@ -35,7 +30,7 @@ function bootstrap(params) {
     mainCanvas.init();
   });
 
-  resizeObserver.observe(container);
+  resizeObserver.observe(stateService.state.rootElement);
 }
 
 window.fitcropedit = {

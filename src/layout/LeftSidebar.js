@@ -2,9 +2,9 @@ export default class LeftSidebar {
   leftSidebar;
   leftSidebarItems;
 
-  constructor(container, stateService) {
-    this.container = container;
+  constructor(stateService) {
     this.appState = stateService.state;
+    this.container = this.appState.rootElement;
     this.init();
   }
 

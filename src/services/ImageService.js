@@ -1,9 +1,9 @@
 export default class ImageService {
   formats = ["image/png", "image/jpeg", "image/webp", "image/gif"];
-  
-  constructor(container, stateService) {
-    this.container = container;
-    this.stateService = stateService;
+
+  constructor(stateService) {
+    this.appState = stateService.state;
+    this.container = this.appState.rootElement;
 
     this.init();
   }
@@ -14,7 +14,7 @@ export default class ImageService {
   }
 
   loadImage() {
-    const input = this.stateService.state.elements.appbarFileInputElement;
+    const input = this.appState.elements.appbarFileInputElement;
     input.addEventListener("change", (e) => {
       if (e.target.files[0] && this.formats.includes(e.target.files[0].type)) {
         console.log(e.target.files[0]);
