@@ -5,10 +5,13 @@ import LeftSidebar from "./layout/LeftSidebar";
 import Rightsidebar from "./layout/RightSidebar";
 import TemplateService from "./services/TemplateService";
 import ImageService from "./services/ImageService";
+import DeviceService from "./services/deviceService";
 
 console.log("fitcropedit.js");
 
 function bootstrap(params) {
+  new DeviceService();
+
   const stateService = new StateService();
   stateService.updateState(params);
 
