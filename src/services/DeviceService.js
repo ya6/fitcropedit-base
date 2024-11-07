@@ -1,43 +1,51 @@
 export default class DeviceService {
-  constructor() {
+  deviceData = { type: undefined, width: undefined, height: undefined };
+  constructor(stateService) {
+    this.appState = stateService.state;
+
     this.init();
   }
 
   init() {
-    console.log("");
-    console.log("Device type--> ", this.getDeviceType());
-    console.log("");
-    console.log(
-      "width--> ",
-      window.innerWidth,
-      "height--> ",
-      window.innerHeight,
-      "userAgent--> ",
-      navigator.userAgent
-    );
+    this.getDeviceInfo();
+    this.storeDeviceInfo();
+  }
+
+  getDeviceInfo() {
+    this.deviceData.type = this.getDeviceType();
+    this.deviceData.width = window?.innerWidth;
+    this.deviceData.height = window?.innerHeight;
   }
 
   getDeviceType() {
-    const userAgent = navigator.userAgent.toLowerCase();
-
-    if (userAgent.includes("android")) {
-      return "Android";
-    } else if (userAgent.includes("iphone")) {
-      return "iPhone";
-    } else if (userAgent.includes("ipad")) {
-      return "iPad";
-    } else if (userAgent.includes("ipod")) {
-      return "iPod";
-    } else if (userAgent.includes("windows phone")) {
-      return "Windows Phone";
-    } else if (userAgent.includes("windows")) {
-      return "Windows";
-    } else if (userAgent.includes("mac os")) {
-      return "Mac OS";
-    } else if (userAgent.includes("linux")) {
-      return "Linux";
+    if (window?.navigator?.userAgent) {
+      const userAgent = navigator.userAgent.toLowerCase();
+      if (userAgent.includes("android")) {
+        return "Android";
+      } else if (userAgent.includes("iphone")) {
+        return "iPhone";
+      } else if (userAgent.includes("ipad")) {
+        return "iPad";
+      } else if (userAgent.includes("ipod")) {
+        return "iPod";
+      } else if (userAgent.includes("windows phone")) {
+        return "Windows Phone";
+      } else if (userAgent.includes("windows")) {
+        return "Windows";
+      } else if (userAgent.includes("mac os")) {
+        return "Mac OS";
+      } else if (userAgent.includes("linux")) {
+        return "Linux";
+      } else {
+        return null;
+      }
     } else {
-      return "Unknown";
+      return null;
     }
+  }
+
+  //
+  storeDeviceInfo() {
+    this.appState.device = { ...this.appState.device, ...this.deviceData };
   }
 }

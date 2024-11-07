@@ -1,4 +1,11 @@
 export const initParams = {
+
+  device: {
+    type: "",
+    width: 0,
+    height: 0
+  },
+
   canvasMultiplier: 1,
   rootSelector: "fitcropedit",
   rootElement: null,

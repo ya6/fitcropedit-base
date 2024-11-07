@@ -10,10 +10,11 @@ import DeviceService from "./services/deviceService";
 console.log("fitcropedit.js");
 
 function bootstrap(params) {
-  new DeviceService();
-
   const stateService = new StateService();
   stateService.updateState(params);
+  
+  new DeviceService(stateService);
+
 
   //template
   const templateService = new TemplateService(stateService);
