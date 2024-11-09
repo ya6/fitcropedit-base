@@ -1,5 +1,5 @@
 export default class Appbar {
-  appbar;
+  appbarElement;
   appbarItems;
 
   constructor(stateService) {
@@ -9,18 +9,21 @@ export default class Appbar {
   }
 
   init() {
-    // setLocation() ?
     this.createTemplate();
-    this.injectElement(this.container, this.appbar);
+    this.storeAppbar();
     this.getAllControls();
     this.dispatch();
   }
 
   createTemplate() {
-    this.appbar = document.createElement("div");
-    this.appbar.setAttribute("id", "fc-appbar");
-    this.injectString(this.appbar, this.innerTemplate());
-    return this.appbar;
+    this.appbarElement = document.createElement("div");
+    this.appbarElement.setAttribute("id", this.appState.appbarSelector);
+    this.injectString(this.appbarElement, this.innerTemplate());
+  }
+
+  //
+  storeAppbar() {
+    this.appState.appbarElement = this.appbarElement;
   }
 
   innerTemplate() {
@@ -45,8 +48,8 @@ export default class Appbar {
   </div>
 
   <div class="dropdown-box absolute hidden" data-role="dropdown-box">
-    <ul>
-      <li class="items-link" data-role="dropdown-item">
+    <ul class="fc-appbar-ul">
+      <li class="fc-appbar-items-link" data-role="dropdown-item">
       <input type="file" id="${this.appState.selectors.appbarFileInputSelector}" data-role="dropdown-item"  class="hidden" accept="image/png, image/jpeg, image/webp, image/gif">
       <div>
         <label class="item-link-text" for="${this.appState.selectors.appbarFileInputSelector}">
@@ -69,11 +72,11 @@ export default class Appbar {
   }
 
   getAllControls() {
-    this.appbarItems = this.appbar.querySelectorAll('[data-role="appbar-item"]');
+    this.appbarItems = this.appbarElement.querySelectorAll('[data-role="appbar-item"]');
   }
 
   dispatch() {
-    this.appbar.addEventListener("click", (e) => {
+    this.appbarElement.addEventListener("click", (e) => {
       const targetElement = e.target;
 
       if (targetElement.dataset.role === "appbar-item") {
@@ -114,12 +117,7 @@ export default class Appbar {
     });
   }
 
-  //
-  injectElement(host, element) {
-    host.appendChild(element);
-  }
-
-  injectString(host, template) {
+   injectString(host, template) {
     host.insertAdjacentHTML("afterbegin", template);
   }
 

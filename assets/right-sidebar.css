@@ -1,0 +1,7 @@
+#fc-right-sidebar {
+	position: absolute;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	padding: 0.5rem;
+  }

@@ -1,0 +1,10 @@
+#fc-main-canvas-wraper {
+  flex: 1;
+}
+
+#fc-main-canvas {
+  margin-left: 1%;
+  height: 100%;
+  /* do not understand the behavior with width: 100%  */
+  width: 98%;
+}

@@ -1,46 +1,54 @@
 export default class MainCanvas {
+  canvas;
+  ctx;
+  wraper;
+
   constructor(stateService) {
     this.appState = stateService.state;
     this.container = this.appState.rootElement;
 
-    //
+    this.init();
+    this.handleResize();
+  }
+
+  injectElement(host, element) {
+    host.appendChild(element);
+  }
+
+  createTemplate() {
     this.wraper = document.createElement("div");
-    this.wraper.classList.add("fc-canvas-container");
+    this.wraper.setAttribute("id", this.appState.mainCanvasWraperSelector);
 
     this.canvas = document.createElement("canvas");
     this.ctx = this.canvas.getContext("2d");
 
     this.canvas.setAttribute("id", this.appState.mainCanvasSelector);
 
-    this.injectElement(this.container, this.wraper);
     this.injectElement(this.wraper, this.canvas);
-    //
-    this.init();
   }
 
-  //
-  injectElement(host, element) {
-    host.appendChild(element);
+  store() {
+    this.appState.mainCanvasWraperElement = this.wraper;
+    this.appState.mainCanvasElement = this.canvas;
   }
 
   init() {
-    this.configure();
-    this.draw();
+    this.createTemplate();
+    this.store();
+  }
+
+  handleResize() {
+    const resizeObserver = new ResizeObserver(() => {
+      this.configure();
+      this.draw();
+    });
+
+    resizeObserver.observe(this.wraper);
   }
 
   configure() {
-    const width =
-      this.appState.template.containerWidth -
-      (this.appState.template.leftSidebarWidth + this.appState.template.rightSidebarWidth);
-    const height = this.appState.template.containerHeight - this.appState.template.appbarHeight;
-
-    this.wraper.style.width = `${width}px`;
-    this.wraper.style.height = `${height}px`;
-    this.wraper.style.top = `${this.appState.template.appbarHeight}px`;
-    this.wraper.style.left = `${this.appState.template.leftSidebarWidth}px`;
-
-    this.canvas.width = width * this.appState.canvasMultiplier;
-    this.canvas.height = height * this.appState.canvasMultiplier;
+    this.canvas.width = this.wraper.clientWidth * this.appState.canvasMultiplier;
+    this.canvas.height = this.wraper.clientHeight * this.appState.canvasMultiplier;
   }
 
   draw() {

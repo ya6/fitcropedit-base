@@ -1,130 +1,36 @@
-/* ----------for development ---------- */
-
-.brd {
-  border: 1px solid gold;
-}
-
-.brd-1 {
-  border: 1px solid blue;
-}
+@import url("temp-styles.css");
+@import url("utils.css");
+@import url("appbar.css");
+@import url("left-sidebar.css");
+@import url("main-canvas.css");
 
 #fitcropedit {
-  position: relative;
-  background-color: #fff;
-  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
   margin-left: auto;
   margin-right: auto;
-  padding: 0.5rem;
-  border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
 }
 
-.fc-canvas-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-#fc-main-canvas {
-  border: 1px solid #bdbdbd;
-  height: 100%;
-  width: 100%;
-}
-
-.avoid-clicks {
-  pointer-events: none;
-}
-
-/* ----------Appbar---------- */
-
-#fc-appbar {
-  position: absolute;
-  width: 100%;
-  top: 0;
-  left: 0;
+#fc-wraper {
   display: flex;
-  align-items: center;
-  height: 30px;
-  box-shadow: 0px 2px 2px #ddd;
-  background: #f5f5f5;
 }
 
-.fc-appbar-logo {
-  margin-left: 0.8rem;
-  margin-right: 1.3rem;
-  font-weight: 600;
-  color: gray;
+@media (max-width: 768px) {
+  #fc-wraper {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
 }
 
-.fc-appbar-item {
-  position: relative;
-  display: flex;
-  align-items: center;
-
-  font-size: 0.8rem;
-  font-weight: 500;
-
-  margin-top: 0.4rem;
-  margin-bottom: 0.4rem;
-  margin-right: 1rem;
-
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-
-  cursor: pointer;
+@media (min-width: 769px) {
+  #fc-wraper {
+    flex-grow: 1;
+  }
 }
 
-ul {
-  font-size: 0.9rem;
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-.inner-dropdown-master {
-  font-size: 0.9rem;
-  /* cursor: pointer; */
-  white-space: nowrap;
-}
-
-.dropdown-box {
-  min-width: 100px;
-}
-
-.drop-info-box {
-  min-width: 38vw;
-  border: 1px solid gold;
-}
-
-.items-link {
-  margin: 0.2rem;
-  padding: 0.3rem;
-}
-
-.items-link:hover {
-  background-color: #eeeeee;
-}
-
-.item-link-text {
-  padding: 0.3rem 0.6rem;
-  cursor: pointer;
-}
-
-.hidden {
-  display: none;
-}
-
-.absolute {
-  background-color: white;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  border: 1px solid #eeeeee;
-  box-shadow: 0px 2px 2px #dddddd;
-  padding: 1rem;
-  z-index: 2000;
-}
 
 .history-list {
   background-color: #fafafa;
@@ -133,61 +39,12 @@ ul {
   padding: 1rem;
 }
 
-.disabled {
-  color: gray;
-  pointer-events: none;
-  cursor: default;
-}
-
 /* ----------Icons---------- */
 
 .custom-icon {
   width: 1rem;
   height: 1rem;
   pointer-events: none;
-}
-
-/* ----------sidebar---------- */
-
-#fc-left-sidebar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  padding: 1rem 0.5rem;
-  background: #eeeeee;
-}
-
-.fc-left-sidebar-button {
-  margin-bottom: 1rem;
-  font-size: 0.9em;
-  font-weight: 500;
-  font-family: inherit;
-  cursor: pointer;
-  padding: 0.5rem 0rem;
-  background: #eeeeee;
-  border: none;
-  transition: background-color 0.25s;
-}
-
-.fc-left-sidebar-button:hover {
-  background: #bdbdbd;
-}
-
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* ----------Right Sidebar---------- */
-
-#fc-right-sidebar {
-  position: absolute;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  padding: 0.5rem;
 }
 
 /* ----------Buttons---------- */
@@ -275,122 +132,4 @@ ul {
   background-color: #fff;
   cursor: pointer;
   transition: background-color 0.38s;
-}
-
-/* ----------Flex---------- */
-
-.align-center {
-  align-items: center;
-}
-
-.flex {
-  display: flex;
-}
-
-.space-between {
-  justify-content: space-between;
-}
-
-/* ----------Spacing---------- */
-
-.p-1 {
-  padding: 0.5rem;
-}
-
-.m-1 {
-  margin: 0.5rem;
-}
-
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.mx-1 {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
-
-.my-3 {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.mt-0 {
-  margin-top: 0;
-}
-
-.mt-1 {
-  margin-top: 0.5rem;
-}
-
-.mt-2 {
-  margin-top: 1rem;
-}
-
-.mt-3 {
-  margin-top: 1.5rem;
-}
-
-.mb-1 {
-  margin-bottom: 0.5rem;
-}
-
-.mb-2 {
-  margin-bottom: 1rem;
-}
-
-.mb-3 {
-  margin-bottom: 1.5rem;
-}
-
-.mb-4 {
-  margin-bottom: 2rem;
-}
-
-.ms-05 {
-  margin-left: 0.25rem;
-}
-
-.ms-1 {
-  margin-left: 0.5rem;
-}
-
-.ms-2 {
-  margin-left: 1rem;
-}
-
-.ms-3 {
-  margin-left: 1.5rem;
-}
-
-.ms-4 {
-  margin-left: 2rem;
-}
-
-.ms-5 {
-  margin-left: 2.5rem;
-}
-
-.me-1 {
-  margin-right: 0.5rem;
-}
-
-.no-mp {
-  margin: 0;
-  padding: 0;
-}
-
-/* ----------Text---------- */
-
-.text-center {
-  text-align: center;
-}
-
-/* ---------- ---------- */
-
-.delimeter {
-  margin: 0.3rem 0 0.5rem;
-  height: 1px;
-  background: #eeeeee;
 }

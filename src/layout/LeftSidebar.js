@@ -1,40 +1,40 @@
 export default class LeftSidebar {
-  leftSidebar;
+  leftSidebarElement;
   leftSidebarItems;
 
   constructor(stateService) {
     this.appState = stateService.state;
-    this.container = this.appState.rootElement;
     this.init();
   }
 
   init() {
     this.createTemplate();
     this.configure();
-    this.injectElement(this.container, this.leftSidebar);
+    this.storeleftSidebar();
     this.getAllControls();
     this.dispatch();
   }
 
   configure() {
-    this.leftSidebar.style.top = `${this.appState.template.appbarHeight}px`;
-    this.leftSidebar.style.width = `${this.appState.template.leftSidebarWidth}px`;
-    this.leftSidebar.style.height = `${this.container.clientHeight - this.appState.template.appbarHeight}px`;
+    this.leftSidebarElement.style.width = `${this.appState.template.leftSidebarWidth}px`;
+  }
+
+  storeleftSidebar() {
+    this.appState.leftSidebarElement = this.leftSidebarElement;
   }
 
   getAllControls() {
-    this.leftSidebarItems = this.leftSidebar.querySelectorAll('[data-role="leftsidebar-item"]');
+    this.leftSidebarItems = this.leftSidebarElement.querySelectorAll('[data-role="leftsidebar-item"]');
   }
 
   dispatch() {
-    this.leftSidebar.addEventListener("click", (e) => {});
+    this.leftSidebarElement.addEventListener("click", (e) => {});
   }
 
   createTemplate() {
-    this.leftSidebar = document.createElement("div");
-    this.leftSidebar.setAttribute("id", "fc-left-sidebar");
-    this.injectString(this.leftSidebar, this.innerTemplate());
-    return this.leftSidebar;
+    this.leftSidebarElement = document.createElement("div");
+    this.leftSidebarElement.setAttribute("id", this.appState.leftSidebarSelector);
+    this.injectString(this.leftSidebarElement, this.innerTemplate());
   }
 
   innerTemplate() {
@@ -127,7 +127,7 @@ export default class LeftSidebar {
   </button>
   `;
 
-  const BackgroundButton = `
+    const BackgroundButton = `
   <button class="fc-left-sidebar-button" type="button" data-role="background-button">
     <div class="custom-icon mx-auto">         
       <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"  viewBox="0 0 .64 .64"> 
@@ -154,9 +154,5 @@ export default class LeftSidebar {
 
   injectString(host, template) {
     host.insertAdjacentHTML("afterbegin", template);
-  }
-
-  injectElement(host, element) {
-    host.append(element);
   }
 }
