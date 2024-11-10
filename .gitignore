@@ -41,7 +41,7 @@ build/Release
 # Info directories
 info/
 
-# Info directories
+# build directories
 public/
 
 # Dependency directories

@@ -2,6 +2,7 @@ export default class MainCanvas {
   canvas;
   ctx;
   wraper;
+  promoImage;
 
   constructor(stateService) {
     this.appState = stateService.state;
@@ -10,8 +11,12 @@ export default class MainCanvas {
     // this.handleResize();
   }
 
-  injectElement(host, element) {
-    host.appendChild(element);
+  init() {
+    this.createTemplate();
+    this.store();
+
+    //promo
+    this.initAndDrawPromo();
   }
 
   createTemplate() {
@@ -31,40 +36,30 @@ export default class MainCanvas {
     this.appState.mainCanvasElement = this.canvas;
   }
 
-  init() {
-    this.createTemplate();
-    this.store();
-  }
-
-  handleResize() {
-    // const resizeObserver = new ResizeObserver(() => {
-    //   this.configure();
-    //   this.draw();
-    // });
-
-    // resizeObserver.observe(this.wraper);
-  }
-  
-
-  configure() {
-
-    // // console.log(this.appState);
-
-    // if (this.appState.device.width <= 768) {
-    //   this.appState.template.containerWidth = "100vw";
-    //   this.appState.template.containerHeight = "100vh";
-    // }
-
-    // this.rootElement.style.width = this.appState.template.containerWidth;
-    // this.rootElement.style.height = this.appState.template.containerHeight;
-    // // console.log(this.rootElement.style.width, this.rootElement.style.height);
-
-    // this.canvas.width = this.wraper.clientWidth * this.appState.canvasMultiplier;
-    // this.canvas.height = this.wraper.clientHeight * this.appState.canvasMultiplier;
-  }
-
   draw() {
     this.ctx.fillStyle = "gray";
     this.ctx.fillRect(10, 10, 150, 100);
+  }
+
+  loadPromo() {
+    this.promo = new Image();
+    this.promo.src = "public/img/dnd-1.png";
+  }
+
+  initAndDrawPromo() {
+    this.loadPromo();
+    this.promo.addEventListener("load", () => {
+      this.drawPromo();
+    });
+  }
+
+  drawPromo() {
+    this.ctx.filter = "opacity(0.02)";
+    this.ctx.drawImage(this.promo, 0, 0, this.canvas.width, this.canvas.height);
+    this.ctx.filter = "opacity(1)";
+  }
+
+  injectElement(host, element) {
+    host.appendChild(element);
   }
 }

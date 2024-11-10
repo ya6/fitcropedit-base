@@ -36,7 +36,7 @@ export default class Template {
 
       this.configureRoot();
 
-      this.mainCanvas.draw();
+      this.mainCanvas.drawPromo();
     });
 
     resizeObserver.observe(this.rootElement);
