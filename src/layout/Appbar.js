@@ -4,7 +4,7 @@ export default class Appbar {
 
   constructor(stateService) {
     this.appState = stateService.state;
-    this.container = this.appState.rootElement;
+    
     this.init();
   }
 

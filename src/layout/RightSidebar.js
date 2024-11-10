@@ -3,6 +3,7 @@ export default class RightSidebar {
 
   constructor(stateService) {
     this.appState = stateService.state;
+    
     this.init();
   }
 

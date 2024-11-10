@@ -5,18 +5,20 @@ export default class Template {
     this.appState = stateService.state;
     this.deviceService = deviceService;
     this.mainCanvas = mainCanvas;
+
     this.init();
   }
 
   init() {
     this.initRootElement();
     this.createTemplate();
+    this.handlResize();
+    this.getElements();
   }
 
   initRootElement() {
     this.getRoot();
     this.storeRoot();
-    this.handlResize();
   }
 
   getRoot() {
@@ -41,7 +43,6 @@ export default class Template {
   }
 
   configureRoot() {
-   
     if (this.appState.device.width <= this.appState.device.mobileBP) {
       this.rootElement.style.width = this.appState.template.mobileContainerWidth;
       this.rootElement.style.height = this.appState.template.mobileContainerHeight;
@@ -70,5 +71,14 @@ export default class Template {
 
   injectElement(host, element) {
     host.appendChild(element);
+  }
+
+  getElements() {
+    const entries = Object.entries(this.appState.selectors);
+
+    for (const [key, value] of entries) {
+      const elementName = key.replace("Selector", "Element");
+      this.appState.elements[elementName] = this.rootElement.querySelector(`#${value}`);
+    }
   }
 }

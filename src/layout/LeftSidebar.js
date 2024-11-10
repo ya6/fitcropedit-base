@@ -4,6 +4,7 @@ export default class LeftSidebar {
 
   constructor(stateService) {
     this.appState = stateService.state;
+    
     this.init();
   }
 

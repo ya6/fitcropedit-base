@@ -23,6 +23,7 @@
 @media (max-width: 768px) {
   #fc-wraper {
     flex-direction: column;
+
   }
 }
 
@@ -76,11 +77,11 @@
   background-color: #f8f9fa;
   cursor: pointer;
   transition: background-color 0.38s;
-  border: 1px solid #ccc;
+  background: #cccccc;
 }
 
 .button:hover {
-  background-color: #ccc;
+  background: #cccccc;
 }
 
 .button-l {
@@ -109,11 +110,11 @@
   margin-left: 0.3rem;
   padding: 0.2rem 0.5rem;
   border-radius: 3px;
-  border: 1px solid #ccc;
+  background: #cccccc;
 }
 
 .sub-button:hover {
-  background-color: #ccc;
+  background: #cccccc;
 }
 
 .small-button {
