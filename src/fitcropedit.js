@@ -3,9 +3,11 @@ import MainCanvas from "./MainCanvas";
 import Appbar from "./layout/Appbar";
 import LeftSidebar from "./layout/LeftSidebar";
 import Rightsidebar from "./layout/RightSidebar";
-import ImageService from "./services/ImageService";
+
 import DeviceService from "./services/DeviceService";
 import Template from "./layout/Template";
+import ImageLoadService from './services/ImageLoadService';
+import OriginImage from './OriginImage';
 
 console.log("fitcropedit.js");
 
@@ -23,7 +25,8 @@ function bootstrap(params) {
   const template = new Template(stateService, deviceService, mainCanvas);
   
   //
-  const imageService = new ImageService(stateService);
+   const imageLoadService = new ImageLoadService();
+   const originImage = new OriginImage(stateService, imageLoadService);
 }
 
 window.fitcropedit = {

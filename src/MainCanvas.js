@@ -8,7 +8,6 @@ export default class MainCanvas {
     this.appState = stateService.state;
 
     this.init();
-    // this.handleResize();
   }
 
   init() {
@@ -54,7 +53,7 @@ export default class MainCanvas {
   }
 
   drawPromo() {
-    this.ctx.filter = "opacity(0.02)";
+    this.ctx.filter = "opacity(0.05)";
     this.ctx.drawImage(this.promo, 0, 0, this.canvas.width, this.canvas.height);
     this.ctx.filter = "opacity(1)";
   }
