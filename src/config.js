@@ -3,6 +3,7 @@ export const initParams = {
     type: "",
     width: 0,
     height: 0,
+    mobileBP: 768
   },
 
   canvasMultiplier: 1,
@@ -12,6 +13,8 @@ export const initParams = {
   appbarElement: null,
   leftSidebarSelector: "fc-left-sidebar",
   leftSidebarElement: null,
+  rightSidebarSelector: "fc-right-sidebar",
+  rightSidebarElement: null,
   wraperSelector: "fc-wraper",
   wraperElement: null,
   mainCanvasWraperSelector: "fc-main-canvas-wraper",
@@ -28,8 +31,10 @@ export const initParams = {
   template: {
     containerWidth: "80%",
     containerHeight: "600px",
+    mobileContainerHeight: "95vh",
+    mobileContainerWidth: "95vw",
     appbarHeight: 32,
     // leftSidebarWidth: 100,
-    rightSidebarWidth: 250,
+    // rightSidebarWidth: 250,
   },
 };

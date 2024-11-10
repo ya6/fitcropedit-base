@@ -9,17 +9,13 @@ export default class LeftSidebar {
 
   init() {
     this.createTemplate();
-    this.configure();
-    this.storeleftSidebar();
+    this.storeLeftSidebar();
     this.getAllControls();
     this.dispatch();
   }
 
-  configure() {
-    this.leftSidebarElement.style.width = `${this.appState.template.leftSidebarWidth}px`;
-  }
-
-  storeleftSidebar() {
+  //
+  storeLeftSidebar() {
     this.appState.leftSidebarElement = this.leftSidebarElement;
   }
 

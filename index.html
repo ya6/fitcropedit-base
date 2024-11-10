@@ -12,35 +12,39 @@
 
 <body>
 
-	<header>
-		<div class="container">
-			<h1>FitCropEdit</h1>
-			<p>The photo editor for quick editing and cropping of images directly in the browser</p>
-			<button onclick="startEditing()">Try It Now</button>
-		</div>
-	</header>
+	<div class="page-wraper">
 
-	<main>
-		<section class="promo">
-			<h2>Quick & Easy Image Editing</h2>
-			<p>The editor is designed to be embedded into an application or website</p>
-		</section>
+		<header>
+			<div class="container">
+				<h1>FitCropEdit</h1>
+				<p>The photo editor for quick editing and cropping of images directly in the browser</p>
+				<button>Try It Now</button>
+			</div>
+		</header>
 
-		<!-- contasiner for fitcropedit -->
-		<div id="fitcropedit">
-		</div>
+		<main>
+			<section class="promo">
+				<h2>Quick & Easy Image Editing</h2>
+				<p>The editor is designed to be embedded into an application or website</p>
+			</section>
 
-	</main>
+			<!-- contasiner for fitcropedit -->
+			<div id="fitcropedit">
+			</div>
 
-	<footer>
-		<p>2024 Aliaksandr Yakubouski</p>
-	</footer>
+		</main>
+
+		<footer>
+			<p>2024 Aliaksandr Yakubouski</p>
+		</footer>
+
+	</div>
 
 	<script type="module" src="public/fitcropedit.js"></script>
 	<script>  onload = () => {
 			// change init parameters
 			fitcropedit.init({
-				canvasMultiplier:  1,
+				canvasMultiplier: 1,
 			})
 		} </script>
 </body>

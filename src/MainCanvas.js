@@ -5,10 +5,9 @@ export default class MainCanvas {
 
   constructor(stateService) {
     this.appState = stateService.state;
-    this.container = this.appState.rootElement;
 
     this.init();
-    this.handleResize();
+    // this.handleResize();
   }
 
   injectElement(host, element) {
@@ -38,17 +37,30 @@ export default class MainCanvas {
   }
 
   handleResize() {
-    const resizeObserver = new ResizeObserver(() => {
-      this.configure();
-      this.draw();
-    });
+    // const resizeObserver = new ResizeObserver(() => {
+    //   this.configure();
+    //   this.draw();
+    // });
 
-    resizeObserver.observe(this.wraper);
+    // resizeObserver.observe(this.wraper);
   }
+  
 
   configure() {
-    this.canvas.width = this.wraper.clientWidth * this.appState.canvasMultiplier;
-    this.canvas.height = this.wraper.clientHeight * this.appState.canvasMultiplier;
+
+    // // console.log(this.appState);
+
+    // if (this.appState.device.width <= 768) {
+    //   this.appState.template.containerWidth = "100vw";
+    //   this.appState.template.containerHeight = "100vh";
+    // }
+
+    // this.rootElement.style.width = this.appState.template.containerWidth;
+    // this.rootElement.style.height = this.appState.template.containerHeight;
+    // // console.log(this.rootElement.style.width, this.rootElement.style.height);
+
+    // this.canvas.width = this.wraper.clientWidth * this.appState.canvasMultiplier;
+    // this.canvas.height = this.wraper.clientHeight * this.appState.canvasMultiplier;
   }
 
   draw() {

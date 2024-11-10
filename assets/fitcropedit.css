@@ -2,6 +2,7 @@
 @import url("utils.css");
 @import url("appbar.css");
 @import url("left-sidebar.css");
+@import url("right-sidebar.css");
 @import url("main-canvas.css");
 
 #fitcropedit {
@@ -16,21 +17,14 @@
 
 #fc-wraper {
   display: flex;
+  height: 100%;
 }
 
 @media (max-width: 768px) {
   #fc-wraper {
     flex-direction: column;
-    justify-content: flex-start;
   }
 }
-
-@media (min-width: 769px) {
-  #fc-wraper {
-    flex-grow: 1;
-  }
-}
-
 
 .history-list {
   background-color: #fafafa;

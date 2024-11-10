@@ -13,19 +13,19 @@ function bootstrap(params) {
   const stateService = new StateService();
   stateService.updateState(params);
 
-  new DeviceService(stateService);
+  const deviceService =  new DeviceService(stateService);
 
   //template
 
   const appbar = new Appbar(stateService);
   const leftSidebar = new LeftSidebar(stateService);
   const mainCanvas = new MainCanvas(stateService);
+  const rightSidebar = new Rightsidebar(stateService);
 
-  const template = new Template(stateService);
+  const template = new Template(stateService, deviceService, mainCanvas);
 
 
   
-  // const rightSidebar = new Rightsidebar(stateService);
   // templateService.getElements();
 
   //setup

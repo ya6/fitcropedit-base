@@ -1,7 +1,13 @@
 #fc-right-sidebar {
-	position: absolute;
-	box-sizing: border-box;
+	border: 1px solid #eeeeee;
 	display: flex;
 	flex-direction: column;
 	padding: 0.5rem;
   }
+
+  @media (max-width: 768px) {
+	#fc-right-sidebar {
+	  order: 3;	 
+	}
+  }
+  

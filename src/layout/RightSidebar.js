@@ -1,29 +1,26 @@
 export default class RightSidebar {
-  rightSidebar;
+  rightSidebarElement;
 
   constructor(stateService) {
     this.appState = stateService.state;
-    this.container = this.appState.rootElement;
     this.init();
   }
 
   init() {
     this.createTemplate();
-    this.configure();
-    this.injectElement(this.container, this.rightSidebar);
+    this.storeRightSidebar();
     this.getAllControls();
     this.dispatch();
   }
 
   createTemplate() {
-    this.rightSidebar = document.createElement("div");
-    this.rightSidebar.setAttribute("id", "fc-right-sidebar");
-    this.injectString(this.rightSidebar, this.innerTemplate());
-    return this.rightSidebar;
+    this.rightSidebarElement = document.createElement("div");
+    this.rightSidebarElement.setAttribute("id", this.appState.rightSidebarSelector);
+    this.injectString(this.rightSidebarElement, this.innerTemplate());
   }
 
   innerTemplate() {
-	return `
+    return `
   <div class="flex mb-2">
 
 	<button class="control-button button-l" type="button" datarole="save-button">
@@ -55,11 +52,9 @@ controls
 	`;
   }
 
-  configure() {
-    this.rightSidebar.style.top = `${this.appState.template.appbarHeight}px`;
-    this.rightSidebar.style.right = `0px`;
-    this.rightSidebar.style.width = `${this.appState.template.rightSidebarWidth}px`;
-    this.rightSidebar.style.height = `${this.container.clientHeight - this.appState.template.appbarHeight}px`;
+  //
+  storeRightSidebar() {
+    this.appState.rightSidebarElement = this.rightSidebarElement;
   }
 
   getAllControls() {}
@@ -68,9 +63,5 @@ controls
 
   injectString(host, template) {
     host.insertAdjacentHTML("afterbegin", template);
-  }
-
-  injectElement(host, element) {
-    host.append(element);
   }
 }

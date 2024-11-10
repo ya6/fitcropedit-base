@@ -1,5 +1,6 @@
 #fc-main-canvas-wraper {
-  flex: 1;
+  flex-grow: 1;
+
 }
 
 #fc-main-canvas {
