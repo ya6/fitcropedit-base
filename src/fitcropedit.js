@@ -26,7 +26,7 @@ function bootstrap(params) {
   
   //
    const imageLoadService = new ImageLoadService();
-   const originImage = new OriginImage(stateService, imageLoadService);
+   const originImage = new OriginImage(stateService, imageLoadService, mainCanvas);
 }
 
 window.fitcropedit = {

@@ -1,9 +1,10 @@
 export default class OriginImage {
   originImage;
 
-  constructor(stateService, imageLoadService) {
+  constructor(stateService, imageLoadService, mainCanvas) {
     this.appState = stateService.state;
     this.imageLoadService = imageLoadService;
+    this.mainCanvas = mainCanvas;
     this.originImage = new Image();
 
     this.init();
@@ -22,6 +23,17 @@ export default class OriginImage {
   handleLoadImage() {
     this.originImage.addEventListener("load", () => {
       console.log("Loaded!");
+      this.drawImage();
     });
+  }
+
+  drawImage() {
+    this.mainCanvas.ctx.drawImage(
+      this.originImage,
+      0,
+      0,
+      this.mainCanvas.canvas.width,
+      this.mainCanvas.canvas.height
+    );
   }
 }
