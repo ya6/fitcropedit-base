@@ -25,12 +25,15 @@ export default class OriginImage {
   closeOriginImage() {
     this.originImage.src = "";
     this.appState.image.isLoaded = false;
+    this.resetParams();
+    this.diplayDimentionInUI();
   }
 
   handleLoadImage() {
     this.originImage.addEventListener("load", () => {
       this.appState.image.isLoaded = true;
       this.collectParams();
+      this.diplayDimentionInUI();
       this.drawImage();
     });
   }
@@ -49,6 +52,20 @@ export default class OriginImage {
     this.params.width = this.originImage.width;
     this.params.height = this.originImage.height;
     this.params.xCenter = Math.round(this.originImage.width / 2);
-    this.params.yCenter = Math.round(this.originImage.height / 2);`                                                             `
+    this.params.yCenter = Math.round(this.originImage.height / 2);
+    `                                                             `;
+  }
+
+  resetParams() {
+    for (let key in this.params) {
+      if (typeof this.params[key] === "number") {
+        this.params[key] = 0;
+      }
+    }
+  }
+
+  diplayDimentionInUI() {
+    this.appState.elements.topbarWidthElement.innerText = this.params.width;
+    this.appState.elements.topbarHeightElement.innerText = this.params.height;
   }
 }

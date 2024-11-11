@@ -31,11 +31,13 @@ export const initParams = {
     // Ensure that the selectors match those in fitcropedit.css
     appbarFileInputSelector: "fc-appbar-file-input",
     topbarWidthSelector: "fc-topbar-width",
-    topbarWidthSelector: "fc-topbar-height",
+    topbarHeightSelector: "fc-topbar-height",
     rightSidebarCloseButtonSelector: "fc-rightsidebar-close-button"
   },
   elements: {
     appbarFileInputElement: null,
+    topbarWidthElement: null,
+    topbarWidthElement: null,
     rightSidebarCloseButtonElement: null,
   },
   template: {
