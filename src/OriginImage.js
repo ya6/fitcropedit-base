@@ -1,6 +1,8 @@
 export default class OriginImage {
   originImage;
 
+  params = { xCenter: 0, yCenter: 0 };
+
   constructor(stateService, imageLoadService, mainCanvas) {
     this.appState = stateService.state;
     this.imageLoadService = imageLoadService;
@@ -41,4 +43,6 @@ export default class OriginImage {
       this.mainCanvas.canvas.height
     );
   }
+
+ 
 }

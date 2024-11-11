@@ -34,7 +34,7 @@ function bootstrap(params) {
 
   const resizeService = new ResizeService(stateService, deviceService, mainCanvas);
 
-  const imageProcessor = new ImageProcessor(stateService, resizeService, mainCanvas, originImage);
+  const imageProcessor = new ImageProcessor(stateService, deviceService, resizeService, mainCanvas, originImage);
 
   const controls = new Controls(stateService, mainCanvas, originImage)
 }

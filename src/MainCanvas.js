@@ -4,6 +4,8 @@ export default class MainCanvas {
   wraper;
   promoImage;
 
+  params = { xCenter: 0, yCenter: 0, width: 0, height: 0 };
+
   constructor(stateService) {
     this.appState = stateService.state;
 
@@ -65,5 +67,13 @@ export default class MainCanvas {
 
   injectElement(host, element) {
     host.appendChild(element);
+  }
+
+  setParams() {
+    this.params.width = this.canvas.width;
+    this.params.height = this.canvas.height;
+    this.params.xCenter = Math.round(this.canvas.width / 2);
+    this.params.yCenter = Math.round(this.canvas.height / 2);
+
   }
 }
