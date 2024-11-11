@@ -20,6 +20,11 @@ export default class OriginImage {
     this.imageLoadService.loadImageFromInput(this.originImage, inputElement);
   }
 
+  closeOriginImage() {
+    this.originImage.src = "";
+    this.appState.image.isLoaded = false;
+  }
+
   handleLoadImage() {
     this.originImage.addEventListener("load", () => {
       this.appState.image.isLoaded = true;

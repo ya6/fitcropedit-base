@@ -6,11 +6,11 @@ import Rightsidebar from "./layout/RightSidebar";
 
 import DeviceService from "./services/DeviceService";
 import Template from "./layout/Template";
-import ImageLoadService from './services/ImageLoadService';
-import OriginImage from './OriginImage';
-import ResizeService from './services/ResizeService';
-import ImageProcessor from './ImageProcessor';
-
+import ImageLoadService from "./services/ImageLoadService";
+import OriginImage from "./OriginImage";
+import ResizeService from "./services/ResizeService";
+import ImageProcessor from "./ImageProcessor";
+import Controls from './layout/Controls';
 
 console.log("fitcropedit.js");
 
@@ -19,23 +19,24 @@ function bootstrap(params) {
   stateService.updateState(params);
 
   const deviceService = new DeviceService(stateService);
-  
+
   //template
-  
+
   const appbar = new Appbar(stateService);
   const leftSidebar = new LeftSidebar(stateService);
   const mainCanvas = new MainCanvas(stateService);
   const rightSidebar = new Rightsidebar(stateService);
   const template = new Template(stateService, deviceService, mainCanvas);
-  
+
   const imageLoadService = new ImageLoadService();
-  
-  const originImage = new OriginImage(stateService, imageLoadService, mainCanvas );
 
-  const resizeService = new ResizeService(stateService, deviceService, mainCanvas)
+  const originImage = new OriginImage(stateService, imageLoadService, mainCanvas);
 
-  //resize 
- const imageProcessor =  new ImageProcessor(stateService, resizeService, mainCanvas, originImage)
+  const resizeService = new ResizeService(stateService, deviceService, mainCanvas);
+
+  const imageProcessor = new ImageProcessor(stateService, resizeService, mainCanvas, originImage);
+
+  const controls = new Controls(stateService, mainCanvas, originImage)
 }
 
 window.fitcropedit = {

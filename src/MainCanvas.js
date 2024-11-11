@@ -58,6 +58,11 @@ export default class MainCanvas {
     this.ctx.filter = "opacity(1)";
   }
 
+  clear() {
+    this.canvas.width = this.canvas.width;
+    //imgs still in  the memory
+  }
+
   injectElement(host, element) {
     host.appendChild(element);
   }
