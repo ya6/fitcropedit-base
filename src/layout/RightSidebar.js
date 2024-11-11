@@ -3,15 +3,14 @@ export default class RightSidebar {
 
   constructor(stateService) {
     this.appState = stateService.state;
-    
+
     this.init();
   }
 
   init() {
     this.createTemplate();
     this.storeRightSidebar();
-    this.getAllControls();
-    this.dispatch();
+   
   }
 
   createTemplate() {
@@ -57,10 +56,6 @@ controls
   storeRightSidebar() {
     this.appState.rightSidebarElement = this.rightSidebarElement;
   }
-
-  getAllControls() {}
-
-  dispatch() {}
 
   injectString(host, template) {
     host.insertAdjacentHTML("afterbegin", template);

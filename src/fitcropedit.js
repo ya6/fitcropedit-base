@@ -10,7 +10,9 @@ import ImageLoadService from "./services/ImageLoadService";
 import OriginImage from "./OriginImage";
 import ResizeService from "./services/ResizeService";
 import ImageProcessor from "./ImageProcessor";
-import Controls from './layout/Controls';
+import Controls from './Controls';
+import Topbar from './layout/TopBar';
+
 
 console.log("fitcropedit.js");
 
@@ -23,6 +25,7 @@ function bootstrap(params) {
   //template
 
   const appbar = new Appbar(stateService);
+  const topbar = new Topbar(stateService);
   const leftSidebar = new LeftSidebar(stateService);
   const mainCanvas = new MainCanvas(stateService);
   const rightSidebar = new Rightsidebar(stateService);

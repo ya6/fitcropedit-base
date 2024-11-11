@@ -17,7 +17,7 @@ export default class ImageProcessor {
     this.deviceService.init();
     this.configureBase();
     this.drawCurrentImage()
-    this.mainCanvas.setParams()
+    this.mainCanvas.collectParams()
   }
 
   configureBase() {

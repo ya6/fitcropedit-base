@@ -1,7 +1,7 @@
 export default class OriginImage {
   originImage;
 
-  params = { xCenter: 0, yCenter: 0 };
+  params = { xCenter: 0, yCenter: 0, width: 0, height: 0 };
 
   constructor(stateService, imageLoadService, mainCanvas) {
     this.appState = stateService.state;
@@ -30,6 +30,7 @@ export default class OriginImage {
   handleLoadImage() {
     this.originImage.addEventListener("load", () => {
       this.appState.image.isLoaded = true;
+      this.collectParams();
       this.drawImage();
     });
   }
@@ -44,5 +45,10 @@ export default class OriginImage {
     );
   }
 
- 
+  collectParams() {
+    this.params.width = this.originImage.width;
+    this.params.height = this.originImage.height;
+    this.params.xCenter = Math.round(this.originImage.width / 2);
+    this.params.yCenter = Math.round(this.originImage.height / 2);`                                                             `
+  }
 }

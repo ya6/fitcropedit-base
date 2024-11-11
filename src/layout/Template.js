@@ -42,6 +42,7 @@ export default class Template {
     this.injectElement(wraper, this.appState.rightSidebarElement);
 
     this.injectElement(this.rootElement, this.appState.appbarElement);
+    this.injectElement(this.rootElement, this.appState.topbarElement);
     this.injectElement(this.rootElement, wraper);
   }
 

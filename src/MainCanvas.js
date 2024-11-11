@@ -69,7 +69,7 @@ export default class MainCanvas {
     host.appendChild(element);
   }
 
-  setParams() {
+  collectParams() {
     this.params.width = this.canvas.width;
     this.params.height = this.canvas.height;
     this.params.xCenter = Math.round(this.canvas.width / 2);
