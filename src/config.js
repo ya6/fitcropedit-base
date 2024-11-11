@@ -6,6 +6,10 @@ export const initParams = {
     mobileBP: 768
   },
 
+  image:{
+    isLoaded: false
+  },
+
   canvasMultiplier: 1,
   rootSelector: "fitcropedit",
   rootElement: null,

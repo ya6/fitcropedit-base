@@ -1,10 +1,11 @@
 export default class Template {
   rootElement;
 
-  constructor(stateService, deviceService, mainCanvas) {
+  constructor(stateService, deviceService, mainCanvas, originImage) {
     this.appState = stateService.state;
     this.deviceService = deviceService;
     this.mainCanvas = mainCanvas;
+    this.originImage = originImage;
 
     this.init();
   }
@@ -12,7 +13,7 @@ export default class Template {
   init() {
     this.initRootElement();
     this.createTemplate();
-    this.handlResize();
+    // 
     this.getElements();
   }
 
@@ -28,31 +29,6 @@ export default class Template {
   //
   storeRoot() {
     this.appState.rootElement = this.rootElement;
-  }
-
-  handlResize() {
-    const resizeObserver = new ResizeObserver(() => {
-      this.deviceService.init();
-
-      this.configureRoot();
-
-      this.mainCanvas.drawPromo();
-    });
-
-    resizeObserver.observe(this.rootElement);
-  }
-
-  configureRoot() {
-    if (this.appState.device.width <= this.appState.device.mobileBP) {
-      this.rootElement.style.width = this.appState.template.mobileContainerWidth;
-      this.rootElement.style.height = this.appState.template.mobileContainerHeight;
-    } else {
-      this.rootElement.style.width = this.appState.template.containerWidth;
-      this.rootElement.style.height = this.appState.template.containerHeight;
-    }
-
-    this.mainCanvas.canvas.width = this.mainCanvas.wraper.clientWidth * this.appState.canvasMultiplier;
-    this.mainCanvas.canvas.height = this.mainCanvas.wraper.clientHeight * this.appState.canvasMultiplier;
   }
 
   createTemplate() {

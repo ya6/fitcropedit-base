@@ -22,7 +22,7 @@ export default class OriginImage {
 
   handleLoadImage() {
     this.originImage.addEventListener("load", () => {
-      console.log("Loaded!");
+      this.appState.image.isLoaded = true;
       this.drawImage();
     });
   }
