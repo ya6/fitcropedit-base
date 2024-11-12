@@ -2,10 +2,10 @@ export default class Controls {
   rootElement;
 
   constructor(stateService, mainCanvas, originImage) {
-    this.appService = stateService.state;
+    this.appState = stateService.state;
     this.mainCanvas = mainCanvas;
     this.originImage = originImage;
-    this.rootElement = this.appService.rootElement;
+    this.rootElement = this.appState.rootElement;
 
     this.init();
   }
@@ -17,11 +17,31 @@ export default class Controls {
   addListener() {
     this.rootElement.addEventListener("click", (e) => {
       const targetElement = e.target;
+      const id = targetElement.id;
+
+      switch (id) {
+        case this.appState.selectors.rightSidebarCloseButtonSelector:
+          this.closeImageRS();
+          break;
+
+        case this.appState.selectors.appbarCloseButtonSelector:
+          this.closeImageRS();
+          break;
+      }
+    });
+  }
+
+  __addListener() {
+    this.rootElement.addEventListener("click", (e) => {
+      const targetElement = e.target;
 
       if (targetElement.dataset.role) {
         const role = targetElement.dataset.role;
 
         switch (role) {
+          case "rightsidebar-close-button":
+            this.closeImageRS();
+            break;
           case "rightsidebar-close-button":
             this.closeImageRS();
             break;
