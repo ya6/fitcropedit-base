@@ -25,12 +25,12 @@ export default class ImageProcessor {
       this.rootElement.style.width = this.appState.template.mobileContainerWidth;
       this.rootElement.style.height = this.appState.template.mobileContainerHeight;
     } else {
-      this.rootElement.style.width = this.appState.template.containerWidth;
-      this.rootElement.style.height = this.appState.template.containerHeight;
+      this.rootElement.style.width = this.appState.public.containerWidth;
+      this.rootElement.style.height = this.appState.public.containerHeight;
     }
 
-    this.mainCanvas.canvas.width = this.mainCanvas.wraper.clientWidth * this.appState.canvasMultiplier;
-    this.mainCanvas.canvas.height = this.mainCanvas.wraper.clientHeight * this.appState.canvasMultiplier;
+    this.mainCanvas.canvas.width = this.mainCanvas.wraper.clientWidth * this.appState.public.canvasMultiplier;
+    this.mainCanvas.canvas.height = this.mainCanvas.wraper.clientHeight * this.appState.public.canvasMultiplier;
   }
 
   drawCurrentImage() {

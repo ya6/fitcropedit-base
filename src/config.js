@@ -1,16 +1,17 @@
 export const initParams = {
+  public: { canvasMultiplier: 1, containerWidth: "80%", containerHeight: "600px" },
+
   device: {
     type: "",
     width: 0,
     height: 0,
-    mobileBP: 768
+    mobileBP: 768,
   },
 
-  image:{
-    isLoaded: false
+  image: {
+    isLoaded: false,
   },
 
-  canvasMultiplier: 1,
   rootSelector: "fitcropedit",
   rootElement: null,
   appbarSelector: "fc-appbar",
@@ -33,7 +34,7 @@ export const initParams = {
     appbarCloseButtonSelector: "fc-appbar-close-button",
     topbarWidthSelector: "fc-topbar-width",
     topbarHeightSelector: "fc-topbar-height",
-    rightSidebarCloseButtonSelector: "fc-rightsidebar-close-button"
+    rightSidebarCloseButtonSelector: "fc-rightsidebar-close-button",
   },
   elements: {
     appbarFileInputElement: null,
@@ -43,12 +44,10 @@ export const initParams = {
     rightSidebarCloseButtonElement: null,
   },
   template: {
-    containerWidth: "80%",
-    containerHeight: "600px",
+    // containerWidth: "80%",
+    // containerHeight: "600px",
     mobileContainerHeight: "95vh",
     mobileContainerWidth: "95vw",
     appbarHeight: 32,
-    // leftSidebarWidth: 100,
-    // rightSidebarWidth: 250,
   },
 };

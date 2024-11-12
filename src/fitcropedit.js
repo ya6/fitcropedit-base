@@ -23,7 +23,6 @@ function bootstrap(params) {
   const deviceService = new DeviceService(stateService);
 
   //template
-
   const appbar = new Appbar(stateService);
   const topbar = new Topbar(stateService);
   const leftSidebar = new LeftSidebar(stateService);
