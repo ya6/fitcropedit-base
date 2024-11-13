@@ -11,6 +11,6 @@ export default class ResizeService {
       callback();
     });
 
-    resizeObserver.observe(this.rootElement);
+    resizeObserver.observe(document.body);
   }
 }

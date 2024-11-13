@@ -16,21 +16,39 @@ export default class ImageProcessor {
   manageResize() {
     this.deviceService.init();
     this.configureBase();
-    this.drawCurrentImage()
-    this.mainCanvas.collectParams()
+    this.drawCurrentImage();
+    this.mainCanvas.collectParams();
+  }
+  // utils
+  getUnitOfMeasure(styleValue) {
+    const unit = styleValue.match(/[a-z%]+$/i);
+    return unit ? unit[0] : null;
   }
 
   configureBase() {
+    const rootElementWidthMeasure = this.getUnitOfMeasure(this.appState.public.containerWidth);
+
+    this.rootElement.style.width = this.appState.public.containerWidth;
+    this.rootElement.style.height = this.appState.public.containerHeight;
+
     if (this.appState.device.width <= this.appState.device.mobileBP) {
       this.rootElement.style.width = this.appState.template.mobileContainerWidth;
       this.rootElement.style.height = this.appState.template.mobileContainerHeight;
-    } else {
-      this.rootElement.style.width = this.appState.public.containerWidth;
-      this.rootElement.style.height = this.appState.public.containerHeight;
+    }
+
+    if (
+      rootElementWidthMeasure == "px" &&
+      document.body.clientWidth <= parseInt(this.appState.public.containerWidth, 10) &&
+      this.rootElement.clientWidth < parseInt(this.appState.public.containerWidth, 10) &&
+      this.appState.device.mobileBP < this.rootElement.clientWidth
+    ) {
+      this.rootElement.style.width = this.appState.template.mobileContainerWidth;
+      this.rootElement.style.height = this.appState.template.mobileContainerHeight;
     }
 
     this.mainCanvas.canvas.width = this.mainCanvas.wraper.clientWidth * this.appState.public.canvasMultiplier;
-    this.mainCanvas.canvas.height = this.mainCanvas.wraper.clientHeight * this.appState.public.canvasMultiplier;
+    this.mainCanvas.canvas.height =
+      this.mainCanvas.wraper.clientHeight * this.appState.public.canvasMultiplier;
   }
 
   drawCurrentImage() {
