@@ -1,5 +1,5 @@
 export const initParams = {
-  public: { canvasMultiplier: 1, containerWidth: "80%", containerHeight: "600px" },
+  public: { canvasMultiplier: 1, containerWidth: "80%", containerHeight: "600px", imageDisplayScale: 1 },
 
   device: {
     type: "",
