@@ -16,8 +16,9 @@ export default class ImageProcessor {
   manageResize() {
     this.deviceService.init();
     this.configureBase();
-    this.drawCurrentImage();
     this.mainCanvas.collectParams();
+    this.originImage.collectParams();
+    this.drawCurrentImage();
   }
   // utils
   getUnitOfMeasure(styleValue) {

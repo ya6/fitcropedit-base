@@ -1,5 +1,5 @@
 export const initParams = {
-  public: { canvasMultiplier: 1, containerWidth: "80%", containerHeight: "600px", imageDisplayScale: 1 },
+  public: { canvasMultiplier: 1, containerWidth: "80%", containerHeight: "600px", imageDisplayScale: 0.95 },
 
   device: {
     type: "",
@@ -44,8 +44,6 @@ export const initParams = {
     rightSidebarCloseButtonElement: null,
   },
   template: {
-    // containerWidth: "80%",
-    // containerHeight: "600px",
     mobileContainerHeight: "95vh",
     mobileContainerWidth: "95vw",
     appbarHeight: 32,

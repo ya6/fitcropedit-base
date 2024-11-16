@@ -39,23 +39,19 @@ export default class OriginImage {
   }
 
   drawImage() {
-    this.mainCanvas.ctx.drawImage(
-      this.originImage,
-      0,
-      0,
-      this.mainCanvas.canvas.width,
-      this.mainCanvas.canvas.height
-    );
+    const { dx, dy, dWidth, dHeight } = this.params;
+    this.mainCanvas.clear();
+    this.mainCanvas.ctx.drawImage(this.originImage, dx, dy, dWidth, dHeight);
   }
 
   collectParams() {
     this.setScales();
-    this.tranformImageSizeForCanvas();
+    this.transformImageSizeToCanvas();
+    this.calcInitCoords();
     this.params.width = this.originImage.width;
     this.params.height = this.originImage.height;
     this.params.xCenter = Math.round(this.originImage.width / 2);
     this.params.yCenter = Math.round(this.originImage.height / 2);
-    // console.log("orig params: ", this.params);
   }
 
   setScales() {
@@ -65,9 +61,14 @@ export default class OriginImage {
     this.params.scale = scale / this.appState.public.imageDisplayScale;
   }
 
-  tranformImageSizeForCanvas() {
+  transformImageSizeToCanvas() {
     this.params.dWidth = Math.floor(this.originImage.width / this.params.scale);
     this.params.dHeight = Math.floor(this.originImage.height / this.params.scale);
+  }
+
+  calcInitCoords() {
+    this.params.dx = this.mainCanvas.params.xCenter - this.params.dWidth / 2;
+    this.params.dy = this.mainCanvas.params.yCenter - this.params.dHeight / 2;
   }
 
   resetParams() {
