@@ -1,13 +1,13 @@
 export default class OriginImage {
-  originImage;
+  baseImage;
 
   params = { width: 0, height: 0, scale: 1, xCenter: 0, yCenter: 0, dWidth: 0, dHeight: 0 };
 
-  constructor(stateService, imageLoadService, mainCanvas) {
+  constructor(stateService, imageLoadSaveService, mainCanvas) {
     this.appState = stateService.state;
-    this.imageLoadService = imageLoadService;
+    this.imageLoadSaveService = imageLoadSaveService;
     this.mainCanvas = mainCanvas;
-    this.originImage = new Image();
+    this.baseImage = new Image();
 
     this.init();
   }
@@ -19,18 +19,18 @@ export default class OriginImage {
 
   loadImageFromMenu() {
     const inputElement = this.appState.elements.appbarFileInputElement;
-    this.imageLoadService.loadImageFromInput(this.originImage, inputElement);
+    this.imageLoadSaveService.loadImageFromInput(this.baseImage, inputElement);
   }
 
   closeOriginImage() {
-    this.originImage.src = "";
+    this.baseImage.src = "";
     this.appState.image.isLoaded = false;
     this.resetParams();
     this.diplayDimentionInUI();
   }
 
   handleLoadImage() {
-    this.originImage.addEventListener("load", () => {
+    this.baseImage.addEventListener("load", () => {
       this.appState.image.isLoaded = true;
       this.collectParams();
       this.diplayDimentionInUI();
@@ -41,29 +41,33 @@ export default class OriginImage {
   drawImage() {
     const { dx, dy, dWidth, dHeight } = this.params;
     this.mainCanvas.clear();
-    this.mainCanvas.ctx.drawImage(this.originImage, dx, dy, dWidth, dHeight);
+    this.mainCanvas.ctx.drawImage(this.baseImage, dx, dy, dWidth, dHeight);
   }
 
   collectParams() {
     this.setScales();
     this.transformImageSizeToCanvas();
     this.calcInitCoords();
-    this.params.width = this.originImage.width;
-    this.params.height = this.originImage.height;
-    this.params.xCenter = Math.round(this.originImage.width / 2);
-    this.params.yCenter = Math.round(this.originImage.height / 2);
+    this.getBaseParams();
+  }
+
+  getBaseParams() {
+    this.params.width = this.baseImage.width;
+    this.params.height = this.baseImage.height;
+    this.params.xCenter = Math.round(this.baseImage.width / 2);
+    this.params.yCenter = Math.round(this.baseImage.height / 2);
   }
 
   setScales() {
-    const wScale = this.originImage.width / this.mainCanvas.canvas.width;
-    const hScale = this.originImage.height / this.mainCanvas.canvas.height;
+    const wScale = this.baseImage.width / this.mainCanvas.canvas.width;
+    const hScale = this.baseImage.height / this.mainCanvas.canvas.height;
     const scale = Math.max(wScale, hScale);
     this.params.scale = scale / this.appState.public.imageDisplayScale;
   }
 
   transformImageSizeToCanvas() {
-    this.params.dWidth = Math.floor(this.originImage.width / this.params.scale);
-    this.params.dHeight = Math.floor(this.originImage.height / this.params.scale);
+    this.params.dWidth = Math.floor(this.baseImage.width / this.params.scale);
+    this.params.dHeight = Math.floor(this.baseImage.height / this.params.scale);
   }
 
   calcInitCoords() {

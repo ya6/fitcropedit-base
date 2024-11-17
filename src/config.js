@@ -35,6 +35,7 @@ export const initParams = {
     topbarWidthSelector: "fc-topbar-width",
     topbarHeightSelector: "fc-topbar-height",
     rightSidebarCloseButtonSelector: "fc-rightsidebar-close-button",
+    rightSidebarSaveButtonSelector: "fc-rightsidebar-save-button",
   },
   elements: {
     appbarFileInputElement: null,
@@ -47,5 +48,16 @@ export const initParams = {
     mobileContainerHeight: "95vh",
     mobileContainerWidth: "95vw",
     appbarHeight: 32,
+  },
+  data: {
+    baseImage: {
+      postfix: "-fce",
+      fullName: "",
+      name: "",
+      ext: "",
+      type: "",
+      size: 0,
+      lastModified: 0,
+    },
   },
 };

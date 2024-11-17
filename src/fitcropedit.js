@@ -6,7 +6,7 @@ import Rightsidebar from "./layout/RightSidebar";
 
 import DeviceService from "./services/DeviceService";
 import Template from "./layout/Template";
-import ImageLoadService from "./services/ImageLoadService";
+import ImageLoadSaveService from "./services/ImageLoadSaveService";
 import OriginImage from "./OriginImage";
 import ResizeService from "./services/ResizeService";
 import ImageProcessor from "./ImageProcessor";
@@ -30,15 +30,15 @@ function bootstrap(params) {
   const rightSidebar = new Rightsidebar(stateService);
   const template = new Template(stateService, deviceService, mainCanvas);
 
-  const imageLoadService = new ImageLoadService();
+  const imageLoadSaveService = new ImageLoadSaveService();
 
-  const originImage = new OriginImage(stateService, imageLoadService, mainCanvas);
+  const originImage = new OriginImage(stateService, imageLoadSaveService, mainCanvas);
 
   const resizeService = new ResizeService(stateService, deviceService, mainCanvas);
 
   const imageProcessor = new ImageProcessor(stateService, deviceService, resizeService, mainCanvas, originImage);
 
-  const controls = new Controls(stateService, mainCanvas, originImage)
+  const controls = new Controls(stateService, imageLoadSaveService, mainCanvas, originImage)
 }
 
 window.fitcropedit = {

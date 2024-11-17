@@ -37,11 +37,6 @@ export default class MainCanvas {
     this.appState.mainCanvasElement = this.canvas;
   }
 
-  draw() {
-    this.ctx.fillStyle = "gray";
-    this.ctx.fillRect(10, 10, 150, 100);
-  }
-
   loadPromo() {
     this.promo = new Image();
     this.promo.src = "public/img/dnd-1.png";
