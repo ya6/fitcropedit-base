@@ -34,8 +34,11 @@ export const initParams = {
     appbarCloseButtonSelector: "fc-appbar-close-button",
     topbarWidthSelector: "fc-topbar-width",
     topbarHeightSelector: "fc-topbar-height",
+
     rightSidebarCloseButtonSelector: "fc-rightsidebar-close-button",
     rightSidebarSaveButtonSelector: "fc-rightsidebar-save-button",
+    rightSidebarFormatBoxSelector: 'fc-rightsidebar-format-box',
+
   },
   elements: {
     appbarFileInputElement: null,
@@ -43,6 +46,7 @@ export const initParams = {
     topbarWidthElement: null,
     topbarWidthElement: null,
     rightSidebarCloseButtonElement: null,
+    rightSidebarFormatBoxElement: null
   },
   template: {
     mobileContainerHeight: "95vh",
@@ -59,6 +63,7 @@ export const initParams = {
       size: 0,
       lastModified: 0,
       format: { png: "png", jpeg: "jpg", webp: "webp" },
+      outputFormat: ""
     },
   },
 };

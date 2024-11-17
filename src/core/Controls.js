@@ -19,6 +19,11 @@ export default class Controls {
     this.rootElement.addEventListener("click", (e) => {
       const targetElement = e.target;
       const id = targetElement.id;
+      let action;
+
+      if (targetElement.dataset?.action) {
+        action = targetElement.dataset?.action;
+      }
 
       switch (id) {
         //close
@@ -33,6 +38,21 @@ export default class Controls {
         //save
         case this.appState.selectors.rightSidebarSaveButtonSelector:
           this.saveImage();
+          break;
+      }
+      switch (action) {
+
+        //output format
+        case "button-format-png":
+          this.originImage.setOutputFormat("png");
+          break;
+
+        case "button-format-jpeg":
+          this.originImage.setOutputFormat("jpg");
+          break;
+
+        case "button-format-webp":
+          this.originImage.setOutputFormat("webp");
           break;
       }
     });

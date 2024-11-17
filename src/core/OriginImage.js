@@ -28,6 +28,8 @@ export default class OriginImage {
     this.appState.image.isLoaded = false;
     this.resetParams();
     this.diplayDimentionInUI();
+    this.appState.data.baseImage.outputFormat = "";
+    this.setOutputFormat();
   }
 
   handleLoadImage() {
@@ -38,11 +40,13 @@ export default class OriginImage {
       this.appState.data.baseImage = {
         ...this.appState.data.baseImage,
         ...this.imageLoadSaveService.imageParams,
+        outputFormat: this.imageLoadSaveService.imageParams.ext,
       };
 
       this.collectParams();
       this.diplayDimentionInUI();
       this.drawImage();
+      this.setOutputFormat();
     });
   }
 
@@ -94,5 +98,23 @@ export default class OriginImage {
   diplayDimentionInUI() {
     this.appState.elements.topbarWidthElement.innerText = this.params.width;
     this.appState.elements.topbarHeightElement.innerText = this.params.height;
+  }
+
+  setOutputFormat(format) {
+    //manage buttons
+    if (format && this.baseImage.width) {
+      this.appState.data.baseImage.outputFormat = format;
+    }
+    this.displayExtentionUI();
+  }
+
+  displayExtentionUI() {
+    const formatButtons = this.appState.elements.rightSidebarFormatBoxElement.children;
+    for (const button of formatButtons) {
+      button.classList.remove("active");
+      if (this.appState.data.baseImage.outputFormat === button.dataset.format) {
+        button.classList.add("active");
+      }
+    }
   }
 }

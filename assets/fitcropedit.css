@@ -27,6 +27,10 @@
   }
 }
 
+.active {
+  background: #7fdbff;
+}
+
 .history-list {
   background-color: #fafafa;
   border: 1px solid #eeeeee;
@@ -102,6 +106,7 @@
 
 .button-with-icon:hover {
   cursor: pointer;
+  background: #cccccc;
 }
 
 .button-text {

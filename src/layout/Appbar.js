@@ -32,7 +32,7 @@ export default class Appbar {
     `;
 
     const fileMenuItem = `
-    <div class="fc-appbar-item" data-role="appbar-item" data-action="file">
+    <div class="fc-appbar-item" data-role="appbar-item">
     <div class="avoid-clicks">File</div>
 
   <div class="custom-icon ms-05" data-role="custom-toggle-icon-open">

@@ -22,18 +22,18 @@ export default class RightSidebar {
     const controls = `
 <div>
   <div class="sub-title text-center">Output Format</div>
-    <div class="flex">
-      <button class="straighten-size button-with-icon" type="button">  
+    <div id=${this.appState.selectors.rightSidebarFormatBoxSelector} class="flex">
+      <button class="button-with-icon" type="button"  data-action="button-format-png" data-format="png">  
         <div class="button-text">  
           png
         </div>  
       </button>
-      <button class="straighten-size button-with-icon" type="button">
+      <button class="button-with-icon" type="button"  data-action="button-format-jpeg" data-format="jpg">
         <div class="button-text">  
           jpeg
         </div>  
       </button>
-      <button class="straighten-size button-with-icon" type="button"> 
+      <button class="button-with-icon" type="button"  data-action="button-format-webp" data-format="webp"> 
         <div class="button-text">  
           webp
         </div> 
