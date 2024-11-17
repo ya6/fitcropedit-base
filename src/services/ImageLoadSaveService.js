@@ -35,7 +35,7 @@ export default class ImageLoadSaveService {
     return this.imageParams;
   }
 
-  saveImage(image) {
+  saveImage(image, postfix) {
     const dataUrl = image.src;
     const { name, ext } = this.imageParams;
 
@@ -44,7 +44,7 @@ export default class ImageLoadSaveService {
 
     // TODO  add change name feature
 
-    downloadLink.download = `${name}-fce.${ext}`;
+    downloadLink.download = `${name}${postfix}.${ext}`;
 
     document.body.appendChild(downloadLink);
     downloadLink.click();

@@ -58,6 +58,7 @@ export const initParams = {
       type: "",
       size: 0,
       lastModified: 0,
+      format: { png: "png", jpeg: "jpg", webp: "webp" },
     },
   },
 };

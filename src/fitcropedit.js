@@ -1,5 +1,5 @@
 import StateService from "./services/StateService";
-import MainCanvas from "./MainCanvas";
+import MainCanvas from "./core/MainCanvas";
 import Appbar from "./layout/Appbar";
 import LeftSidebar from "./layout/LeftSidebar";
 import Rightsidebar from "./layout/RightSidebar";
@@ -7,11 +7,12 @@ import Rightsidebar from "./layout/RightSidebar";
 import DeviceService from "./services/DeviceService";
 import Template from "./layout/Template";
 import ImageLoadSaveService from "./services/ImageLoadSaveService";
-import OriginImage from "./OriginImage";
+import OriginImage from "./core/OriginImage";
 import ResizeService from "./services/ResizeService";
-import ImageProcessor from "./ImageProcessor";
-import Controls from './Controls';
+import ImageProcessor from "./core/ImageProcessor";
+import Controls from './core/Controls';
 import Topbar from './layout/TopBar';
+import TransformCanvas from './core/TransformCanvas';
 
 
 console.log("fitcropedit.js");
@@ -29,6 +30,8 @@ function bootstrap(params) {
   const mainCanvas = new MainCanvas(stateService);
   const rightSidebar = new Rightsidebar(stateService);
   const template = new Template(stateService, deviceService, mainCanvas);
+
+  const transformCanvas = new TransformCanvas()
 
   const imageLoadSaveService = new ImageLoadSaveService();
 

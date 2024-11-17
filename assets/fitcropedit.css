@@ -24,7 +24,6 @@
 @media (max-width: 768px) {
   #fc-wraper {
     flex-direction: column;
-
   }
 }
 
@@ -50,7 +49,6 @@
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  margin: 0.1rem;
   border-radius: 3px;
   border: 1px solid #bdbdbd;
   padding: 0.3em 0.6em;
@@ -60,6 +58,10 @@
   cursor: pointer;
   transition: background-color 0.25s;
   background: #eeeeee;
+}
+
+.button-block {
+  width: 100%;
 }
 
 .control-button:hover {

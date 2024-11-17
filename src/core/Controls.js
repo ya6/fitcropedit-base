@@ -46,7 +46,7 @@ export default class Controls {
 
   saveImage() {
     if (this.originImage.baseImage.width > 0) {
-      this.imageLoadSaveService.saveImage(this.originImage.baseImage);
+      this.imageLoadSaveService.saveImage(this.originImage.baseImage, this.appState.data.baseImage.postfix);
     }
   }
 }

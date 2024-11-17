@@ -17,6 +17,7 @@ export default class OriginImage {
     this.loadImageFromMenu();
   }
 
+  // TODO move
   loadImageFromMenu() {
     const inputElement = this.appState.elements.appbarFileInputElement;
     this.imageLoadSaveService.loadImageFromInput(this.baseImage, inputElement);
@@ -32,6 +33,13 @@ export default class OriginImage {
   handleLoadImage() {
     this.baseImage.addEventListener("load", () => {
       this.appState.image.isLoaded = true;
+
+      // save image data
+      this.appState.data.baseImage = {
+        ...this.appState.data.baseImage,
+        ...this.imageLoadSaveService.imageParams,
+      };
+
       this.collectParams();
       this.diplayDimentionInUI();
       this.drawImage();
