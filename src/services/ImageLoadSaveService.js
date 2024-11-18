@@ -5,6 +5,7 @@ export default class ImageLoadSaveService {
     name: "",
     ext: "",
     type: "",
+    format: "",
     size: 0,
     lastModified: 0,
   };
@@ -30,9 +31,9 @@ export default class ImageLoadSaveService {
     this.imageParams.fullName = file.name;
     this.imageParams.size = file.size;
     this.imageParams.type = file.type;
+    this.imageParams.format = file.type.split("/").pop();
+    this.imageParams.outputFormat = this.imageParams.format;
     this.imageParams.lastModified = file.lastModified;
-
-    return this.imageParams;
   }
 
   saveImage(image, postfix) {
@@ -50,5 +51,32 @@ export default class ImageLoadSaveService {
     downloadLink.click();
 
     document.body.removeChild(downloadLink);
+  }
+
+  saveDataUrl(dataUrl, ext, postfix) {
+    const { name } = this.imageParams;
+
+    const downloadLink = document.createElement("a");
+    downloadLink.href = dataUrl;
+
+    // TODO  add change name feature
+
+    downloadLink.download = `${name}${postfix}.${ext}`;
+
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+
+    document.body.removeChild(downloadLink);
+  }
+
+  trasformImageFormat(transformCavas, image, format) {
+    transformCavas.canvas.width = image.naturalWidth || image.width;
+    transformCavas.canvas.height = image.naturalHeight || image.height;
+
+    transformCavas.ctx.drawImage(image, 0, 0, transformCavas.canvas.width, transformCavas.canvas.height);
+
+    const mimeType = `image/${format}`;
+    const dataUrl = transformCavas.canvas.toDataURL(mimeType);
+    return dataUrl;
   }
 }

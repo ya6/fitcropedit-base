@@ -41,7 +41,7 @@ function bootstrap(params) {
 
   const imageProcessor = new ImageProcessor(stateService, deviceService, resizeService, mainCanvas, originImage);
 
-  const controls = new Controls(stateService, imageLoadSaveService, mainCanvas, originImage)
+  const controls = new Controls(stateService, imageLoadSaveService, mainCanvas, originImage, transformCanvas)
 }
 
 window.fitcropedit = {

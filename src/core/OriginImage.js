@@ -17,7 +17,7 @@ export default class OriginImage {
     this.loadImageFromMenu();
   }
 
-  // TODO move
+  // TODO move in init class
   loadImageFromMenu() {
     const inputElement = this.appState.elements.appbarFileInputElement;
     this.imageLoadSaveService.loadImageFromInput(this.baseImage, inputElement);
@@ -40,7 +40,6 @@ export default class OriginImage {
       this.appState.data.baseImage = {
         ...this.appState.data.baseImage,
         ...this.imageLoadSaveService.imageParams,
-        outputFormat: this.imageLoadSaveService.imageParams.ext,
       };
 
       this.collectParams();
@@ -101,7 +100,6 @@ export default class OriginImage {
   }
 
   setOutputFormat(format) {
-    //manage buttons
     if (format && this.baseImage.width) {
       this.appState.data.baseImage.outputFormat = format;
     }
@@ -112,6 +110,7 @@ export default class OriginImage {
     const formatButtons = this.appState.elements.rightSidebarFormatBoxElement.children;
     for (const button of formatButtons) {
       button.classList.remove("active");
+
       if (this.appState.data.baseImage.outputFormat === button.dataset.format) {
         button.classList.add("active");
       }

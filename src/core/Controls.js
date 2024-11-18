@@ -1,11 +1,12 @@
 export default class Controls {
   rootElement;
 
-  constructor(stateService, imageLoadSaveService, mainCanvas, originImage) {
+  constructor(stateService, imageLoadSaveService, mainCanvas, originImage, transformCavas) {
     this.appState = stateService.state;
     this.imageLoadSaveService = imageLoadSaveService;
     this.mainCanvas = mainCanvas;
     this.originImage = originImage;
+    this.transformCavas = transformCavas;
     this.rootElement = this.appState.rootElement;
 
     this.init();
@@ -41,14 +42,13 @@ export default class Controls {
           break;
       }
       switch (action) {
-
         //output format
         case "button-format-png":
           this.originImage.setOutputFormat("png");
           break;
 
         case "button-format-jpeg":
-          this.originImage.setOutputFormat("jpg");
+          this.originImage.setOutputFormat("jpeg");
           break;
 
         case "button-format-webp":
@@ -65,8 +65,20 @@ export default class Controls {
   }
 
   saveImage() {
+    const { postfix, outputFormat, format, formatList } = this.appState.data.baseImage;
+
     if (this.originImage.baseImage.width > 0) {
-      this.imageLoadSaveService.saveImage(this.originImage.baseImage, this.appState.data.baseImage.postfix);
+      if (format === outputFormat) {
+        this.imageLoadSaveService.saveImage(this.originImage.baseImage, postfix);
+      } else {
+        const dataUrl = this.imageLoadSaveService.trasformImageFormat(
+          this.transformCavas,
+          this.originImage.baseImage,
+          outputFormat
+        );
+
+        this.imageLoadSaveService.saveDataUrl(dataUrl, formatList[outputFormat], postfix);
+      }
     }
   }
 }
