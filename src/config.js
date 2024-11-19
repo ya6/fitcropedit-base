@@ -63,7 +63,7 @@ export const initParams = {
       lastModified: 0,
       format: "",
       outputFormat: "",
-      formatList: { png: "png", jpeg: "jpg", webp: "webp" },
+      formatList: { png: "png", jpeg: "jpg", webp: "webp", gif: "gif" },
     },
   },
 };
