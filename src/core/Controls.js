@@ -44,15 +44,15 @@ export default class Controls {
       switch (action) {
         //output format
         case "button-format-png":
-          this.originImage.setOutputFormat("png");
+          this.originImage.setOutputFormat(targetElement, "png");
           break;
 
         case "button-format-jpeg":
-          this.originImage.setOutputFormat("jpeg");
+          this.originImage.setOutputFormat(targetElement, "jpeg");
           break;
 
         case "button-format-webp":
-          this.originImage.setOutputFormat("webp");
+          this.originImage.setOutputFormat(targetElement, "webp");
           break;
       }
     });

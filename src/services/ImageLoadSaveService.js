@@ -1,7 +1,10 @@
 export default class ImageLoadSaveService {
-  formats = ["image/png", "image/jpeg", "image/webp", "image/gif"];
+  // formats = ["image/png", "image/jpeg", "image/webp", "image/gif"];
+  formats = ["image/png", "image/jpeg", "image/webp", "image/gif", "image/bmp"];
   //in 2 places (+config)
-  extentions = { png: "png", jpeg: "jpg", webp: "webp", gif: "gif" };
+  extentions = { png: "png", jpeg: "jpg", webp: "webp", gif: "gif", bmp: "bmp" };
+
+  //tiff, svg
   imageParams = {
     fullName: "",
     name: "",
@@ -45,7 +48,10 @@ export default class ImageLoadSaveService {
       "image/png": [0x89, 0x50, 0x4e, 0x47],
       "image/jpeg": [0xff, 0xd8, 0xff],
       "image/webp": [0x52, 0x49, 0x46, 0x46], // RIFF
-      "image/gif": [0x47, 0x49, 0x46, 0x38], // GIF8
+      "image/bmp": [0x42, 0x4d],
+
+      "image/gif": [0x47, 0x49, 0x46, 0x38],
+      "image/tiff": [0x49, 0x49, 0x2a, 0x00], // Little-endian TIFF (II*)
     };
 
     const arrayBuffer = await file.slice(0, 4).arrayBuffer();

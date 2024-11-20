@@ -26,6 +26,8 @@ export default class Topbar {
 		<div id="${this.appState.selectors.topbarWidthSelector}">0</div>
 		<div class="ms-1">H:</div>
 		<div id="${this.appState.selectors.topbarHeightSelector}">0</div>	
+		<div class="ms-1">F:</div>
+		<div id="${this.appState.selectors.topbarFormatSelector}"></div>	
 	</div>
 	`;
 

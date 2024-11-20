@@ -21,7 +21,9 @@ export default class RightSidebar {
   formatSectiom() {
     const controls = `
 <div>
-  <div class="sub-title text-center">Output Format</div>
+  <div class="sub-title text-center">Output Format: 
+    <span id = "${this.appState.selectors.rightSidebarOutpitFormatSelector}" class="ms-1 bold"></span>
+  </div>
     <div id=${this.appState.selectors.rightSidebarFormatBoxSelector} class="flex">
       <button class="button-with-icon" type="button"  data-action="button-format-png" data-format="png">  
         <div class="button-text">  

@@ -1,7 +1,7 @@
 export default class OriginImage {
   baseImage;
 
-  params = { width: 0, height: 0, scale: 1, xCenter: 0, yCenter: 0, dWidth: 0, dHeight: 0 };
+  params = { width: 0, height: 0, scale: 1, xCenter: 0, yCenter: 0, dWidth: 0, dHeight: 0, format: "?" };
 
   constructor(stateService, imageLoadSaveService, mainCanvas) {
     this.appState = stateService.state;
@@ -41,6 +41,9 @@ export default class OriginImage {
         ...this.appState.data.baseImage,
         ...this.imageLoadSaveService.imageParams,
       };
+
+      //?
+      this.params.format = this.imageLoadSaveService.imageParams.format;
 
       this.collectParams();
       this.diplayDimentionInUI();
@@ -90,6 +93,8 @@ export default class OriginImage {
     for (let key in this.params) {
       if (typeof this.params[key] === "number") {
         this.params[key] = 0;
+      } else {
+        this.params[key] = "";
       }
     }
   }
@@ -97,13 +102,23 @@ export default class OriginImage {
   diplayDimentionInUI() {
     this.appState.elements.topbarWidthElement.innerText = this.params.width;
     this.appState.elements.topbarHeightElement.innerText = this.params.height;
+    this.appState.elements.topbarFormatElement.innerText = this.params.format;
   }
 
-  setOutputFormat(format) {
-    if (format && this.baseImage.width) {
+  setOutputFormat(targetElement, format) {
+    if (targetElement?.classList.contains("active")) {
+      targetElement.classList.remove("active");
+      this.appState.data.baseImage.outputFormat = this.params.format;
+    } else if (format && this.baseImage.width) {
       this.appState.data.baseImage.outputFormat = format;
     }
     this.displayExtentionUI();
+    this.displayOutputFormatUI();
+  }
+
+  displayOutputFormatUI() {
+    this.appState.elements.rightSidebarOutpitFormatElement.innerText =
+      this.appState.data.baseImage.outputFormat;
   }
 
   displayExtentionUI() {

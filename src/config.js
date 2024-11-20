@@ -34,18 +34,22 @@ export const initParams = {
     appbarCloseButtonSelector: "fc-appbar-close-button",
     topbarWidthSelector: "fc-topbar-width",
     topbarHeightSelector: "fc-topbar-height",
+    topbarFormatSelector: "fc-topbar-format",
 
     rightSidebarCloseButtonSelector: "fc-rightsidebar-close-button",
     rightSidebarSaveButtonSelector: "fc-rightsidebar-save-button",
     rightSidebarFormatBoxSelector: "fc-rightsidebar-format-box",
+    rightSidebarOutpitFormatSelector: "fc-rightsidebar-outpit-format-element",
   },
   elements: {
     appbarFileInputElement: null,
     appbarCloseButtonElement: null,
     topbarWidthElement: null,
     topbarWidthElement: null,
+    topbarFormatElement: null,
     rightSidebarCloseButtonElement: null,
     rightSidebarFormatBoxElement: null,
+    rightSidebarOutpitFormatSelector: null,
   },
   template: {
     mobileContainerHeight: "95vh",
@@ -63,7 +67,7 @@ export const initParams = {
       lastModified: 0,
       format: "",
       outputFormat: "",
-      formatList: { png: "png", jpeg: "jpg", webp: "webp", gif: "gif" },
+      formatList: { png: "png", jpeg: "jpg", webp: "webp", gif: "gif", bmp: "bmp" },
     },
   },
 };
