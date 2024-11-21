@@ -6,7 +6,7 @@ import Rightsidebar from "./layout/RightSidebar";
 
 import DeviceService from "./services/DeviceService";
 import Template from "./layout/Template";
-import ImageLoadSaveService from "./services/ImageLoadSaveService";
+import ImageLoader from "./core/ImageLoader";
 import OriginImage from "./core/OriginImage";
 import ResizeService from "./services/ResizeService";
 import ImageProcessor from "./core/ImageProcessor";
@@ -35,9 +35,9 @@ function bootstrap(params) {
 
   const notificationService = new NotificationService();
 
-  const imageLoadSaveService = new ImageLoadSaveService(notificationService);
+  const originImage = new OriginImage(stateService, mainCanvas);
 
-  const originImage = new OriginImage(stateService, imageLoadSaveService, mainCanvas);
+  const imageLoader = new ImageLoader(stateService, transformCanvas, originImage, notificationService);
 
   const resizeService = new ResizeService(stateService, deviceService, mainCanvas);
 
@@ -49,7 +49,7 @@ function bootstrap(params) {
     originImage
   );
 
-  const controls = new Controls(stateService, imageLoadSaveService, mainCanvas, originImage, transformCanvas);
+  const controls = new Controls(stateService, imageLoader, mainCanvas, originImage);
 }
 
 window.fitcropedit = {

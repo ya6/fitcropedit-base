@@ -57,9 +57,9 @@ export default class Appbar {
         </label>
       </div> 
       </li>
-      <li class="items-link"><span class="item-link-text" data-role="dropdown-item">Save</span></li>
-      <li class="items-link"><span class="item-link-text" data-role="dropdown-item">Reset</span></li>
-      <li class="items-link"><span class="item-link-text" id="${this.appState.selectors.appbarCloseButtonSelector}" data-role="dropdown-item">Close</span></li>
+      <li class="items-link"><span class="item-link-text" data-role="dropdown-item" data-action="appbar-save-button">Save</span></li>
+      <li class="items-link"><span class="item-link-text" data-role="dropdown-item" data-action="appbar-reset-button">Reset</span></li>
+      <li class="items-link"><span class="item-link-text" data-role="dropdown-item" data-action="appbar-close-button">Close</span></li>
     </ul>
   </div>
 </div>

@@ -3,25 +3,13 @@ export default class OriginImage {
 
   params = { width: 0, height: 0, scale: 1, xCenter: 0, yCenter: 0, dWidth: 0, dHeight: 0, format: "?" };
 
-  constructor(stateService, imageLoadSaveService, mainCanvas) {
+  constructor(stateService, mainCanvas) {
     this.appState = stateService.state;
-    this.imageLoadSaveService = imageLoadSaveService;
     this.mainCanvas = mainCanvas;
     this.baseImage = new Image();
-
-    this.init();
   }
 
-  init() {
-    this.handleLoadImage();
-    this.loadImageFromMenu();
-  }
-
-  // TODO move in init class
-  loadImageFromMenu() {
-    const inputElement = this.appState.elements.appbarFileInputElement;
-    this.imageLoadSaveService.loadImageFromInput(this.baseImage, inputElement);
-  }
+  init() {}
 
   closeOriginImage() {
     this.baseImage.src = "";
@@ -30,26 +18,6 @@ export default class OriginImage {
     this.diplayDimentionInUI();
     this.appState.data.baseImage.outputFormat = "";
     this.setOutputFormat();
-  }
-
-  handleLoadImage() {
-    this.baseImage.addEventListener("load", () => {
-      this.appState.image.isLoaded = true;
-
-      // save image data
-      this.appState.data.baseImage = {
-        ...this.appState.data.baseImage,
-        ...this.imageLoadSaveService.imageParams,
-      };
-
-      //?
-      this.params.format = this.imageLoadSaveService.imageParams.format;
-
-      this.collectParams();
-      this.diplayDimentionInUI();
-      this.drawImage();
-      this.setOutputFormat();
-    });
   }
 
   drawImage() {
