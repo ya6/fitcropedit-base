@@ -69,6 +69,8 @@ export default class MainCanvas {
     this.params.height = this.canvas.height;
     this.params.xCenter = Math.round(this.canvas.width / 2);
     this.params.yCenter = Math.round(this.canvas.height / 2);
-
   }
+
+
+ 
 }

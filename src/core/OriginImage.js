@@ -3,9 +3,10 @@ export default class OriginImage {
 
   params = { width: 0, height: 0, scale: 1, xCenter: 0, yCenter: 0, dWidth: 0, dHeight: 0, format: "?" };
 
-  constructor(stateService, mainCanvas) {
+  constructor(stateService, mainCanvas, meshCanvas) {
     this.appState = stateService.state;
     this.mainCanvas = mainCanvas;
+    this.meshCanvas = meshCanvas;
     this.baseImage = new Image();
   }
 
@@ -23,6 +24,7 @@ export default class OriginImage {
   drawImage() {
     const { dx, dy, dWidth, dHeight } = this.params;
     this.mainCanvas.clear();
+    this.meshCanvas.drawMesh();
     this.mainCanvas.ctx.drawImage(this.baseImage, dx, dy, dWidth, dHeight);
   }
 

@@ -1,11 +1,12 @@
 export default class ImageProcessor {
-  constructor(stateService, deviceService, resizeService, mainCanvas, originImage) {
+  constructor(stateService, deviceService, resizeService, mainCanvas, originImage, meshCanvas) {
     this.appState = stateService.state;
     this.rootElement = this.appState.rootElement;
     this.resizeService = resizeService;
     this.deviceService = deviceService;
     this.mainCanvas = mainCanvas;
     this.originImage = originImage;
+    this.meshCanvas = meshCanvas;
 
     this.init();
   }
@@ -18,6 +19,7 @@ export default class ImageProcessor {
     this.configureBase();
     this.mainCanvas.collectParams();
     this.originImage.collectParams();
+    this.meshCanvas.init();
     this.drawCurrentImage();
   }
   // utils
