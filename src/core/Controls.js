@@ -1,11 +1,13 @@
 export default class Controls {
   rootElement;
 
-  constructor(stateService, imageLoader, mainCanvas, originImage) {
+  constructor(stateService, imageLoader, mainCanvas, originImage, uiControls) {
+    this.stateService = stateService;
     this.appState = stateService.state;
     this.imageLoader = imageLoader;
     this.mainCanvas = mainCanvas;
     this.originImage = originImage;
+    this.uiControls = uiControls;
     this.rootElement = this.appState.rootElement;
 
     this.init();
@@ -18,6 +20,7 @@ export default class Controls {
   addListener() {
     this.rootElement.addEventListener("click", (e) => {
       const targetElement = e.target;
+      // console.log(targetElement);
 
       const id = targetElement.id;
       let action;
@@ -38,18 +41,40 @@ export default class Controls {
           break;
       }
 
+      // save feature
       switch (action) {
-        //output format
         case "button-format-png":
-          this.originImage.setOutputFormat(targetElement, "png");
+          if (this.appState.data.baseImage.outputFormat === "png") {
+            this.appState.data.baseImage.outputFormat = this.appState.data.baseImage.format;
+          } else {
+            this.appState.data.baseImage.outputFormat = "png";
+          }
+
+          this.uiControls.displayOutputFormatUI();
+          this.uiControls.displayExtentionUI();
+
           break;
 
         case "button-format-jpeg":
-          this.originImage.setOutputFormat(targetElement, "jpeg");
+          if (this.appState.data.baseImage.outputFormat === "jpeg") {
+            this.appState.data.baseImage.outputFormat = this.appState.data.baseImage.format;
+          } else {
+            this.appState.data.baseImage.outputFormat = "jpeg";
+          }
+
+          this.uiControls.displayOutputFormatUI();
+          this.uiControls.displayExtentionUI();
           break;
 
         case "button-format-webp":
-          this.originImage.setOutputFormat(targetElement, "webp");
+          if (this.appState.data.baseImage.outputFormat === "webp") {
+            this.appState.data.baseImage.outputFormat = this.appState.data.baseImage.format;
+          } else {
+            this.appState.data.baseImage.outputFormat = "webp";
+          }
+
+          this.uiControls.displayOutputFormatUI();
+          this.uiControls.displayExtentionUI();
           break;
 
         case "appbar-save-button":
@@ -60,11 +85,25 @@ export default class Controls {
           this.closeImage();
           break;
       }
+
+      //left menu
+      switch (action) {
+        case "leftsidebar-resolution-button":
+          // console.log("leftsidebar-resolution-button");
+          break;
+      }
     });
   }
 
   closeImage() {
     this.originImage.closeOriginImage();
+
+    this.stateService.clearBaseImageData();
+
+    this.uiControls.diplayDimentionInUI();
+    this.uiControls.displayOutputFormatUI();
+    this.uiControls.displayExtentionUI();
+
     this.mainCanvas.clear();
     this.mainCanvas.drawPromo();
   }

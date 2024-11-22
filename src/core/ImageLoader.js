@@ -5,6 +5,8 @@ export default class LoadManager {
   //tiff, svg
 
   imageParams = {
+    width: 0,
+    height: 0,
     fullName: "",
     name: "",
     ext: "",
@@ -12,14 +14,16 @@ export default class LoadManager {
     format: "",
     size: 0,
     lastModified: 0,
-    // outputFormat?
+    outputFormat: "",
   };
 
-  constructor(stateService, transformCanvas, originImage, notificationService) {
+  constructor(stateService, transformCanvas, originImage, notificationService, uiControls) {
+    this.stateService = stateService;
     this.appState = stateService.state;
     this.transformCanvas = transformCanvas;
     this.originImage = originImage;
     this.notificationService = notificationService;
+    this.uiControls = uiControls;
 
     this.init();
   }
@@ -47,6 +51,7 @@ export default class LoadManager {
         }
 
         image.src = URL.createObjectURL(e.target.files[0]);
+
         this.collectFileData(e.target.files[0], fileType);
         e.target.value = "";
       }
@@ -89,8 +94,9 @@ export default class LoadManager {
     this.imageParams.type = fileType;
 
     this.imageParams.format = this.imageParams.type.split("/").pop();
-    this.imageParams.ext = this.extentions[this.imageParams.format];
     this.imageParams.outputFormat = this.imageParams.format;
+
+    this.imageParams.ext = this.extentions[this.imageParams.format];
     this.imageParams.lastModified = file.lastModified;
   }
 
@@ -103,19 +109,22 @@ export default class LoadManager {
     this.originImage.baseImage.addEventListener("load", () => {
       this.appState.image.isLoaded = true;
 
-      // save image data
-      this.appState.data.baseImage = {
-        ...this.appState.data.baseImage,
-        ...this.imageParams,
-      };
+      this.imageParams.width = this.originImage.baseImage.width;
+      this.imageParams.height = this.originImage.baseImage.height;
 
-      //?
-      this.originImage.params.format = this.imageParams.format;
+      // save image data todo refator
+      // this.appState.data.baseImage = {
+      //   ...this.appState.data.baseImage,
+      //   ...this.imageParams,
+      // };
+      this.stateService.saveBaseImageParams(this.imageParams);
 
       this.originImage.collectParams();
-      this.originImage.diplayDimentionInUI();
       this.originImage.drawImage();
-      this.originImage.setOutputFormat();
+
+      this.uiControls.diplayDimentionInUI();
+      this.uiControls.displayOutputFormatUI();
+      this.uiControls.displayExtentionUI();
     });
   }
 
@@ -135,7 +144,7 @@ export default class LoadManager {
   save() {
     const dataUrl = this.originImage.baseImage.src;
     const { name, ext } = this.imageParams;
-    const postfix = this.appState.data.baseImage.postfix;
+    const postfix = this.appState.data.postfix;
     const fullName = `${name}${postfix}.${ext}`;
 
     this.downloadImage(dataUrl, fullName);
@@ -146,7 +155,7 @@ export default class LoadManager {
   //set img as param?
   convertAndSave(exportFormat) {
     const { name } = this.imageParams;
-    const postfix = this.appState.data.baseImage.postfix;
+    const postfix = this.appState.data.postfix;
     const ext = this.extentions[exportFormat];
 
     const fullName = `${name}${postfix}.${ext}`;

@@ -116,7 +116,7 @@
 }
 
 /* ----------Avoid clicks---------- */
-.avoid-clicks {
+.fc-avoid-clicks {
   pointer-events: none;
 }
 

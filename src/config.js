@@ -58,7 +58,8 @@ export const initParams = {
   },
   data: {
     baseImage: {
-      postfix: "-fce",
+      width: 0,
+      height: 0,
       fullName: "",
       name: "",
       ext: "",
@@ -67,7 +68,8 @@ export const initParams = {
       lastModified: 0,
       format: "",
       outputFormat: "",
-      formatList: { png: "png", jpeg: "jpg", webp: "webp", gif: "gif", bmp: "bmp" },
     },
+    postfix: "-fce",
+    // formatList: { png: "png", jpeg: "jpg", webp: "webp", gif: "gif", bmp: "bmp" },
   },
 };

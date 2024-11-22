@@ -14,11 +14,8 @@ export default class OriginImage {
 
   closeOriginImage() {
     this.baseImage.src = "";
-    this.appState.image.isLoaded = false;
+    this.appState.image.isLoaded = false; //???
     this.resetParams();
-    this.diplayDimentionInUI();
-    this.appState.data.baseImage.outputFormat = "";
-    this.setOutputFormat();
   }
 
   drawImage() {
@@ -58,46 +55,13 @@ export default class OriginImage {
     this.params.dx = this.mainCanvas.params.xCenter - this.params.dWidth / 2;
     this.params.dy = this.mainCanvas.params.yCenter - this.params.dHeight / 2;
   }
-
+  // refactor to utils
   resetParams() {
     for (let key in this.params) {
       if (typeof this.params[key] === "number") {
         this.params[key] = 0;
       } else {
         this.params[key] = "";
-      }
-    }
-  }
-
-  diplayDimentionInUI() {
-    this.appState.elements.topbarWidthElement.innerText = this.params.width;
-    this.appState.elements.topbarHeightElement.innerText = this.params.height;
-    this.appState.elements.topbarFormatElement.innerText = this.params.format;
-  }
-
-  setOutputFormat(targetElement, format) {
-    if (targetElement?.classList.contains("active")) {
-      targetElement.classList.remove("active");
-      this.appState.data.baseImage.outputFormat = this.params.format;
-    } else if (format && this.baseImage.width) {
-      this.appState.data.baseImage.outputFormat = format;
-    }
-    this.displayExtentionUI();
-    this.displayOutputFormatUI();
-  }
-
-  displayOutputFormatUI() {
-    this.appState.elements.rightSidebarOutpitFormatElement.innerText =
-      this.appState.data.baseImage.outputFormat;
-  }
-
-  displayExtentionUI() {
-    const formatButtons = this.appState.elements.rightSidebarFormatBoxElement.children;
-    for (const button of formatButtons) {
-      button.classList.remove("active");
-
-      if (this.appState.data.baseImage.outputFormat === button.dataset.format) {
-        button.classList.add("active");
       }
     }
   }

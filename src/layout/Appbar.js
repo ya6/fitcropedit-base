@@ -33,7 +33,7 @@ export default class Appbar {
 
     const fileMenuItem = `
     <div class="fc-appbar-item" data-role="appbar-item">
-    <div class="avoid-clicks">File</div>
+    <div class="fc-avoid-clicks">File</div>
 
   <div class="custom-icon ms-05" data-role="custom-toggle-icon-open">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
