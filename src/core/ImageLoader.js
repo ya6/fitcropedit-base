@@ -107,7 +107,7 @@ export default class LoadManager {
 
   handleLoadImage() {
     this.originImage.baseImage.addEventListener("load", () => {
-      this.appState.image.isLoaded = true;
+      this.appState.data.baseImage.isLoaded = true;
 
       this.imageParams.width = this.originImage.baseImage.width;
       this.imageParams.height = this.originImage.baseImage.height;

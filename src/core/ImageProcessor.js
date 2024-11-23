@@ -55,7 +55,7 @@ export default class ImageProcessor {
   }
 
   drawCurrentImage() {
-    if (this.appState.image.isLoaded) {
+    if (this.appState.data.baseImage.isLoaded) {
       this.originImage.drawImage();
     } else {
       this.mainCanvas.drawPromo();

@@ -8,10 +8,6 @@ export const initParams = {
     mobileBP: 768,
   },
 
-  image: {
-    isLoaded: false,
-  },
-
   rootSelector: "fitcropedit",
   rootElement: null,
   appbarSelector: "fc-appbar",
@@ -58,6 +54,7 @@ export const initParams = {
   },
   data: {
     baseImage: {
+      isLoaded: false,
       width: 0,
       height: 0,
       fullName: "",

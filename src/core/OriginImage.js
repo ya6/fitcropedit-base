@@ -14,7 +14,7 @@ export default class OriginImage {
 
   closeOriginImage() {
     this.baseImage.src = "";
-    this.appState.image.isLoaded = false; //???
+    this.appState.data.baseImage.isLoaded = false;
     this.resetParams();
   }
 
@@ -55,11 +55,13 @@ export default class OriginImage {
     this.params.dx = this.mainCanvas.params.xCenter - this.params.dWidth / 2;
     this.params.dy = this.mainCanvas.params.yCenter - this.params.dHeight / 2;
   }
-  // refactor to utils
+  // refactor, move to utils
   resetParams() {
     for (let key in this.params) {
       if (typeof this.params[key] === "number") {
         this.params[key] = 0;
+      } else if (typeof this.params[key] === "boolean") {
+        this.params[key] = false;
       } else {
         this.params[key] = "";
       }

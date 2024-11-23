@@ -41,58 +41,53 @@ export default class Controls {
           break;
       }
 
-      // save feature
+      // rigthSidebar
       switch (action) {
+        // change ouput format
         case "button-format-png":
-          if (this.appState.data.baseImage.outputFormat === "png") {
-            this.appState.data.baseImage.outputFormat = this.appState.data.baseImage.format;
-          } else {
-            this.appState.data.baseImage.outputFormat = "png";
-          }
-
-          this.uiControls.displayOutputFormatUI();
-          this.uiControls.displayExtentionUI();
-
+          this.changeOuputFormat("png");
           break;
 
         case "button-format-jpeg":
-          if (this.appState.data.baseImage.outputFormat === "jpeg") {
-            this.appState.data.baseImage.outputFormat = this.appState.data.baseImage.format;
-          } else {
-            this.appState.data.baseImage.outputFormat = "jpeg";
-          }
-
-          this.uiControls.displayOutputFormatUI();
-          this.uiControls.displayExtentionUI();
+          this.changeOuputFormat("jpeg");
           break;
 
         case "button-format-webp":
-          if (this.appState.data.baseImage.outputFormat === "webp") {
-            this.appState.data.baseImage.outputFormat = this.appState.data.baseImage.format;
-          } else {
-            this.appState.data.baseImage.outputFormat = "webp";
-          }
-
-          this.uiControls.displayOutputFormatUI();
-          this.uiControls.displayExtentionUI();
+          this.changeOuputFormat("webp");
           break;
 
+        // save
         case "appbar-save-button":
           this.saveImage();
           break;
-
+        // close
         case "appbar-close-button":
           this.closeImage();
           break;
       }
 
-      //left menu
+      // leftSidebar
       switch (action) {
         case "leftsidebar-resolution-button":
           // console.log("leftsidebar-resolution-button");
           break;
       }
     });
+  }
+
+  changeOuputFormat(format) {
+    if (!this.appState.data.baseImage.isLoaded) {
+      return;
+    }
+
+    if (this.appState.data.baseImage.outputFormat === format) {
+      this.appState.data.baseImage.outputFormat = this.appState.data.baseImage.format;
+    } else {
+      this.appState.data.baseImage.outputFormat = format;
+    }
+
+    this.uiControls.displayOutputFormatUI();
+    this.uiControls.displayExtentionUI();
   }
 
   closeImage() {
