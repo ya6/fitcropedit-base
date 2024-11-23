@@ -39,7 +39,9 @@ export default class MainCanvas {
 
   loadPromo() {
     this.promo = new Image();
-    this.promo.src = "public/img/dnd-1.png";
+   
+    // refactor
+    this.promo.src = "public/img/dnd-1.png"; 
   }
 
   initAndDrawPromo() {

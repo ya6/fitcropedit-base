@@ -84,9 +84,7 @@ export default class RightSidebar {
 <div class="delimeter"></div>
 historybar
 <div class="delimeter"></div>
-
-<div>
-controls 
+<div id="${this.appState.selectors.rightSidebarToolsContainerSelector}">
 </div>
 	`;
   }

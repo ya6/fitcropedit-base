@@ -1,13 +1,14 @@
 export default class Controls {
   rootElement;
 
-  constructor(stateService, imageLoader, mainCanvas, originImage, uiControls) {
+  constructor(stateService, imageLoader, mainCanvas, originImage, uiControls, toolsItems) {
     this.stateService = stateService;
     this.appState = stateService.state;
     this.imageLoader = imageLoader;
     this.mainCanvas = mainCanvas;
     this.originImage = originImage;
     this.uiControls = uiControls;
+    this.toolsItems = toolsItems;
     this.rootElement = this.appState.rootElement;
 
     this.init();
@@ -69,7 +70,7 @@ export default class Controls {
       // leftSidebar
       switch (action) {
         case "leftsidebar-resolution-button":
-          // console.log("leftsidebar-resolution-button");
+          this.uiControls.clearAndInjectTemplate(this.appState.elements.rightSidebarToolsContainerElement, this.toolsItems.ResolutionTemplate() )
           break;
       }
     });

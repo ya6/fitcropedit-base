@@ -16,6 +16,7 @@ import TransformCanvas from "./core/TransformCanvas";
 import NotificationService from "./services/NotificationService";
 import MeshCanvas from "./core/MeshCanvas";
 import UIControls from "./core/UIControls";
+import ToolsItems from "./layout/ToolsItems";
 
 console.log("fitcropedit.js");
 
@@ -32,6 +33,8 @@ function bootstrap(params) {
   const mainCanvas = new MainCanvas(stateService);
   const rightSidebar = new Rightsidebar(stateService);
   const template = new Template(stateService, deviceService, mainCanvas);
+  //
+  const toolsItems = new ToolsItems();
 
   const transformCanvas = new TransformCanvas();
   const meshCanvas = new MeshCanvas(stateService, mainCanvas);
@@ -41,7 +44,13 @@ function bootstrap(params) {
   const originImage = new OriginImage(stateService, mainCanvas, meshCanvas);
 
   const uiControls = new UIControls(stateService);
-  const imageLoader = new ImageLoader(stateService, transformCanvas, originImage, notificationService, uiControls);
+  const imageLoader = new ImageLoader(
+    stateService,
+    transformCanvas,
+    originImage,
+    notificationService,
+    uiControls
+  );
 
   const resizeService = new ResizeService(stateService, deviceService, mainCanvas);
 
@@ -54,7 +63,7 @@ function bootstrap(params) {
     meshCanvas
   );
 
-  const controls = new Controls(stateService, imageLoader, mainCanvas, originImage, uiControls);
+  const controls = new Controls(stateService, imageLoader, mainCanvas, originImage, uiControls, toolsItems);
 }
 
 window.fitcropedit = {

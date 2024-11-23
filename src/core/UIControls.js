@@ -24,4 +24,23 @@ export default class UIControls {
       }
     }
   }
+
+  injectElement(host, element) {
+    console.log(element);
+
+    host.appendChild(element);
+  }
+
+  clearElement(element) {
+    element.innerHTML = "";
+  }
+
+  injectString(host, template) {
+    host.insertAdjacentHTML("afterbegin", template);
+  }
+
+  clearAndInjectTemplate(host, element) {
+    this.clearElement(host);
+    this.injectString(host, element);
+  }
 }
