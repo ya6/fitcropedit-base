@@ -54,7 +54,8 @@ export const initParams = {
   template: {
     mobileContainerHeight: "95vh",
     mobileContainerWidth: "95vw",
-    appbarHeight: 32,
+    // appbarHeight: 32,
+    rightSidebarWidth: 200,
   },
   data: {
     baseImage: {

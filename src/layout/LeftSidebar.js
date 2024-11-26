@@ -124,7 +124,7 @@ export default class LeftSidebar {
   </button>
   `;
 
-    const BackgroundButton = `
+    const backgroundButton = `
   <button class="fc-left-sidebar-button" type="button">
     <div class="custom-icon mx-auto">         
       <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"  viewBox="0 0 .64 .64"> 
@@ -143,7 +143,7 @@ export default class LeftSidebar {
     ${filtersButton}
     ${resolutionButton}
     ${transformButton}
-    ${BackgroundButton}
+    ${backgroundButton}
   `;
 
     return sidebarTemplate;

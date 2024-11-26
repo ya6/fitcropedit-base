@@ -67,10 +67,10 @@ export default class Controls {
           break;
       }
 
-      // leftSidebar
+      // diplay Tool
       switch (action) {
         case "leftsidebar-resolution-button":
-          this.uiControls.clearAndInjectTemplate(this.appState.elements.rightSidebarToolsContainerElement, this.toolsItems.ResolutionTemplate() )
+          this.uiControls.manageResolutuonToolUI(targetElement);
           break;
       }
     });

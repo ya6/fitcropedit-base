@@ -1,6 +1,7 @@
 export default class UIControls {
-  constructor(stateService) {
+  constructor(stateService, toolsItems) {
     this.appState = stateService.state;
+    this.toolsItems = toolsItems;
   }
   displayOutputFormatUI() {
     this.appState.elements.rightSidebarOutpitFormatElement.innerText =
@@ -39,8 +40,30 @@ export default class UIControls {
     host.insertAdjacentHTML("afterbegin", template);
   }
 
-  clearAndInjectTemplate(host, element) {
-    this.clearElement(host);
-    this.injectString(host, element);
+  // ? activeClass
+  manageResolutuonToolUI(buttonElement, activeClass = "fc-active") {
+    this.toggleActiveClass(buttonElement, activeClass);
+
+    if (buttonElement.classList.contains(activeClass)) {
+      this.displayResolutionTool();
+    } else {
+      this.hideResolutionTool();
+    }
+  }
+
+  displayResolutionTool() {
+    this.clearElement(this.appState.elements.rightSidebarToolsContainerElement);
+    this.injectString(
+      this.appState.elements.rightSidebarToolsContainerElement,
+      this.toolsItems.ResolutionTemplate()
+    );
+  }
+
+  hideResolutionTool() {
+    this.clearElement(this.appState.elements.rightSidebarToolsContainerElement);
+  }
+
+  toggleActiveClass(element, className) {
+    element.classList.toggle(className);
   }
 }

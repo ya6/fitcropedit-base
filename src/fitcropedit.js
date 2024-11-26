@@ -43,7 +43,7 @@ function bootstrap(params) {
 
   const originImage = new OriginImage(stateService, mainCanvas, meshCanvas);
 
-  const uiControls = new UIControls(stateService);
+  const uiControls = new UIControls(stateService, toolsItems);
   const imageLoader = new ImageLoader(
     stateService,
     transformCanvas,

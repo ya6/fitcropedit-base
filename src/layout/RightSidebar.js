@@ -15,6 +15,7 @@ export default class RightSidebar {
   createTemplate() {
     this.rightSidebarElement = document.createElement("div");
     this.rightSidebarElement.setAttribute("id", this.appState.rightSidebarSelector);
+    this.rightSidebarElement.style.minWidth = this.appState.template.rightSidebarWidth + "px";
     this.injectString(this.rightSidebarElement, this.innerTemplate());
   }
 
