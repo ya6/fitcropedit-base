@@ -1,20 +1,53 @@
 export default class UIControls {
-  constructor(stateService, toolsItems) {
+  leftSidebarbuttons;
+
+  constructor(stateService) {
     this.appState = stateService.state;
-    this.toolsItems = toolsItems;
+
+    this.init();
   }
+
+  init() {
+    this.getLeftSidebarButtons();
+  }
+
+  // leftsidebar ->
+  getLeftSidebarButtons() {
+    const leftSideBarElement = this.appState.leftSidebarElement;
+    this.leftSidebarbuttons = leftSideBarElement.querySelectorAll('[data-anchor="left-sidebar-item"]');
+  }
+
+  resetLeftSidebarMenu() {
+    this.removeActiveClass( this.leftSidebarbuttons);
+  }
+  // leftsidebar <-
+
+  // tools ->
+  displayTool(template) {
+    this.clearElement(this.appState.elements.rightSidebarToolsContainerElement);
+    this.injectString(this.appState.elements.rightSidebarToolsContainerElement, template);
+  }
+
+  hideTool() {
+    this.clearElement(this.appState.elements.rightSidebarToolsContainerElement);
+  }
+  // tools <-
+
   displayOutputFormatUI() {
     this.appState.elements.rightSidebarOutpitFormatElement.innerText =
       this.appState.data.baseImage.outputFormat;
   }
 
+  // appbar ->
   diplayDimentionInUI() {
     const { width, height, format } = this.appState.data.baseImage;
     this.appState.elements.topbarWidthElement.innerText = width;
     this.appState.elements.topbarHeightElement.innerText = height;
     this.appState.elements.topbarFormatElement.innerText = format;
   }
+  // appbar <-
 
+  // rightSidebar ->
   displayExtentionUI() {
     const formatButtons = this.appState.elements.rightSidebarFormatBoxElement.children;
     for (const button of formatButtons) {
@@ -25,10 +58,9 @@ export default class UIControls {
       }
     }
   }
+  // rightSidebar <-
 
   injectElement(host, element) {
-    console.log(element);
-
     host.appendChild(element);
   }
 
@@ -40,30 +72,28 @@ export default class UIControls {
     host.insertAdjacentHTML("afterbegin", template);
   }
 
-  // ? activeClass
-  manageResolutuonToolUI(buttonElement, activeClass = "fc-active") {
-    this.toggleActiveClass(buttonElement, activeClass);
-
-    if (buttonElement.classList.contains(activeClass)) {
-      this.displayResolutionTool();
+  removeClass(elements, className) {
+    if (this.isIterable(elements)) {
+      elements.forEach((el) => el.classList.remove(className));
     } else {
-      this.hideResolutionTool();
+      elements.classList.remove(className);
     }
   }
 
-  displayResolutionTool() {
-    this.clearElement(this.appState.elements.rightSidebarToolsContainerElement);
-    this.injectString(
-      this.appState.elements.rightSidebarToolsContainerElement,
-      this.toolsItems.ResolutionTemplate()
-    );
+  removeActiveClass(elements, className = "fc-active") {
+    this.removeClass(elements, className);
   }
 
-  hideResolutionTool() {
-    this.clearElement(this.appState.elements.rightSidebarToolsContainerElement);
+  setInputValue(element, value) {
+    element.value = value;
   }
 
-  toggleActiveClass(element, className) {
+  toggleActiveClass(element, className = "fc-active") {
     element.classList.toggle(className);
+    return element.classList.contains(className);
+  }
+
+  isIterable(pretender) {
+    return typeof pretender[Symbol.iterator] === "function";
   }
 }

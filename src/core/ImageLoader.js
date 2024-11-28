@@ -7,6 +7,7 @@ export default class LoadManager {
   imageParams = {
     width: 0,
     height: 0,
+    ratioWH: 0,
     fullName: "",
     name: "",
     ext: "",
@@ -112,11 +113,8 @@ export default class LoadManager {
       this.imageParams.width = this.originImage.baseImage.width;
       this.imageParams.height = this.originImage.baseImage.height;
 
-      // save image data todo refator
-      // this.appState.data.baseImage = {
-      //   ...this.appState.data.baseImage,
-      //   ...this.imageParams,
-      // };
+      this.imageParams.ratioWH = this.originImage.baseImage.width / this.originImage.baseImage.height;
+
       this.stateService.saveBaseImageParams(this.imageParams);
 
       this.originImage.collectParams();

@@ -1,15 +1,16 @@
 export default class Controls {
   rootElement;
 
-  constructor(stateService, imageLoader, mainCanvas, originImage, uiControls, toolsItems) {
+  constructor(stateService, imageLoader, mainCanvas, originImage, uiControls, resizeTool) {
     this.stateService = stateService;
     this.appState = stateService.state;
     this.imageLoader = imageLoader;
     this.mainCanvas = mainCanvas;
     this.originImage = originImage;
     this.uiControls = uiControls;
-    this.toolsItems = toolsItems;
     this.rootElement = this.appState.rootElement;
+    // tools
+    this.resizeTool = resizeTool;
 
     this.init();
   }
@@ -68,10 +69,12 @@ export default class Controls {
       }
 
       // diplay Tool
-      switch (action) {
-        case "leftsidebar-resolution-button":
-          this.uiControls.manageResolutuonToolUI(targetElement);
-          break;
+      if (this.appState.data.baseImage.width > 0) {
+        switch (action) {
+          case "leftsidebar-resize-button":
+            this.resizeTool.manage(targetElement);
+            break;
+        }
       }
     });
   }
@@ -99,6 +102,9 @@ export default class Controls {
     this.uiControls.diplayDimentionInUI();
     this.uiControls.displayOutputFormatUI();
     this.uiControls.displayExtentionUI();
+    this.uiControls.hideTool();
+    this.uiControls.resetLeftSidebarMenu();
+
 
     this.mainCanvas.clear();
     this.mainCanvas.drawPromo();

@@ -27,7 +27,7 @@ export const initParams = {
   selectors: {
     // Ensure that the selectors match those in fitcropedit.css
     appbarFileInputSelector: "fc-appbar-file-input",
-    appbarCloseButtonSelector: "fc-appbar-close-button",
+    // appbarCloseButtonSelector: "fc-appbar-close-button",
     topbarWidthSelector: "fc-topbar-width",
     topbarHeightSelector: "fc-topbar-height",
     topbarFormatSelector: "fc-topbar-format",
@@ -37,11 +37,15 @@ export const initParams = {
     rightSidebarFormatBoxSelector: "fc-rightsidebar-format-box", //? box
     rightSidebarOutpitFormatSelector: "fc-rightsidebar-outpit-format-element",
     rightSidebarToolsContainerSelector: "fc-rightsidebar-tools-container-element",
-    leftsidebarResolutionSelector: "fc-leftsidebar-resolution-button",
+    
+    leftsidebarResizeSelector: "fc-leftsidebar-resolution-button",
+    //tools
+    rightSidebarResizeToolSelector: "fc-rightsidebar-resize-tool",
+    
   },
   elements: {
     appbarFileInputElement: null,
-    appbarCloseButtonElement: null,
+    // appbarCloseButtonElement: null,
     topbarWidthElement: null,
     topbarWidthElement: null,
     topbarFormatElement: null,
@@ -49,7 +53,10 @@ export const initParams = {
     rightSidebarFormatBoxElement: null,
     rightSidebarOutpitFormatElement: null,
     rightSidebarToolsContainerElement: null,
-    leftsidebarResolutionElement: null,
+    leftsidebarResizeElement: null,
+
+    //tools
+    rightSidebarResizeToolElement: null
   },
   template: {
     mobileContainerHeight: "95vh",
@@ -62,6 +69,7 @@ export const initParams = {
       isLoaded: false,
       width: 0,
       height: 0,
+      ratioWH: 0, // ? dangerous
       fullName: "",
       name: "",
       ext: "",
@@ -73,5 +81,9 @@ export const initParams = {
     },
     postfix: "-fce",
     // formatList: { png: "png", jpeg: "jpg", webp: "webp", gif: "gif", bmp: "bmp" },
+    resize: {
+      min: 10,
+      max: 6000
+    }
   },
 };

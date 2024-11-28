@@ -137,14 +137,14 @@ export default class Appbar {
     }
   }
 
-  toggeElements(elements) {
+  toggeElements(elements, className="hidden") {
     if (this.isIterable(elements)) {
-      elements.forEach((el) => el.classList.toggle("hidden"));
+      elements.forEach((el) => el.classList.toggle(className));
     } else {
-      elements.classList.toggle("hidden");
+      elements.classList.toggle(className);
     }
   }
-
+// ?utils
   isIterable(pretender) {
     return typeof pretender[Symbol.iterator] === "function";
   }
