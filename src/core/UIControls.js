@@ -40,7 +40,7 @@ export default class UIControls {
 
   // appbar ->
   diplayDimentionInUI() {
-    const { width, height, format } = this.appState.data.baseImage;
+    const { width, height, format } = this.appState.data.baseImage; // ? origins
     this.appState.elements.topbarWidthElement.innerText = width;
     this.appState.elements.topbarHeightElement.innerText = height;
     this.appState.elements.topbarFormatElement.innerText = format;

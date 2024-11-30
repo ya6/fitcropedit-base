@@ -17,6 +17,7 @@ import NotificationService from "./services/NotificationService";
 import MeshCanvas from "./core/MeshCanvas";
 import UIControls from "./core/UIControls";
 import ResizeTool from "./tools/ResizeTool";
+import ToolManager from './tools/ToolManager';
 
 console.log("fitcropedit.js");
 
@@ -45,14 +46,22 @@ function bootstrap(params) {
   //tools
   
   const uiControls = new UIControls(stateService);
+ 
+
+  
+  const resizeTool = new ResizeTool(stateService, uiControls, originImage, transformCanvas);
+  
+  const toolManager = new ToolManager(uiControls, resizeTool )
+
+
   const imageLoader = new ImageLoader(
     stateService,
     transformCanvas,
     originImage,
     notificationService,
-    uiControls
+    uiControls,
+    toolManager
   );
-  const resizeTool = new ResizeTool(stateService, uiControls);
   
   const resizeService = new ResizeService(stateService, deviceService, mainCanvas);
 

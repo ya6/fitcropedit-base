@@ -18,13 +18,14 @@ export default class LoadManager {
     outputFormat: "",
   };
 
-  constructor(stateService, transformCanvas, originImage, notificationService, uiControls) {
+  constructor(stateService, transformCanvas, originImage, notificationService, uiControls, toolManager) {
     this.stateService = stateService;
     this.appState = stateService.state;
     this.transformCanvas = transformCanvas;
     this.originImage = originImage;
     this.notificationService = notificationService;
     this.uiControls = uiControls;
+    this.toolManager = toolManager;
 
     this.init();
   }
@@ -34,7 +35,7 @@ export default class LoadManager {
     this.loadImageFromMenu();
   }
 
-  loadImageFromInput(image, inputElement) {
+  loadImageFromInput = (inputElement) => {
     inputElement.addEventListener("change", async (e) => {
       if (e.target.files[0]) {
         //chek 1
@@ -51,13 +52,18 @@ export default class LoadManager {
           return;
         }
 
-        image.src = URL.createObjectURL(e.target.files[0]);
+        this.originImage.initialImage.src = this.originImage.baseImage.src = URL.createObjectURL(
+          e.target.files[0]
+        );
 
         this.collectFileData(e.target.files[0], fileType);
         e.target.value = "";
       }
+
+      //
+      this.toolManager.reset();
     });
-  }
+  };
 
   async validateFileSignature(file) {
     const allowedSignatures = {
@@ -103,7 +109,7 @@ export default class LoadManager {
 
   loadImageFromMenu() {
     const inputElement = this.appState.elements.appbarFileInputElement;
-    this.loadImageFromInput(this.originImage.baseImage, inputElement);
+    this.loadImageFromInput(inputElement);
   }
 
   handleLoadImage() {

@@ -4,15 +4,17 @@ export default class ResizeTool {
   ratioWH;
   min;
   max;
+  newHeight;
+  newWidth;
 
-  constructor(stateService, uiControls) {
+  constructor(stateService, uiControls, originImage, transformCanvas) {
+    this.stateService = stateService;
     this.appState = stateService.state;
     this.min = this.appState.data.resize.min;
     this.max = this.appState.data.resize.max;
-
-    console.log(this.max);
-
     this.uiControls = uiControls;
+    this.originImage = originImage;
+    this.transformCanvas = transformCanvas;
   }
 
   template() {
@@ -49,7 +51,7 @@ export default class ResizeTool {
           <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
           </svg>
         </div>
-       Cancel
+       Restore
        </button>  
     </div>
     `;
@@ -81,6 +83,8 @@ export default class ResizeTool {
     // const resizePanelElement = toolsContainer.querySelector('[data-action="resize-panel"]');
     this.inputWidthElement = toolsContainer.querySelector('[data-action="resize-width-input"]');
     this.inputHeightElement = toolsContainer.querySelector('[data-action="resize-height-input"]');
+    const saveButtonElement = toolsContainer.querySelector('[data-action="tools-resize-apply-button"]');
+    const cancelButtonElement = toolsContainer.querySelector('[data-action="tools-resize-cancel-button"]');
 
     // display curren dimentions
     this.uiControls.setInputValue(this.inputWidthElement, width);
@@ -89,41 +93,91 @@ export default class ResizeTool {
     // add event dispatcher
     this.inputWidthElement.addEventListener("input", this.changeWidthHandler);
     this.inputHeightElement.addEventListener("input", this.changeHeightHandler);
+
+    saveButtonElement.addEventListener("click", this.applyResize);
+    cancelButtonElement.addEventListener("click", this.resetToOrigin);
   }
 
-  changeWidthHandler = () => {
-    let newWidth = Math.abs(Number(this.inputWidthElement.value));
-    if (!newWidth) {
+  applyResize = () => {
+    const { width, height } = this.appState.data.baseImage;
+    this.newWidth = Number(this.inputWidthElement.value);
+    this.newHeight = Number(this.inputHeightElement.value);
+    if (!this.newWidth || !this.newHeight) {
+      this.resetSize();
       return;
     }
-    if (newWidth > this.max) {
-      newWidth = this.max;
-    }
-    let newHeight = newWidth / this.ratioWH;
-    if (newHeight > this.max) {
-      newHeight = this.max;
-      newWidth = newHeight * this.ratioWH;
+    if (this.newWidth === width && this.newHeight === height) {
+      return;
     }
 
-    this.uiControls.setInputValue(this.inputWidthElement, Math.round(newWidth));
-    this.uiControls.setInputValue(this.inputHeightElement, Math.round(newHeight));
+    this.transformCanvas.canvas.width = this.newWidth;
+    this.transformCanvas.canvas.height = this.newHeight;
+
+    this.transformCanvas.ctx.drawImage(this.originImage.initialImage, 0, 0, this.newWidth, this.newHeight);
+
+    this.originImage.baseImage.src = this.transformCanvas.canvas.toDataURL();
+    this.transformCanvas.clear();
+
+    // collect params
+    this.originImage.collectParams();
+    //save to state
+    this.stateService.saveBaseImageParams({ width: this.newWidth, height: this.newHeight });
+  };
+
+  resetToOrigin = () => {
+    this.originImage.resetToOrigin();
+
+    this.originImage.collectParams();
+
+    this.stateService.saveBaseImageParams({
+      width: this.originImage.initialImage.width,
+      height: this.originImage.initialImage.height,
+    });
+
+    this.resetSize();
+  };
+
+  resetSize = () => {
+    const { width, height } = this.appState.data.baseImage;
+    this.newWidth = width;
+    this.newHeight = height;
+    this.uiControls.setInputValue(this.inputWidthElement, width);
+    this.uiControls.setInputValue(this.inputHeightElement, height);
+  };
+
+  changeWidthHandler = () => {
+    this.newWidth = Math.abs(Number(this.inputWidthElement.value));
+    if (!this.newWidth) {
+      return;
+    }
+    if (this.newWidth > this.max) {
+      this.newWidth = this.max;
+    }
+    this.newHeight = this.newWidth / this.ratioWH;
+    if (this.newHeight > this.max) {
+      this.newHeight = this.max;
+      this.newWidth = this.newHeight * this.ratioWH;
+    }
+
+    this.uiControls.setInputValue(this.inputWidthElement, Math.round(this.newWidth));
+    this.uiControls.setInputValue(this.inputHeightElement, Math.round(this.newHeight));
   };
 
   changeHeightHandler = () => {
-    let newHeight = Math.abs(Number(this.inputHeightElement.value));
-    if (!newHeight) {
+    this.newHeight = Math.abs(Number(this.inputHeightElement.value));
+    if (!this.newHeight) {
       return;
     }
-    if (newHeight > this.max) {
-      newHeight = this.max;
+    if (this.newHeight > this.max) {
+      this.newHeight = this.max;
     }
-    let newWidth = newHeight * this.ratioWH;
-    if (newWidth > this.max) {
-      newWidth = this.max;
-      newHeight = newWidth / this.ratioWH;
+    this.newWidth = this.newHeight * this.ratioWH;
+    if (this.newWidth > this.max) {
+      this.newWidth = this.max;
+      this.newHeight = this.newWidth / this.ratioWH;
     }
 
-    this.uiControls.setInputValue(this.inputWidthElement, Math.round(newWidth));
-    this.uiControls.setInputValue(this.inputHeightElement, Math.round(newHeight));
+    this.uiControls.setInputValue(this.inputWidthElement, Math.round(this.newWidth));
+    this.uiControls.setInputValue(this.inputHeightElement, Math.round(this.newHeight));
   };
 }

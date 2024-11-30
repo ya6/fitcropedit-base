@@ -59,7 +59,6 @@ export default class MainCanvas {
 
   clear() {
     this.canvas.width = this.canvas.width;
-    //imgs still in  the memory
   }
 
   injectElement(host, element) {

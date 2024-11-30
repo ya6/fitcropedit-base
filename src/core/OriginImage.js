@@ -1,5 +1,6 @@
 export default class OriginImage {
   baseImage;
+  initialImage;
 
   params = { width: 0, height: 0, scale: 1, xCenter: 0, yCenter: 0, dWidth: 0, dHeight: 0, format: "?" };
 
@@ -8,14 +9,21 @@ export default class OriginImage {
     this.mainCanvas = mainCanvas;
     this.meshCanvas = meshCanvas;
     this.baseImage = new Image();
+    this.initialImage = new Image();
   }
 
   init() {}
 
   closeOriginImage() {
     this.baseImage.src = "";
+    this.initialImage.src = "";
+
     this.appState.data.baseImage.isLoaded = false;
     this.resetParams();
+  }
+
+  resetToOrigin() {
+    this.baseImage.src = this.initialImage.src;
   }
 
   drawImage() {

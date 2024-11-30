@@ -74,7 +74,7 @@ export const initParams = {
       name: "",
       ext: "",
       type: "",
-      size: 0,
+      size: 0, // ? if resize applyed
       lastModified: 0,
       format: "",
       outputFormat: "",
