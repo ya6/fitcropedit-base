@@ -64,23 +64,11 @@ export default class ResizeTool {
 	`;
   }
 
-  manage(buttonElement) {
-    const isActive = this.uiControls.toggleActiveClass(buttonElement);
-
-    if (isActive) {
-      this.uiControls.displayTool(this.template());
-      this.activateTemplate();
-    } else {
-      this.uiControls.hideTool();
-    }
-  }
-
   activateTemplate() {
     const { width, height } = this.appState.data.baseImage;
     this.ratioWH = this.appState.data.baseImage.ratioWH;
     const toolsContainer = this.appState.elements.rightSidebarToolsContainerElement;
     // get elements
-    // const resizePanelElement = toolsContainer.querySelector('[data-action="resize-panel"]');
     this.inputWidthElement = toolsContainer.querySelector('[data-action="resize-width-input"]');
     this.inputHeightElement = toolsContainer.querySelector('[data-action="resize-height-input"]');
     const saveButtonElement = toolsContainer.querySelector('[data-action="tools-resize-apply-button"]');

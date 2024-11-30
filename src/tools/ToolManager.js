@@ -4,6 +4,21 @@ export default class ToolManager {
     this.resizeTool = resizeTool;
   }
 
+  manage(buttonElement, toolName) {
+    const isActive = this.uiControls.toggleActiveClass(buttonElement);
+
+    if (isActive) {
+      switch (toolName) {
+        case "resize":
+          this.uiControls.displayTool(this.resizeTool.template());
+          this.resizeTool.activateTemplate();
+          break;
+      }
+    } else {
+      this.uiControls.hideTool();
+    }
+  }
+
   reset(toolsArr = []) {
     toolsArr.forEach((tool) => {
       switch (tool) {
@@ -13,6 +28,5 @@ export default class ToolManager {
     });
     this.uiControls.hideTool();
     this.uiControls.resetLeftSidebarMenu();
-
   }
 }
