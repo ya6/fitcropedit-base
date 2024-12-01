@@ -23,5 +23,12 @@ npm install
 
 ---
 
+The application supports the following file formats: **JPG, PNG, WEBP, GIF**.
+
+### **Currently Implemented Functionality:**  
+- Files can be exported in the following formats: **JPG, PNG, WEBP**.  
+- **Image Resize Feature:** Resize images by entering custom dimensions to adjust their size.  
+- **Save-to-Computer Feature:** Save images directly to your device.  
+
 
 

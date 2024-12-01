@@ -10,7 +10,7 @@ export default class ToolManager {
     if (isActive) {
       switch (toolName) {
         case "resize":
-          this.uiControls.displayTool(this.resizeTool.template());
+          this.uiControls.displayTool(this.resizeTool.template()); //? one func
           this.resizeTool.activateTemplate();
           break;
       }
