@@ -5,8 +5,10 @@
 @import url("left-sidebar.css");
 @import url("right-sidebar.css");
 @import url("main-canvas.css");
+@import url("notification.css");
 
 #fitcropedit {
+  position: relative;
   display: flex;
   flex-direction: column;
   margin-left: auto;

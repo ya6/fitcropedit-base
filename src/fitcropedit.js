@@ -35,17 +35,17 @@ function bootstrap(params) {
   const rightSidebar = new Rightsidebar(stateService);
   const template = new Template(stateService, deviceService, mainCanvas);
   //
+  const uiControls = new UIControls(stateService);
 
   const transformCanvas = new TransformCanvas();
   const meshCanvas = new MeshCanvas(stateService, mainCanvas);
 
-  const notificationService = new NotificationService();
+  const notificationService = new NotificationService(stateService, uiControls);
 
   const originImage = new OriginImage(stateService, mainCanvas, meshCanvas);
 
   //tools
 
-  const uiControls = new UIControls(stateService);
 
   const resizeTool = new ResizeTool(stateService, uiControls, originImage, transformCanvas);
 
@@ -75,7 +75,7 @@ function bootstrap(params) {
 }
 
 window.fitcropedit = {
-  init(params) {
+  init(params = {}) {
     bootstrap(params);
   },
 };

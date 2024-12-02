@@ -1,4 +1,6 @@
 export default class ImageProcessor {
+  rootElement;
+
   constructor(stateService, deviceService, resizeService, mainCanvas, originImage, meshCanvas) {
     this.appState = stateService.state;
     this.rootElement = this.appState.rootElement;

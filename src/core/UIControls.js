@@ -18,7 +18,7 @@ export default class UIControls {
   }
 
   resetLeftSidebarMenu() {
-    this.removeActiveClass( this.leftSidebarbuttons);
+    this.removeActiveClass(this.leftSidebarbuttons);
   }
   // leftsidebar <-
 
@@ -62,6 +62,10 @@ export default class UIControls {
 
   injectElement(host, element) {
     host.appendChild(element);
+  }
+
+  removeElement(host, element) {
+    host.removeChild(element);
   }
 
   clearElement(element) {
