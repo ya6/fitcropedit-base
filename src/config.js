@@ -18,6 +18,8 @@ export const initParams = {
   leftSidebarElement: null,
   rightSidebarSelector: "fc-right-sidebar",
   rightSidebarElement: null,
+  historybarSelector: "fc-historybar",
+  historybarElement: null,
   wraperSelector: "fc-wraper",
   wraperElement: null,
   mainCanvasWraperSelector: "fc-main-canvas-wraper",
@@ -37,11 +39,13 @@ export const initParams = {
     rightSidebarFormatBoxSelector: "fc-rightsidebar-format-box", //? box
     rightSidebarOutpitFormatSelector: "fc-rightsidebar-outpit-format-element",
     rightSidebarToolsContainerSelector: "fc-rightsidebar-tools-container-element",
-    
+    rightSidebarHistoryContainerSelector: "fc-rightsidebar-history-container-element",
+
     leftsidebarResizeSelector: "fc-leftsidebar-resolution-button",
     //tools
     rightSidebarResizeToolSelector: "fc-rightsidebar-resize-tool",
-    
+
+    historybarContentSelector: "fc-historybar-content",
   },
   elements: {
     appbarFileInputElement: null,
@@ -53,10 +57,12 @@ export const initParams = {
     rightSidebarFormatBoxElement: null,
     rightSidebarOutpitFormatElement: null,
     rightSidebarToolsContainerElement: null,
+    rightSidebarHistoryContainerElement: null,
     leftsidebarResizeElement: null,
+    historybarContentElement: null,
 
     //tools
-    rightSidebarResizeToolElement: null
+    rightSidebarResizeToolElement: null,
   },
   template: {
     mobileContainerHeight: "95vh",
@@ -83,7 +89,7 @@ export const initParams = {
     // formatList: { png: "png", jpeg: "jpg", webp: "webp", gif: "gif", bmp: "bmp" },
     resize: {
       min: 10,
-      max: 6000
-    }
+      max: 6000,
+    },
   },
 };

@@ -14,13 +14,21 @@
 
 /* ----------Spacing---------- */
 
+.p-0 {
+  padding: 0;
+}
+
 .p-1 {
   padding: 0.5rem;
 }
 
+.m-0 {
+  margin: 0;
+}
 .m-1 {
   margin: 0.5rem;
 }
+
 
 .mx-auto {
   margin-left: auto;

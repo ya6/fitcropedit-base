@@ -6,6 +6,7 @@
 @import url("right-sidebar.css");
 @import url("main-canvas.css");
 @import url("notification.css");
+@import url("historybar.css");
 
 #fitcropedit {
   position: relative;
@@ -57,7 +58,7 @@
   box-sizing: border-box;
   border-radius: 3px;
   border: 1px solid #bdbdbd;
-  padding: 0.3em 0.6em;
+  padding: 0.3rem 0.5rem;
   font-size: 0.9em;
   font-weight: 500;
   font-family: inherit;

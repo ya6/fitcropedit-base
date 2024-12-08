@@ -1,8 +1,10 @@
 export default class RightSidebar {
   rightSidebarElement;
+  histotyTemplate;
 
-  constructor(stateService) {
+  constructor(stateService, historybar) {
     this.appState = stateService.state;
+    this.historybar = historybar;
 
     this.init();
   }
@@ -17,6 +19,18 @@ export default class RightSidebar {
     this.rightSidebarElement.setAttribute("id", this.appState.rightSidebarSelector);
     this.rightSidebarElement.style.minWidth = this.appState.template.rightSidebarWidth + "px";
     this.injectString(this.rightSidebarElement, this.innerTemplate());
+    this.injectHistorybar();
+  }
+
+  injectHistorybar() {
+    const historyContainer = this.rightSidebarElement.querySelector(
+      `#${this.appState.selectors.rightSidebarHistoryContainerSelector}`
+    );
+    this.injectElement(historyContainer, this.appState.historybarElement);
+  }
+
+  injectElement(host, element) {
+    host.appendChild(element);
   }
 
   formatSectiom() {
@@ -83,10 +97,12 @@ export default class RightSidebar {
 </div>
 
 <div class="delimeter"></div>
-historybar
-<div class="delimeter"></div>
-<div id="${this.appState.selectors.rightSidebarToolsContainerSelector}">
+
+<div id="${this.appState.selectors.rightSidebarHistoryContainerSelector}">
+  <!-- Historybar -->
 </div>
+<div class="delimeter"></div>
+<div id="${this.appState.selectors.rightSidebarToolsContainerSelector}"></div>
 	`;
   }
 

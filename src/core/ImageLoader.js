@@ -18,7 +18,16 @@ export default class LoadManager {
     outputFormat: "",
   };
 
-  constructor(stateService, transformCanvas, originImage, notificationService, uiControls, toolManager) {
+  constructor(
+    stateService,
+    transformCanvas,
+    originImage,
+    notificationService,
+    uiControls,
+    toolManager,
+    history,
+    historybar
+  ) {
     this.stateService = stateService;
     this.appState = stateService.state;
     this.transformCanvas = transformCanvas;
@@ -26,6 +35,8 @@ export default class LoadManager {
     this.notificationService = notificationService;
     this.uiControls = uiControls;
     this.toolManager = toolManager;
+    this.history = history;
+    this.historybar = historybar;
 
     this.init();
   }
@@ -58,6 +69,10 @@ export default class LoadManager {
 
         this.collectFileData(e.target.files[0], fileType);
         e.target.value = "";
+
+        // history
+        this.history.setFileData(this.imageParams.fullName);
+        this.historybar.updateHistory();
       }
 
       //
@@ -129,6 +144,8 @@ export default class LoadManager {
       this.uiControls.diplayDimentionInUI();
       this.uiControls.displayOutputFormatUI();
       this.uiControls.displayExtentionUI();
+
+      // this.loadImageFromInput();
     });
   }
 

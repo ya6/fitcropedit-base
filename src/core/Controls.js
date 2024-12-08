@@ -1,7 +1,16 @@
 export default class Controls {
   rootElement;
 
-  constructor(stateService, imageLoader, mainCanvas, originImage, uiControls, toolManager) {
+  constructor(
+    stateService,
+    imageLoader,
+    mainCanvas,
+    originImage,
+    uiControls,
+    history,
+    historybar,
+    toolManager
+  ) {
     this.stateService = stateService;
     this.appState = stateService.state;
     this.imageLoader = imageLoader;
@@ -9,6 +18,9 @@ export default class Controls {
     this.originImage = originImage;
     this.uiControls = uiControls;
     this.rootElement = this.appState.rootElement;
+    this.history = history;
+    this.historybar = historybar;
+
     // tools
     this.toolManager = toolManager;
 
@@ -73,7 +85,7 @@ export default class Controls {
         switch (action) {
           case "leftsidebar-resize-button":
             // this.resizeTool.manage(targetElement);
-            this.toolManager.manage(targetElement, 'resize');
+            this.toolManager.manage(targetElement, "resize");
             break;
         }
       }
@@ -106,9 +118,11 @@ export default class Controls {
     this.uiControls.hideTool();
     this.uiControls.resetLeftSidebarMenu();
 
-
     this.mainCanvas.clear();
     this.mainCanvas.drawPromo();
+
+    this.history.resetHistory();
+    this.historybar.updateHistory();
   }
 
   saveImage() {

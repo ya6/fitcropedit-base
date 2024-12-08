@@ -84,16 +84,16 @@ export default class Appbar {
         // manage icons
         this.appbarItems.forEach((el) => {
           const curentOpenIcon = el.querySelector('[data-role="custom-toggle-icon-open"]');
-          const curentcloseIcon = el.querySelector('[data-role="custom-toggle-icon-close"]');
+          const curentCloseIcon = el.querySelector('[data-role="custom-toggle-icon-close"]');
           const curentDropdown = el.querySelector('[data-role="dropdown-box"]');
 
           if (el === targetElement) {
             this.toggeElements(curentOpenIcon);
-            this.toggeElements(curentcloseIcon);
+            this.toggeElements(curentCloseIcon);
             this.toggeElements(curentDropdown);
           } else {
             this.showhiddenElements(curentOpenIcon);
-            this.hideElements(curentcloseIcon);
+            this.hideElements(curentCloseIcon);
             this.hideElements(curentDropdown);
           }
         });

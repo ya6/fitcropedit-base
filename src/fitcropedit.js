@@ -4,13 +4,14 @@ import Appbar from "./layout/Appbar";
 import LeftSidebar from "./layout/LeftSidebar";
 import Rightsidebar from "./layout/RightSidebar";
 
+import ResizeService from "./services/ResizeService";
 import DeviceService from "./services/DeviceService";
 import Template from "./layout/Template";
 import ImageLoader from "./core/ImageLoader";
 import OriginImage from "./core/OriginImage";
-import ResizeService from "./services/ResizeService";
 import ImageProcessor from "./core/ImageProcessor";
 import Controls from "./core/Controls";
+import History from './core/history';
 import Topbar from "./layout/TopBar";
 import TransformCanvas from "./core/TransformCanvas";
 import NotificationService from "./services/NotificationService";
@@ -18,6 +19,7 @@ import MeshCanvas from "./core/MeshCanvas";
 import UIControls from "./core/UIControls";
 import ResizeTool from "./tools/ResizeTool";
 import ToolManager from "./tools/ToolManager";
+import Historybar from './layout/Historybar';
 
 console.log("fitcropedit.js");
 
@@ -25,9 +27,12 @@ function bootstrap(params) {
   const stateService = new StateService();
   stateService.updateState(params);
 
+  const history = new History();
   const deviceService = new DeviceService(stateService);
 
   //template
+
+  const historybar = new Historybar(stateService, history)
   const appbar = new Appbar(stateService);
   const topbar = new Topbar(stateService);
   const leftSidebar = new LeftSidebar(stateService);
@@ -57,7 +62,8 @@ function bootstrap(params) {
     originImage,
     notificationService,
     uiControls,
-    toolManager
+    toolManager,
+    history, historybar
   );
 
   const resizeService = new ResizeService(stateService, deviceService, mainCanvas);
@@ -71,7 +77,7 @@ function bootstrap(params) {
     meshCanvas
   );
 
-  const controls = new Controls(stateService, imageLoader, mainCanvas, originImage, uiControls, toolManager);
+  const controls = new Controls(stateService, imageLoader, mainCanvas, originImage, uiControls, history, historybar, toolManager);
 }
 
 window.fitcropedit = {
