@@ -12,23 +12,15 @@ export default class Historybar {
     this.createTemplate();
     this.storeHistorybar();
     this.dispatch();
+
+    this.history.updateHistoryUI();
   }
 
   storeHistorybar() {
     this.appState.historybarElement = this.historybarElement;
-  }
-
-  historyContent() {
-    let content = ``;
-
-    this.history.project.history.forEach((element, idx) => {
-      content += `
-		<li class="fc-history-list-item" data-role="history-item" data-number="${idx}">
-		  ${element.title}
-		</li>
-		`;
-    });
-    return content;
+    this.appState.elements.historybarContentElement = this.historybarElement.querySelector(
+      `#${this.appState.selectors.historybarContentSelector}`
+    );
   }
 
   createTemplate() {
@@ -90,12 +82,7 @@ export default class Historybar {
   </div>
 	
   
-	<div id ="${
-    this.appState.selectors.historybarContentSelector
-  }" data-role="history-list" class="fc-history-list hidden">
-	  <ul>
-		  ${this.historyContent()}
-	  </ul>
+	<div id ="${this.appState.selectors.historybarContentSelector}" data-role="history-list" class="fc-history-list hidden">
 	</div>
 	  `;
 
@@ -103,6 +90,17 @@ export default class Historybar {
   }
 
   dispatch() {
+    // interseptor = new Proxy(this.history.project, handler);
+
+    // const handler1 = {
+    //   set(target, property, value) {
+    //     if (property === "history") {
+    //       updateHistory()
+    //     }
+    //     return true;
+    //   },
+    // };
+
     const openIcon = this.historybarElement.querySelector('[data-role="custom-toggle-icon-open"]');
     const closeIcon = this.historybarElement.querySelector('[data-role="custom-toggle-icon-close"]');
     const dropdown = this.historybarElement.querySelector('[data-role="history-list"]');
@@ -125,11 +123,6 @@ export default class Historybar {
 
   toggeElements(elements, className = "hidden") {
     elements.classList.toggle(className);
-  }
-
-  updateHistory() {
-    this.appState.elements.historybarContentElement.innerHTML = "";
-    this.injectString(this.appState.elements.historybarContentElement, this.historyContent());
   }
 
   injectString(host, template) {

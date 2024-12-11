@@ -59,7 +59,7 @@ export const initParams = {
     rightSidebarToolsContainerElement: null,
     rightSidebarHistoryContainerElement: null,
     leftsidebarResizeElement: null,
-    historybarContentElement: null,
+    historybarContentElement: null, // remove
 
     //tools
     rightSidebarResizeToolElement: null,

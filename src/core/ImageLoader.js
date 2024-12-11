@@ -72,7 +72,6 @@ export default class LoadManager {
 
         // history
         this.history.setFileData(this.imageParams.fullName);
-        this.historybar.updateHistory();
       }
 
       //

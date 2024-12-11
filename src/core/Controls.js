@@ -122,7 +122,6 @@ export default class Controls {
     this.mainCanvas.drawPromo();
 
     this.history.resetHistory();
-    this.historybar.updateHistory();
   }
 
   saveImage() {

@@ -27,11 +27,11 @@ function bootstrap(params) {
   const stateService = new StateService();
   stateService.updateState(params);
 
-  const history = new History();
+  const history = new History(stateService);
   const deviceService = new DeviceService(stateService);
 
   //template
-
+ 
   const historybar = new Historybar(stateService, history)
   const appbar = new Appbar(stateService);
   const topbar = new Topbar(stateService);
