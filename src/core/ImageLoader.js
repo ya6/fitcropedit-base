@@ -25,8 +25,7 @@ export default class LoadManager {
     notificationService,
     uiControls,
     toolManager,
-    history,
-    historybar
+    history
   ) {
     this.stateService = stateService;
     this.appState = stateService.state;
@@ -36,7 +35,6 @@ export default class LoadManager {
     this.uiControls = uiControls;
     this.toolManager = toolManager;
     this.history = history;
-    this.historybar = historybar;
 
     this.init();
   }
@@ -72,6 +70,13 @@ export default class LoadManager {
 
         // history
         this.history.setFileData(this.imageParams.fullName);
+        this.history.clearHistory();
+        this.history.add({
+          title: "Image Loaded",
+          imageSrc: null, // stored in originImage
+          metaData: null,
+          action: "",
+        });
       }
 
       //

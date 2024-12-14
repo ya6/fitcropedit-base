@@ -2,7 +2,7 @@ export default class History {
   project = {
     name: "",
     file: { fullName: "" },
-    history: [{ title: "Empty", image_src: null, action: "clear" }],
+    history: [{ title: "Empty", imageSrc: null, metaData: null, action: "clear" }],
   };
 
   constructor(stateService, name = "fce-project-1") {
@@ -10,7 +10,7 @@ export default class History {
       return History.instance;
     }
     this.project.name = name;
-	this.appState = stateService.state
+    this.appState = stateService.state;
     History.instance = this;
   }
 
@@ -27,39 +27,28 @@ export default class History {
 		`;
     });
 
-     content += `</ul>`
+    content += `</ul>`;
     return content;
   }
 
-
   setFileData(fullName) {
     this.project.file.fullName = fullName;
-
-    this.clearHistory();
-    const stepOne = {
-      title: "Loaded Image",
-      image_src: null, // ? stored in originImage
-      action: "reset",
-    };
-
-    this.add(stepOne);
   }
 
   add(step) {
-    this.project.history= [...this.project.history, step]
-	this.updateHistoryUI()
+    this.project.history = [...this.project.history, step];
+    this.updateHistoryUI();
   }
 
   clearHistory() {
     this.project.history = [];
-	this.updateHistoryUI()
+    this.updateHistoryUI();
   }
 
   resetHistory() {
-    this.project.history = [{ title: "Empty", image_src: null, action: "clear" }];
-	this.updateHistoryUI()
+    this.project.history = [{ title: "Empty", imageSrc: null, metaData: null, action: "clear" }];
+    this.updateHistoryUI();
   }
-
 
   updateHistoryUI() {
     this.appState.elements.historybarContentElement.innerHTML = "";
@@ -69,5 +58,4 @@ export default class History {
   injectString(host, template) {
     host.insertAdjacentHTML("afterbegin", template);
   }
-
 }

@@ -51,7 +51,7 @@ export default class Historybar {
   `;
 
     const template = `
-  <div class="flex  align-center">
+  <div class="flex align-center relative">
     <div data-role="history-tab" class="flex">
         <div class="fc-historybar-title fc-avoid-clicks">History</div>
 
@@ -79,11 +79,13 @@ export default class Historybar {
       </div>
       
     </div>
+
+	<div id ="${this.appState.selectors.historybarContentSelector}" data-role="history-list" class="fc-history-list hidden">
+	</div>
+
   </div>
 	
   
-	<div id ="${this.appState.selectors.historybarContentSelector}" data-role="history-list" class="fc-history-list hidden">
-	</div>
 	  `;
 
     return template;

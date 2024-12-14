@@ -7,8 +7,9 @@ export default class ResizeTool {
   newHeight;
   newWidth;
 
-  constructor(stateService, uiControls, originImage, transformCanvas) {
+  constructor(stateService, history, uiControls, originImage, transformCanvas) {
     this.stateService = stateService;
+    this.history = history;
     this.appState = stateService.state;
     this.min = this.appState.data.resize.min;
     this.max = this.appState.data.resize.max;
@@ -82,8 +83,30 @@ export default class ResizeTool {
     this.inputWidthElement.addEventListener("input", this.changeWidthHandler);
     this.inputHeightElement.addEventListener("input", this.changeHeightHandler);
 
-    saveButtonElement.addEventListener("click", this.applyResize);
-    cancelButtonElement.addEventListener("click", this.resetToOrigin);
+    saveButtonElement.addEventListener("click", () => {
+      const result = this.applyResize();
+      if (result) {
+        this.history.add({
+          title: `Resize:${result.width}x${result.height}px`,
+          imageSrc: null,
+          imageData: { width: result.width, height: result.height },
+          action: "resize",
+        });
+      }
+    });
+
+    cancelButtonElement.addEventListener("click", () => {
+      const result = this.resetToOrigin();
+
+      if (result) {
+        this.history.add({
+          title: "Resize: Restored",
+          imageSrc: null,
+          imageData: null, // ? stored in originImage
+          action: "resize",
+        });
+      }
+    });
   }
 
   applyResize = () => {
@@ -92,10 +115,10 @@ export default class ResizeTool {
     this.newHeight = Number(this.inputHeightElement.value);
     if (!this.newWidth || !this.newHeight) {
       this.resetSize();
-      return;
+      return null;
     }
     if (this.newWidth === width && this.newHeight === height) {
-      return;
+      return null;
     }
 
     this.transformCanvas.canvas.width = this.newWidth;
@@ -110,22 +133,40 @@ export default class ResizeTool {
     this.originImage.collectParams();
     //save to state
     this.stateService.saveBaseImageParams({ width: this.newWidth, height: this.newHeight });
+    return { width: this.newWidth, height: this.newHeight };
   };
 
   resetToOrigin = () => {
+    const { width, height } = this.originImage.initialImage;
+    this.newWidth = Number(this.inputWidthElement.value);
+    this.newHeight = Number(this.inputHeightElement.value);
+
+    if (this.newWidth === width && this.newHeight === height) {
+      return null;
+    }
     this.originImage.resetToOrigin();
 
     this.originImage.collectParams();
 
     this.stateService.saveBaseImageParams({
-      width: this.originImage.initialImage.width,
-      height: this.originImage.initialImage.height,
+      width,
+      height,
     });
 
-    this.resetSize();
+    this.uiControls.setInputValue(this.inputWidthElement, width);
+    this.uiControls.setInputValue(this.inputHeightElement, height);
+    return { width, height };
   };
 
   resetSize = () => {
+    const { width, height } = this.originImage.initialImage;
+    this.newWidth = width;
+    this.newHeight = height;
+    this.uiControls.setInputValue(this.inputWidthElement, width);
+    this.uiControls.setInputValue(this.inputHeightElement, height);
+  };
+
+  resetToOriginSize = () => {
     const { width, height } = this.appState.data.baseImage;
     this.newWidth = width;
     this.newHeight = height;
