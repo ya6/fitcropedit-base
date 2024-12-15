@@ -20,6 +20,8 @@ import UIControls from "./core/UIControls";
 import ResizeTool from "./tools/ResizeTool";
 import ToolManager from "./tools/ToolManager";
 import Historybar from "./layout/Historybar";
+import ProgressbarService from "./services/progressbarService";
+import CloseIconButton from './layout/elements/CloseIconButton';
 
 if (!window.document) {
   throw new Error("Ficropedit requires a window with a document");
@@ -34,8 +36,10 @@ function bootstrap(params) {
   const history = new History(stateService);
   const deviceService = new DeviceService(stateService);
 
-  //template
-
+  //elements
+  const closeIconButton = new CloseIconButton()
+  
+  //templates
   const historybar = new Historybar(stateService, history);
   const appbar = new Appbar(stateService);
   const topbar = new Topbar(stateService);
@@ -44,6 +48,8 @@ function bootstrap(params) {
   const rightSidebar = new Rightsidebar(stateService);
   const template = new Template(stateService, deviceService, mainCanvas);
   //
+
+  const progressbarService = new ProgressbarService(stateService);
   const uiControls = new UIControls(stateService);
 
   const transformCanvas = new TransformCanvas();
@@ -55,9 +61,16 @@ function bootstrap(params) {
 
   //tools
 
-  const resizeTool = new ResizeTool(stateService, history, uiControls, originImage, transformCanvas);
+  const resizeTool = new ResizeTool(
+    stateService,
+    history,
+    uiControls,
+    originImage,
+    transformCanvas,
+    progressbarService
+  );
 
-  const toolManager = new ToolManager(uiControls, resizeTool);
+  const toolManager = new ToolManager(uiControls, closeIconButton, resizeTool);
 
   const imageLoader = new ImageLoader(
     stateService,

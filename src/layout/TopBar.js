@@ -20,7 +20,9 @@ export default class Topbar {
 
   innerTemplate() {
     const sizeSection = `
-	<div class="fc-topbar-box">
+  <div  id="${this.appState.selectors.progressbarSelector}">
+  </div>
+  <div class="fc-topbar-box">
 		<div class="mx-1">Image</div>
 		<div>W:</div>
 		<div id="${this.appState.selectors.topbarWidthSelector}">0</div>

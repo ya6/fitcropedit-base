@@ -115,7 +115,7 @@ export default class Controls {
     this.uiControls.diplayDimentionInUI();
     this.uiControls.displayOutputFormatUI();
     this.uiControls.displayExtentionUI();
-    this.uiControls.hideTool();
+    this.uiControls.clearToolsContainer();
     this.uiControls.resetLeftSidebarMenu();
 
     this.mainCanvas.clear();

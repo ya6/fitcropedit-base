@@ -1,6 +1,7 @@
 export default class ToolManager {
-  constructor(uiControls, resizeTool) {
+  constructor(uiControls, closeIconButton, resizeTool) {
     this.uiControls = uiControls;
+    this.closeIconButton = closeIconButton;
     this.resizeTool = resizeTool;
   }
 
@@ -8,6 +9,9 @@ export default class ToolManager {
     const isActive = this.uiControls.toggleActiveClass(buttonElement);
 
     if (isActive) {
+      this.uiControls.clearToolsContainer();
+      //diplay close button
+
       switch (toolName) {
         case "resize":
           this.uiControls.displayTool(this.resizeTool.template()); //? one func
@@ -15,7 +19,7 @@ export default class ToolManager {
           break;
       }
     } else {
-      this.uiControls.hideTool();
+      this.uiControls.clearToolsContainer();
     }
   }
 
@@ -26,7 +30,7 @@ export default class ToolManager {
           break;
       }
     });
-    this.uiControls.hideTool();
+    this.uiControls.clearToolsContainer();
     this.uiControls.resetLeftSidebarMenu();
   }
 }

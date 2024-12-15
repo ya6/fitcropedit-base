@@ -46,13 +46,6 @@ export default class Template {
     this.injectElement(this.rootElement, wraper);
   }
 
-  // injectHistorybarToRightsidebar() {
-  //   this.injectElement(
-  //     this.appState.elements.rightSidebarHistoryContainerElement,
-  //     this.appState.historybarElement
-  //   );
-  // }
-
   injectElement(host, element) {
     host.appendChild(element);
   }

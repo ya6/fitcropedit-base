@@ -33,6 +33,7 @@ export const initParams = {
     topbarWidthSelector: "fc-topbar-width",
     topbarHeightSelector: "fc-topbar-height",
     topbarFormatSelector: "fc-topbar-format",
+    progressbarSelector: "fc-progressbar",
 
     rightSidebarCloseButtonSelector: "fc-rightsidebar-close-button",
     rightSidebarSaveButtonSelector: "fc-rightsidebar-save-button",
@@ -53,6 +54,8 @@ export const initParams = {
     topbarWidthElement: null,
     topbarWidthElement: null,
     topbarFormatElement: null,
+    progressbarElement: null,
+
     rightSidebarCloseButtonElement: null,
     rightSidebarFormatBoxElement: null,
     rightSidebarOutpitFormatElement: null,

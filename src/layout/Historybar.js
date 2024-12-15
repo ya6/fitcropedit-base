@@ -92,17 +92,6 @@ export default class Historybar {
   }
 
   dispatch() {
-    // interseptor = new Proxy(this.history.project, handler);
-
-    // const handler1 = {
-    //   set(target, property, value) {
-    //     if (property === "history") {
-    //       updateHistory()
-    //     }
-    //     return true;
-    //   },
-    // };
-
     const openIcon = this.historybarElement.querySelector('[data-role="custom-toggle-icon-open"]');
     const closeIcon = this.historybarElement.querySelector('[data-role="custom-toggle-icon-close"]');
     const dropdown = this.historybarElement.querySelector('[data-role="history-list"]');

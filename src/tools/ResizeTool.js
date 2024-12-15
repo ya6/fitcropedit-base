@@ -7,7 +7,7 @@ export default class ResizeTool {
   newHeight;
   newWidth;
 
-  constructor(stateService, history, uiControls, originImage, transformCanvas) {
+  constructor(stateService, history, uiControls, originImage, transformCanvas, progressbarService) {
     this.stateService = stateService;
     this.history = history;
     this.appState = stateService.state;
@@ -16,6 +16,7 @@ export default class ResizeTool {
     this.uiControls = uiControls;
     this.originImage = originImage;
     this.transformCanvas = transformCanvas;
+    this.progressbarService = progressbarService;
   }
 
   template() {
@@ -83,8 +84,9 @@ export default class ResizeTool {
     this.inputWidthElement.addEventListener("input", this.changeWidthHandler);
     this.inputHeightElement.addEventListener("input", this.changeHeightHandler);
 
-    saveButtonElement.addEventListener("click", () => {
-      const result = this.applyResize();
+    saveButtonElement.addEventListener("click", async () => {
+      const result = await this.progressbarService.run(this.applyResize.bind(this));
+
       if (result) {
         this.history.add({
           title: `Resize:${result.width}x${result.height}px`,
@@ -95,9 +97,8 @@ export default class ResizeTool {
       }
     });
 
-    cancelButtonElement.addEventListener("click", () => {
-      const result = this.resetToOrigin();
-
+    cancelButtonElement.addEventListener("click", async () => {
+      const result = await this.progressbarService.run(this.resetToOrigin.bind(this));
       if (result) {
         this.history.add({
           title: "Resize: Restored",

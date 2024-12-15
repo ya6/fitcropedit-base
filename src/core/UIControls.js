@@ -24,13 +24,15 @@ export default class UIControls {
 
   // tools ->
   displayTool(template) {
-    this.clearElement(this.appState.elements.rightSidebarToolsContainerElement);
+    // this.clearElement(this.appState.elements.rightSidebarToolsContainerElement);
     this.injectString(this.appState.elements.rightSidebarToolsContainerElement, template);
   }
 
-  hideTool() {
+  clearToolsContainer() {
     this.clearElement(this.appState.elements.rightSidebarToolsContainerElement);
   }
+
+  
   // tools <-
 
   displayOutputFormatUI() {
