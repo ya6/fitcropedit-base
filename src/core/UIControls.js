@@ -75,7 +75,7 @@ export default class UIControls {
   }
 
   injectString(host, template) {
-    host.insertAdjacentHTML("afterbegin", template);
+    host.insertAdjacentHTML("beforeend", template);
   }
 
   removeClass(elements, className) {

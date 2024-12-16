@@ -11,6 +11,9 @@ export default class ToolManager {
     if (isActive) {
       this.uiControls.clearToolsContainer();
       //diplay close button
+     
+      this.uiControls.displayTool(this.closeIconButton.template()); //? one func
+
 
       switch (toolName) {
         case "resize":

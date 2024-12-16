@@ -89,6 +89,14 @@ export default class Controls {
             break;
         }
       }
+
+      // icons
+      switch (action) {
+        case "close-tool-button":
+          this.uiControls.clearToolsContainer();
+          this.uiControls.resetLeftSidebarMenu();
+          break;
+      }
     });
   }
 
