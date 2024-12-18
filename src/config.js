@@ -50,7 +50,6 @@ export const initParams = {
   },
   elements: {
     appbarFileInputElement: null,
-    // appbarCloseButtonElement: null,
     topbarWidthElement: null,
     topbarWidthElement: null,
     topbarFormatElement: null,

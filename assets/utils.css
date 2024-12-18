@@ -29,7 +29,6 @@
   margin: 0.5rem;
 }
 
-
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -41,8 +40,8 @@
 }
 
 .mx-2 {
-  margin-left: 1.0rem;
-  margin-right: 1.0rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .mx-3 {
@@ -56,8 +55,8 @@
 }
 
 .my-2 {
-  margin-left: 1.0rem;
-  margin-right: 1.0rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .my-3 {
@@ -141,10 +140,8 @@
 }
 
 .fs-08 {
-  font-size: 0.8rem
+  font-size: 0.8rem;
 }
-
-
 
 /* ---------- ---------- */
 .delimeter {
@@ -218,7 +215,7 @@
 
 .rounded-sub-input {
   /* display: block; */
-  width: 3.0rem;
+  width: 3rem;
   border-radius: 0.25rem;
 
   border: 1px solid #ccc;
@@ -227,4 +224,6 @@
   /* border: 1px solid blue; */
 }
 
-
+.relative {
+  position: relative;
+}

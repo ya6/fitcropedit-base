@@ -51,7 +51,7 @@ export default class Historybar {
   `;
 
     const template = `
-  <div class="flex align-center relative">
+  <div class="flex align-center">
     <div data-role="history-tab" class="flex">
         <div class="fc-historybar-title fc-avoid-clicks">History</div>
 

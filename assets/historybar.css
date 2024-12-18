@@ -1,8 +1,7 @@
 #fc-historybar {
-  poition: relative;
+  position: relative;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  /* display: flex; */
 }
 
 .fc-historybar-title {
@@ -18,17 +17,31 @@
 }
 
 .fc-history-list {
-  background-color: #fafafa;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 1.5rem;
+  background-color: #f1f1f1;
   border: 1px solid #eeeeee;
   box-shadow: 0px 2px 2px #dddddd;
   padding: 1rem;
   margin-top: 0.3rem;
+  z-index: 10;
+}
+
+@media (max-width: 768px) {
+  .fc-history-list {
+    top: auto;
+    bottom: 2.5rem;
+    width: 60%;
+  }
 }
 
 .fc-history-list-item {
   font-size: 0.8rem;
-  cursor: pointer
+  cursor: pointer;
 }
+
 .fc-history-list-item:hover {
-	color: #7fdbff
-  }
+  color: #7fdbff;
+}

@@ -88,7 +88,6 @@
   background-color: #f8f9fa;
   cursor: pointer;
   transition: background-color 0.38s;
-  background: #cccccc;
 }
 
 .button:hover {
