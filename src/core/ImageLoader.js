@@ -25,7 +25,8 @@ export default class LoadManager {
     notificationService,
     uiControls,
     toolManager,
-    history
+    history,
+    progressbarService
   ) {
     this.stateService = stateService;
     this.appState = stateService.state;
@@ -35,6 +36,7 @@ export default class LoadManager {
     this.uiControls = uiControls;
     this.toolManager = toolManager;
     this.history = history;
+    this.progressbarService = progressbarService;
 
     this.init();
   }
@@ -158,14 +160,13 @@ export default class LoadManager {
 
     if (this.originImage.baseImage.width > 0) {
       if (format === outputFormat) {
-        this.save();
+        this.progressbarService.run(this.save.bind(this));
       } else {
-        this.convertAndSave(outputFormat);
+        this.progressbarService.run(this.convertAndSave.bind(this, outputFormat));
       }
     }
   }
 
-  //set img as param?
   save() {
     const dataUrl = this.originImage.baseImage.src;
     const { name, ext } = this.imageParams;
