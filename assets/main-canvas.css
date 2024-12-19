@@ -1,11 +1,10 @@
 #fc-main-canvas-wraper {
   flex-grow: 1;
-
 }
 
 #fc-main-canvas {
   margin-left: 1%;
   height: 100%;
-  /* do not understand the behavior with width: 100%  */
+  /* The 100% width breaks because of the border */
   width: 98%;
 }

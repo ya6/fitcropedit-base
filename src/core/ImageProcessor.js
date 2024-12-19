@@ -34,11 +34,11 @@ export default class ImageProcessor {
     const rootElementWidthMeasure = this.getUnitOfMeasure(this.appState.public.containerWidth);
 
     this.rootElement.style.width = this.appState.public.containerWidth;
-    this.rootElement.style.height = this.appState.public.containerHeight;
+    this.rootElement.style.minHeight = this.appState.public.containerHeight;
 
     if (this.appState.device.width <= this.appState.device.mobileBP) {
       this.rootElement.style.width = this.appState.template.mobileContainerWidth;
-      this.rootElement.style.height = this.appState.template.mobileContainerHeight;
+      this.rootElement.style.minHeight = this.appState.template.mobileContainerHeight;
     }
 
     if (
@@ -48,7 +48,7 @@ export default class ImageProcessor {
       this.appState.device.mobileBP < this.rootElement.clientWidth
     ) {
       this.rootElement.style.width = this.appState.template.mobileContainerWidth;
-      this.rootElement.style.height = this.appState.template.mobileContainerHeight;
+      this.rootElement.style.minHeight = this.appState.template.mobileContainerHeight;
     }
 
     this.mainCanvas.canvas.width = this.mainCanvas.wraper.clientWidth * this.appState.public.canvasMultiplier;

@@ -1,7 +1,6 @@
 #fc-left-sidebar {
   display: flex;
   flex-direction: column;
-  /* background: #eeeeee;	 */
   background: #f5f5f5;
 }
 

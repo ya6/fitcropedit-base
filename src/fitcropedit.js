@@ -71,7 +71,7 @@ function bootstrap(params) {
   );
 
   const toolManager = new ToolManager(uiControls, closeIconButton, resizeTool);
-
+ 
   const imageLoader = new ImageLoader(
     stateService,
     transformCanvas,
