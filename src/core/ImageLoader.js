@@ -23,8 +23,8 @@ export default class LoadManager {
     transformCanvas,
     originImage,
     notificationService,
-    uiControls,
-    toolManager,
+    domHandler,
+    toolsManager,
     history,
     progressbarService
   ) {
@@ -33,8 +33,8 @@ export default class LoadManager {
     this.transformCanvas = transformCanvas;
     this.originImage = originImage;
     this.notificationService = notificationService;
-    this.uiControls = uiControls;
-    this.toolManager = toolManager;
+    this.domHandler = domHandler;
+    this.toolsManager = toolsManager;
     this.history = history;
     this.progressbarService = progressbarService;
 
@@ -82,7 +82,7 @@ export default class LoadManager {
       }
 
       //
-      this.toolManager.reset();
+      this.toolsManager.reset();
     });
   };
 
@@ -147,9 +147,9 @@ export default class LoadManager {
       this.originImage.collectParams();
       this.originImage.drawImage();
 
-      this.uiControls.diplayDimentionInUI();
-      this.uiControls.displayOutputFormatUI();
-      this.uiControls.displayExtentionUI();
+      this.domHandler.diplayDimentionInUI();
+      this.domHandler.displayOutputFormatUI();
+      this.domHandler.displayExtentionUI();
 
       // this.loadImageFromInput();
     });

@@ -16,9 +16,9 @@ import Topbar from "./layout/TopBar";
 import TransformCanvas from "./core/TransformCanvas";
 import NotificationService from "./services/NotificationService";
 import MeshCanvas from "./core/MeshCanvas";
-import UIControls from "./core/UIControls";
+import DomHandler from "./core/DomHandler";
 import ResizeTool from "./tools/ResizeTool";
-import ToolManager from "./tools/ToolManager";
+import ToolsManager from "./tools/ToolsManager";
 import Historybar from "./layout/Historybar";
 import ProgressbarService from "./services/progressbarService";
 import CloseIconButton from "./layout/elements/CloseIconButton";
@@ -50,12 +50,12 @@ function bootstrap(params) {
   //
 
   const progressbarService = new ProgressbarService(stateService);
-  const uiControls = new UIControls(stateService);
+  const domHandler = new DomHandler(stateService);
 
   const transformCanvas = new TransformCanvas();
   const meshCanvas = new MeshCanvas(stateService, mainCanvas);
 
-  const notificationService = new NotificationService(stateService, uiControls);
+  const notificationService = new NotificationService(stateService, domHandler);
 
   const originImage = new OriginImage(stateService, mainCanvas, meshCanvas);
 
@@ -64,21 +64,21 @@ function bootstrap(params) {
   const resizeTool = new ResizeTool(
     stateService,
     history,
-    uiControls,
+    domHandler,
     originImage,
     transformCanvas,
     progressbarService
   );
 
-  const toolManager = new ToolManager(uiControls, closeIconButton, resizeTool);
+  const toolsManager = new ToolsManager(domHandler, closeIconButton, resizeTool);
  
   const imageLoader = new ImageLoader(
     stateService,
     transformCanvas,
     originImage,
     notificationService,
-    uiControls,
-    toolManager,
+    domHandler,
+    toolsManager,
     history,
     progressbarService
   );
@@ -99,10 +99,10 @@ function bootstrap(params) {
     imageLoader,
     mainCanvas,
     originImage,
-    uiControls,
+    domHandler,
     history,
     historybar,
-    toolManager
+    toolsManager
   );
 }
 

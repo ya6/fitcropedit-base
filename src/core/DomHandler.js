@@ -1,4 +1,4 @@
-export default class UIControls {
+export default class DomHandler {
   leftSidebarbuttons;
 
   constructor(stateService) {

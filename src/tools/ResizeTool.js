@@ -7,13 +7,13 @@ export default class ResizeTool {
   newHeight;
   newWidth;
 
-  constructor(stateService, history, uiControls, originImage, transformCanvas, progressbarService) {
+  constructor(stateService, history, domHandler, originImage, transformCanvas, progressbarService) {
     this.stateService = stateService;
     this.history = history;
     this.appState = stateService.state;
     this.min = this.appState.data.resize.min;
     this.max = this.appState.data.resize.max;
-    this.uiControls = uiControls;
+    this.domHandler = domHandler;
     this.originImage = originImage;
     this.transformCanvas = transformCanvas;
     this.progressbarService = progressbarService;
@@ -77,8 +77,8 @@ export default class ResizeTool {
     const cancelButtonElement = toolsContainer.querySelector('[data-action="tools-resize-cancel-button"]');
 
     // display curren dimentions
-    this.uiControls.setInputValue(this.inputWidthElement, width);
-    this.uiControls.setInputValue(this.inputHeightElement, height);
+    this.domHandler.setInputValue(this.inputWidthElement, width);
+    this.domHandler.setInputValue(this.inputHeightElement, height);
 
     // add event dispatcher
     this.inputWidthElement.addEventListener("input", this.changeWidthHandler);
@@ -154,8 +154,8 @@ export default class ResizeTool {
       height,
     });
 
-    this.uiControls.setInputValue(this.inputWidthElement, width);
-    this.uiControls.setInputValue(this.inputHeightElement, height);
+    this.domHandler.setInputValue(this.inputWidthElement, width);
+    this.domHandler.setInputValue(this.inputHeightElement, height);
     return { width, height };
   };
 
@@ -163,16 +163,16 @@ export default class ResizeTool {
     const { width, height } = this.originImage.initialImage;
     this.newWidth = width;
     this.newHeight = height;
-    this.uiControls.setInputValue(this.inputWidthElement, width);
-    this.uiControls.setInputValue(this.inputHeightElement, height);
+    this.domHandler.setInputValue(this.inputWidthElement, width);
+    this.domHandler.setInputValue(this.inputHeightElement, height);
   };
 
   resetToOriginSize = () => {
     const { width, height } = this.appState.data.baseImage;
     this.newWidth = width;
     this.newHeight = height;
-    this.uiControls.setInputValue(this.inputWidthElement, width);
-    this.uiControls.setInputValue(this.inputHeightElement, height);
+    this.domHandler.setInputValue(this.inputWidthElement, width);
+    this.domHandler.setInputValue(this.inputHeightElement, height);
   };
 
   changeWidthHandler = () => {
@@ -189,8 +189,8 @@ export default class ResizeTool {
       this.newWidth = this.newHeight * this.ratioWH;
     }
 
-    this.uiControls.setInputValue(this.inputWidthElement, Math.round(this.newWidth));
-    this.uiControls.setInputValue(this.inputHeightElement, Math.round(this.newHeight));
+    this.domHandler.setInputValue(this.inputWidthElement, Math.round(this.newWidth));
+    this.domHandler.setInputValue(this.inputHeightElement, Math.round(this.newHeight));
   };
 
   changeHeightHandler = () => {
@@ -207,7 +207,7 @@ export default class ResizeTool {
       this.newHeight = this.newWidth / this.ratioWH;
     }
 
-    this.uiControls.setInputValue(this.inputWidthElement, Math.round(this.newWidth));
-    this.uiControls.setInputValue(this.inputHeightElement, Math.round(this.newHeight));
+    this.domHandler.setInputValue(this.inputWidthElement, Math.round(this.newWidth));
+    this.domHandler.setInputValue(this.inputHeightElement, Math.round(this.newHeight));
   };
 }

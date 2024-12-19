@@ -29,7 +29,6 @@ export const initParams = {
   selectors: {
     // Ensure that the selectors match those in fitcropedit.css
     appbarFileInputSelector: "fc-appbar-file-input",
-    // appbarCloseButtonSelector: "fc-appbar-close-button",
     topbarWidthSelector: "fc-topbar-width",
     topbarHeightSelector: "fc-topbar-height",
     topbarFormatSelector: "fc-topbar-format",
@@ -61,7 +60,7 @@ export const initParams = {
     rightSidebarToolsContainerElement: null,
     rightSidebarHistoryContainerElement: null,
     leftsidebarResizeElement: null,
-    historybarContentElement: null, // remove
+    historybarContentElement: null,
 
     //tools
     rightSidebarResizeToolElement: null,
@@ -69,7 +68,6 @@ export const initParams = {
   template: {
     mobileContainerHeight: "95vh",
     mobileContainerWidth: "95vw",
-    // appbarHeight: 32,
     rightSidebarWidth: 200,
   },
   data: {
@@ -82,7 +80,7 @@ export const initParams = {
       name: "",
       ext: "",
       type: "",
-      size: 0, // ? if resize applyed
+      size: 0, // ? if resize applied
       lastModified: 0,
       format: "",
       outputFormat: "",

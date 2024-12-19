@@ -6,23 +6,23 @@ export default class Controls {
     imageLoader,
     mainCanvas,
     originImage,
-    uiControls,
+    domHandler,
     history,
     historybar,
-    toolManager
+    toolsManager
   ) {
     this.stateService = stateService;
     this.appState = stateService.state;
     this.imageLoader = imageLoader;
     this.mainCanvas = mainCanvas;
     this.originImage = originImage;
-    this.uiControls = uiControls;
+    this.domHandler = domHandler;
     this.rootElement = this.appState.rootElement;
     this.history = history;
     this.historybar = historybar;
 
     // tools
-    this.toolManager = toolManager;
+    this.toolsManager = toolsManager;
 
     this.init();
   }
@@ -85,7 +85,7 @@ export default class Controls {
         switch (action) {
           case "leftsidebar-resize-button":
             // this.resizeTool.manage(targetElement);
-            this.toolManager.manage(targetElement, "resize");
+            this.toolsManager.manage(targetElement, "resize");
             break;
         }
       }
@@ -93,8 +93,8 @@ export default class Controls {
       // icons
       switch (action) {
         case "close-tool-button":
-          this.uiControls.clearToolsContainer();
-          this.uiControls.resetLeftSidebarMenu();
+          this.domHandler.clearToolsContainer();
+          this.domHandler.resetLeftSidebarMenu();
           break;
       }
     });
@@ -111,8 +111,8 @@ export default class Controls {
       this.appState.data.baseImage.outputFormat = format;
     }
 
-    this.uiControls.displayOutputFormatUI();
-    this.uiControls.displayExtentionUI();
+    this.domHandler.displayOutputFormatUI();
+    this.domHandler.displayExtentionUI();
   }
 
   closeImage() {
@@ -120,11 +120,11 @@ export default class Controls {
 
     this.stateService.clearBaseImageData();
 
-    this.uiControls.diplayDimentionInUI();
-    this.uiControls.displayOutputFormatUI();
-    this.uiControls.displayExtentionUI();
-    this.uiControls.clearToolsContainer();
-    this.uiControls.resetLeftSidebarMenu();
+    this.domHandler.diplayDimentionInUI();
+    this.domHandler.displayOutputFormatUI();
+    this.domHandler.displayExtentionUI();
+    this.domHandler.clearToolsContainer();
+    this.domHandler.resetLeftSidebarMenu();
 
     this.mainCanvas.clear();
     this.mainCanvas.drawPromo();

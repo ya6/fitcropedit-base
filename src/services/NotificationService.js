@@ -2,9 +2,9 @@ export default class NotificationService {
   rootElement;
   notifyElement;
 
-  constructor(stateService, uiControls) {
+  constructor(stateService, domHandler) {
     this.appState = stateService.state;
-    this.uiControls = uiControls;
+    this.domHandler = domHandler;
     this.rootElement = this.appState.rootElement;
 
     this.init();
@@ -21,10 +21,10 @@ export default class NotificationService {
 
   notify(message, time = 5000) {
     this.notifyElement.innerText = message;
-    this.uiControls.injectElement(this.rootElement, this.notifyElement);
+    this.domHandler.injectElement(this.rootElement, this.notifyElement);
 
     setTimeout(() => {
-      this.uiControls.removeElement(this.rootElement, this.notifyElement);
+      this.domHandler.removeElement(this.rootElement, this.notifyElement);
     }, time);
   }
 }
