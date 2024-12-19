@@ -3,22 +3,13 @@ export default class DomHandler {
 
   constructor(stateService) {
     this.appState = stateService.state;
-
-    this.init();
-  }
-
-  init() {
-    this.getLeftSidebarButtons();
   }
 
   // leftsidebar ->
-  getLeftSidebarButtons() {
-    const leftSideBarElement = this.appState.leftSidebarElement;
-    this.leftSidebarbuttons = leftSideBarElement.querySelectorAll('[data-anchor="left-sidebar-item"]');
-  }
-
   resetLeftSidebarMenu() {
-    this.removeActiveClass(this.leftSidebarbuttons);
+    const leftSideBarElement = this.appState.leftSidebarElement;
+    const leftSidebarbuttons = leftSideBarElement.querySelectorAll('[data-anchor="left-sidebar-item"]');
+    this.removeActiveClass(leftSidebarbuttons);
   }
   // leftsidebar <-
 
@@ -31,8 +22,6 @@ export default class DomHandler {
   clearToolsContainer() {
     this.clearElement(this.appState.elements.rightSidebarToolsContainerElement);
   }
-
-  
   // tools <-
 
   displayOutputFormatUI() {

@@ -2,9 +2,10 @@ export default class Appbar {
   appbarElement;
   appbarItems;
 
-  constructor(stateService) {
+  constructor(stateService, domHandler) {
     this.appState = stateService.state;
-    
+    this.domHandler = domHandler;
+
     this.init();
   }
 
@@ -18,7 +19,7 @@ export default class Appbar {
   createTemplate() {
     this.appbarElement = document.createElement("div");
     this.appbarElement.setAttribute("id", this.appState.appbarSelector);
-    this.injectString(this.appbarElement, this.innerTemplate());
+    this.domHandler.injectString(this.appbarElement, this.innerTemplate());
   }
 
   //
@@ -117,10 +118,6 @@ export default class Appbar {
     });
   }
 
-   injectString(host, template) {
-    host.insertAdjacentHTML("afterbegin", template);
-  }
-
   hideElements(elements) {
     if (this.isIterable(elements)) {
       elements.forEach((el) => el.classList.add("hidden"));
@@ -137,14 +134,14 @@ export default class Appbar {
     }
   }
 
-  toggeElements(elements, className="hidden") {
+  toggeElements(elements, className = "hidden") {
     if (this.isIterable(elements)) {
       elements.forEach((el) => el.classList.toggle(className));
     } else {
       elements.classList.toggle(className);
     }
   }
-// ?utils
+  // ?utils
   isIterable(pretender) {
     return typeof pretender[Symbol.iterator] === "function";
   }

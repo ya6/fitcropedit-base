@@ -5,7 +5,10 @@ export default class TransformCanvas {
   }
 
   clear() {
-    this.canvas.width = this.canvas.width;
+    // this.canvas.width = this.canvas.width;
+    // test
+    this.canvas.width = 0;
+    this.canvas.height = 0;
   }
 }
 

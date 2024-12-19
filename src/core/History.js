@@ -5,12 +5,13 @@ export default class History {
     history: [{ title: "Empty", imageSrc: null, metaData: null, action: "clear" }],
   };
 
-  constructor(stateService, name = "fce-project-1") {
+  constructor(stateService, domHandler, name = "fce-project-1") {
     if (History.instance) {
       return History.instance;
     }
     this.project.name = name;
     this.appState = stateService.state;
+    this.domHandler = domHandler;
     History.instance = this;
   }
 
@@ -52,10 +53,10 @@ export default class History {
 
   updateHistoryUI() {
     this.appState.elements.historybarContentElement.innerHTML = "";
-    this.injectString(this.appState.elements.historybarContentElement, this.historyContent());
+    this.domHandler.injectString(this.appState.elements.historybarContentElement, this.historyContent());
   }
 
-  injectString(host, template) {
-    host.insertAdjacentHTML("afterbegin", template);
-  }
+  // injectString(host, template) {
+  //   host.insertAdjacentHTML("afterbegin", template);
+  // }
 }

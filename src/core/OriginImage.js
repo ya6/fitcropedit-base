@@ -12,8 +12,6 @@ export default class OriginImage {
     this.initialImage = new Image();
   }
 
-  init() {}
-
   closeOriginImage() {
     this.baseImage.src = "";
     this.initialImage.src = "";

@@ -188,6 +188,7 @@ export default class LoadManager {
 
     const dataUrl = this.convertImageFormat(this.originImage.baseImage, exportFormat);
     this.downloadImage(dataUrl, fullName);
+    this.transformCanvas.clear()
   }
 
   downloadImage(dataUrl, fullName) {

@@ -1,17 +1,14 @@
 export default class LeftSidebar {
-  // leftSidebarElement;
-  // leftSidebarItems;
-
-  constructor(stateService) {
+  constructor(stateService, domHandler) {
     this.appState = stateService.state;
-    
+    this.domHandler = domHandler;
+
     this.init();
   }
 
   init() {
     this.createTemplate();
     this.storeLeftSidebar();
-    // this.getAllControls();
     this.dispatch();
   }
 
@@ -20,10 +17,6 @@ export default class LeftSidebar {
     this.appState.leftSidebarElement = this.leftSidebarElement;
   }
 
-  // getAllControls() {
-  //   this.leftSidebarItems = this.leftSidebarElement.querySelectorAll('[data-role="leftsidebar-item"]');
-  // }
-
   dispatch() {
     this.leftSidebarElement.addEventListener("click", (e) => {});
   }
@@ -31,7 +24,7 @@ export default class LeftSidebar {
   createTemplate() {
     this.leftSidebarElement = document.createElement("div");
     this.leftSidebarElement.setAttribute("id", this.appState.leftSidebarSelector);
-    this.injectString(this.leftSidebarElement, this.innerTemplate());
+    this.domHandler.injectString(this.leftSidebarElement, this.innerTemplate());
   }
 
   innerTemplate() {
@@ -147,9 +140,5 @@ export default class LeftSidebar {
   `;
 
     return sidebarTemplate;
-  }
-
-  injectString(host, template) {
-    host.insertAdjacentHTML("afterbegin", template);
   }
 }

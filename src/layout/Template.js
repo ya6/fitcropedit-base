@@ -1,11 +1,11 @@
 export default class Template {
   rootElement;
 
-  constructor(stateService, deviceService, mainCanvas, originImage) {
+  constructor(stateService, deviceService, mainCanvas, domHandler) {
     this.appState = stateService.state;
     this.deviceService = deviceService;
     this.mainCanvas = mainCanvas;
-    this.originImage = originImage;
+    this.domHandler = domHandler;
 
     this.init();
   }
@@ -37,17 +37,13 @@ export default class Template {
     wraper.setAttribute("id", this.appState.wraperSelector);
 
     //add to DOM
-    this.injectElement(wraper, this.appState.leftSidebarElement);
-    this.injectElement(wraper, this.appState.mainCanvasWraperElement);
-    this.injectElement(wraper, this.appState.rightSidebarElement);
+    this.domHandler.injectElement(wraper, this.appState.leftSidebarElement);
+    this.domHandler.injectElement(wraper, this.appState.mainCanvasWraperElement);
+    this.domHandler.injectElement(wraper, this.appState.rightSidebarElement);
 
-    this.injectElement(this.rootElement, this.appState.appbarElement);
-    this.injectElement(this.rootElement, this.appState.topbarElement);
-    this.injectElement(this.rootElement, wraper);
-  }
-
-  injectElement(host, element) {
-    host.appendChild(element);
+    this.domHandler.injectElement(this.rootElement, this.appState.appbarElement);
+    this.domHandler.injectElement(this.rootElement, this.appState.topbarElement);
+    this.domHandler.injectElement(this.rootElement, wraper);
   }
 
   getElements() {

@@ -2,9 +2,9 @@ export default class RightSidebar {
   rightSidebarElement;
   histotyTemplate;
 
-  constructor(stateService, historybar) {
+  constructor(stateService, domHandler) {
     this.appState = stateService.state;
-    this.historybar = historybar;
+    this.domHandler = domHandler;
 
     this.init();
   }
@@ -18,7 +18,7 @@ export default class RightSidebar {
     this.rightSidebarElement = document.createElement("div");
     this.rightSidebarElement.setAttribute("id", this.appState.rightSidebarSelector);
     this.rightSidebarElement.style.minWidth = this.appState.template.rightSidebarWidth + "px";
-    this.injectString(this.rightSidebarElement, this.innerTemplate());
+    this.domHandler.injectString(this.rightSidebarElement, this.innerTemplate());
     this.injectHistorybar();
   }
 
@@ -26,14 +26,10 @@ export default class RightSidebar {
     const historyContainer = this.rightSidebarElement.querySelector(
       `#${this.appState.selectors.rightSidebarHistoryContainerSelector}`
     );
-    this.injectElement(historyContainer, this.appState.historybarElement);
+    this.domHandler.injectElement(historyContainer, this.appState.historybarElement);
   }
 
-  injectElement(host, element) {
-    host.appendChild(element);
-  }
-
-  formatSectiom() {
+  formatSection() {
     const controls = `
 <div>
   <div class="sub-title text-center">Output Format: 
@@ -82,7 +78,7 @@ export default class RightSidebar {
         <span class="ms-05 fc-avoid-clicks">Save</span>
       </button>
      
-      ${this.formatSectiom()}
+      ${this.formatSection()}
 
 	<button id="${this.appState.selectors.rightSidebarCloseButtonSelector}"
   class="control-button button-block mt-2"   type="button">
@@ -109,9 +105,5 @@ export default class RightSidebar {
   //
   storeRightSidebar() {
     this.appState.rightSidebarElement = this.rightSidebarElement;
-  }
-
-  injectString(host, template) {
-    host.insertAdjacentHTML("afterbegin", template);
   }
 }

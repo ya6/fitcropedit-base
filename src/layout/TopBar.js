@@ -1,8 +1,9 @@
 export default class Topbar {
   topbarElement;
 
-  constructor(stateService) {
+  constructor(stateService, domHandler) {
     this.appState = stateService.state;
+    this.domHandler = domHandler;
 
     this.init();
   }
@@ -15,7 +16,7 @@ export default class Topbar {
   createTemplate() {
     this.topbarElement = document.createElement("div");
     this.topbarElement.setAttribute("id", this.appState.topbarSelector);
-    this.injectString(this.topbarElement, this.innerTemplate());
+    this.domHandler.injectString(this.topbarElement, this.innerTemplate());
   }
 
   innerTemplate() {
@@ -45,7 +46,7 @@ export default class Topbar {
     this.appState.topbarElement = this.topbarElement;
   }
 
-  injectString(host, template) {
-    host.insertAdjacentHTML("afterbegin", template);
-  }
+  // injectString(host, template) {
+  //   host.insertAdjacentHTML("afterbegin", template);
+  // }
 }

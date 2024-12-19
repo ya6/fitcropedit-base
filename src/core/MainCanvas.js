@@ -6,8 +6,9 @@ export default class MainCanvas {
 
   params = { xCenter: 0, yCenter: 0, width: 0, height: 0 };
 
-  constructor(stateService) {
+  constructor(stateService, domHandler) {
     this.appState = stateService.state;
+    this.domHandler = domHandler;
 
     this.init();
   }
@@ -29,7 +30,7 @@ export default class MainCanvas {
 
     this.canvas.setAttribute("id", this.appState.mainCanvasSelector);
 
-    this.injectElement(this.wraper, this.canvas);
+    this.domHandler.injectElement(this.wraper, this.canvas);
   }
 
   store() {
@@ -39,9 +40,9 @@ export default class MainCanvas {
 
   loadPromo() {
     this.promo = new Image();
-   
+
     // refactor
-    this.promo.src = "public/img/dnd-1.png"; 
+    this.promo.src = "public/img/dnd-1.png";
   }
 
   initAndDrawPromo() {
@@ -52,17 +53,16 @@ export default class MainCanvas {
   }
 
   drawPromo() {
+    this.clear();
+    // this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.filter = "opacity(0.05)";
     this.ctx.drawImage(this.promo, 0, 0, this.canvas.width, this.canvas.height);
     this.ctx.filter = "opacity(1)";
   }
 
   clear() {
+    // this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.canvas.width = this.canvas.width;
-  }
-
-  injectElement(host, element) {
-    host.appendChild(element);
   }
 
   collectParams() {
@@ -71,7 +71,4 @@ export default class MainCanvas {
     this.params.xCenter = Math.round(this.canvas.width / 2);
     this.params.yCenter = Math.round(this.canvas.height / 2);
   }
-
-
- 
 }

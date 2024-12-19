@@ -33,7 +33,8 @@ function bootstrap(params) {
   const stateService = new StateService();
   stateService.updateState(params);
 
-  const history = new History(stateService);
+  const domHandler = new DomHandler(stateService);
+  const history = new History(stateService, domHandler);
   const deviceService = new DeviceService(stateService);
 
   //elements
@@ -41,16 +42,15 @@ function bootstrap(params) {
 
   //templates
   const historybar = new Historybar(stateService, history);
-  const appbar = new Appbar(stateService);
-  const topbar = new Topbar(stateService);
-  const leftSidebar = new LeftSidebar(stateService);
-  const mainCanvas = new MainCanvas(stateService);
-  const rightSidebar = new Rightsidebar(stateService);
-  const template = new Template(stateService, deviceService, mainCanvas);
+  const appbar = new Appbar(stateService, domHandler);
+  const topbar = new Topbar(stateService, domHandler);
+  const leftSidebar = new LeftSidebar(stateService, domHandler);
+  const mainCanvas = new MainCanvas(stateService, domHandler);
+  const rightSidebar = new Rightsidebar(stateService, domHandler);
+  const template = new Template(stateService, deviceService, mainCanvas, domHandler);
   //
 
   const progressbarService = new ProgressbarService(stateService);
-  const domHandler = new DomHandler(stateService);
 
   const transformCanvas = new TransformCanvas();
   const meshCanvas = new MeshCanvas(stateService, mainCanvas);
@@ -71,7 +71,7 @@ function bootstrap(params) {
   );
 
   const toolsManager = new ToolsManager(domHandler, closeIconButton, resizeTool);
- 
+
   const imageLoader = new ImageLoader(
     stateService,
     transformCanvas,
