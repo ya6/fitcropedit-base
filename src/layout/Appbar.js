@@ -59,7 +59,7 @@ export default class Appbar {
       </div> 
       </li>
       <li class="items-link"><span class="item-link-text" data-role="dropdown-item" data-action="appbar-save-button">Save</span></li>
-      <li class="items-link"><span class="item-link-text" data-role="dropdown-item" data-action="appbar-reset-button">Reset</span></li>
+      <li class="items-link"><span class="item-link-text" data-role="dropdown-item" data-action="reset-image">Reset</span></li>
       <li class="items-link"><span class="item-link-text" data-role="dropdown-item" data-action="appbar-close-button">Close</span></li>
     </ul>
   </div>

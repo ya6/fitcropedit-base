@@ -102,6 +102,7 @@ function bootstrap(params) {
     domHandler,
     history,
     historybar,
+    progressbarService,
     toolsManager
   );
 }

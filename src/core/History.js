@@ -47,7 +47,7 @@ export default class History {
   }
 
   resetHistory() {
-    this.project.history = [{ title: "Empty", imageSrc: null, metaData: null, action: "clear" }];
+    this.project.history = [{ title: "Empty", imageSrc: null, metaData: null, action: null }];
     this.updateHistoryUI();
   }
 
@@ -56,7 +56,14 @@ export default class History {
     this.domHandler.injectString(this.appState.elements.historybarContentElement, this.historyContent());
   }
 
-  // injectString(host, template) {
-  //   host.insertAdjacentHTML("afterbegin", template);
-  // }
+  resetToLoadImage() {
+    if (this.project.history[0].action === null || this.project.history.length === 1) {
+      return;
+    }
+
+    if (this.project.history[0].action === "image loaded") {
+      this.project.history.length = 1;
+      this.updateHistoryUI();
+    }
+  }
 }

@@ -77,7 +77,7 @@ export default class LoadManager {
           title: "Image Loaded",
           imageSrc: null, // stored in originImage
           metaData: null,
-          action: "",
+          action: "image loaded",
         });
       }
 

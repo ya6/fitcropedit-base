@@ -5,6 +5,7 @@ export default class OriginImage {
   params = { width: 0, height: 0, scale: 1, xCenter: 0, yCenter: 0, dWidth: 0, dHeight: 0, format: "?" };
 
   constructor(stateService, mainCanvas, meshCanvas) {
+    this.stateService = stateService;
     this.appState = stateService.state;
     this.mainCanvas = mainCanvas;
     this.meshCanvas = meshCanvas;
@@ -22,6 +23,17 @@ export default class OriginImage {
 
   resetToOrigin() {
     this.baseImage.src = this.initialImage.src;
+  }
+
+  restoreOriginImage() {
+    this.resetToOrigin();
+
+    this.collectParams();
+
+    this.stateService.saveBaseImageParams({
+      width: this.initialImage.width,
+      height: this.initialImage.height,
+    });
   }
 
   drawImage() {

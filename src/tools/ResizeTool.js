@@ -138,6 +138,7 @@ export default class ResizeTool {
   };
 
   resetToOrigin = () => {
+    // Perhaps reset to the previous size???
     const { width, height } = this.originImage.initialImage;
     this.newWidth = Number(this.inputWidthElement.value);
     this.newHeight = Number(this.inputHeightElement.value);
@@ -145,14 +146,8 @@ export default class ResizeTool {
     if (this.newWidth === width && this.newHeight === height) {
       return null;
     }
-    this.originImage.resetToOrigin();
 
-    this.originImage.collectParams();
-
-    this.stateService.saveBaseImageParams({
-      width,
-      height,
-    });
+    this.originImage.restoreOriginImage();
 
     this.domHandler.setInputValue(this.inputWidthElement, width);
     this.domHandler.setInputValue(this.inputHeightElement, height);

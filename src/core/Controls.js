@@ -9,6 +9,7 @@ export default class Controls {
     domHandler,
     history,
     historybar,
+    progressbarService,
     toolsManager
   ) {
     this.stateService = stateService;
@@ -20,6 +21,7 @@ export default class Controls {
     this.rootElement = this.appState.rootElement;
     this.history = history;
     this.historybar = historybar;
+    this.progressbarService = progressbarService;
 
     // tools
     this.toolsManager = toolsManager;
@@ -74,9 +76,18 @@ export default class Controls {
         case "appbar-save-button":
           this.saveImage();
           break;
+
         // close
         case "appbar-close-button":
           this.closeImage();
+          break;
+
+        // close
+        case "reset-image":
+          this.progressbarService.run(this.restoreOriginImage.bind(this));
+
+          // this.history.resetToLoadImage();
+          // this.originImage.restoreOriginImage();
           break;
       }
 
@@ -93,11 +104,21 @@ export default class Controls {
       // icons
       switch (action) {
         case "close-tool-button":
-          this.domHandler.clearToolsContainer();
-          this.domHandler.resetLeftSidebarMenu();
+          this.closeTool();
           break;
       }
     });
+  }
+
+  restoreOriginImage() {
+    this.history.resetToLoadImage();
+    this.originImage.restoreOriginImage();
+    this.closeTool();
+  }
+
+  closeTool() {
+    this.domHandler.clearToolsContainer();
+    this.domHandler.resetLeftSidebarMenu();
   }
 
   changeOuputFormat(format) {
