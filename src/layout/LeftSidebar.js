@@ -118,7 +118,7 @@ export default class LeftSidebar {
   `;
 
     const backgroundButton = `
-  <button class="fc-left-sidebar-button" type="button" data-anchor="left-sidebar-item">
+  <button class="fc-left-sidebar-button" type="button" data-anchor="left-sidebar-item" data-role="has-submenu"  data-action="leftsidebar-background-button">
     <div class="custom-icon mx-auto">         
       <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"  viewBox="0 0 .64 .64"> 
         <path fill-rule="evenodd" d="m0.09 0h0.46c0.05 0 0.09 0.04 0.09 0.09v0.46c0 0.05-0.04 0.09-0.09 0.09h-0.46c-0.05 0-0.09-0.04-0.09-0.09v-0.46c0-0.05 0.04-0.09 0.09-0.09zm0.5 0.27-0.32 0.32h0.17l0.15-0.15v-0.17zm-0.36 0.32 0.36-0.36v-0.14c0-0.01 0-0.01-0.01-0.02l-0.51 0.51c0.01 0.01 0.01 0.01 0.02 0.01h0.14zm-0.14-0.54c-0.02 0-0.04 0.02-0.04 0.04v0.04l0.08-0.08h-0.04zm-0.04 0.14v0.15l0.29-0.29h-0.15l-0.14 0.14zm0 0.2v0.16l0.5-0.5h-0.16l-0.34 0.34zm0.42 0.2h0.08c0.02 0 0.04-0.02 0.04-0.04v-0.08l-0.12 0.12z"/>
@@ -130,13 +130,20 @@ export default class LeftSidebar {
   `;
 
     const sidebarTemplate = `
-    ${cropButton}
-    ${zoomButton}
-    ${handButton}
-    ${filtersButton}
-    ${resizeButton}
-    ${transformButton}
-    ${backgroundButton}
+    <div id=${this.appState.selectors.leftsidebarMenuSelector}>
+      ${cropButton}
+      ${zoomButton}
+      ${handButton}
+      ${filtersButton}
+      ${resizeButton}
+      ${transformButton}
+      ${backgroundButton}
+    </div>
+  
+    <div id=${this.appState.selectors.leftsidebarSubmenuSelector}>
+     <div class="fc-leftsidebar-submenu-toggler"  data-action="leftsidebar-submenu-toggle"></div>
+    </div>
+    
   `;
 
     return sidebarTemplate;

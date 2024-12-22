@@ -42,6 +42,8 @@ export const initParams = {
     rightSidebarHistoryContainerSelector: "fc-rightsidebar-history-container-element",
 
     leftsidebarResizeSelector: "fc-leftsidebar-resolution-button",
+    leftsidebarMenuSelector: "fc-left-sidebar-menu",
+    leftsidebarSubmenuSelector: "fc-left-sidebar-submenu",
     //tools
     rightSidebarResizeToolSelector: "fc-rightsidebar-resize-tool",
 
@@ -59,7 +61,11 @@ export const initParams = {
     rightSidebarOutpitFormatElement: null,
     rightSidebarToolsContainerElement: null,
     rightSidebarHistoryContainerElement: null,
+
     leftsidebarResizeElement: null,
+    leftsidebarMenuElement: null,
+    leftsidebarSubmenuElement: null,
+
     historybarContentElement: null,
 
     //tools

@@ -33,7 +33,7 @@
 }
 
 .fc-appbar-item:hover {
-  background: #eeeeee;
+  background: #eee;
 }
 
 
@@ -55,8 +55,8 @@
   position: absolute;
   top: 100%;
   left: 0;
-  border: 1px solid #eeeeee;
-  box-shadow: 0px 2px 2px #dddddd;
+  border: 1px solid #eee;
+  box-shadow: 0px 2px 2px #ddd;
   padding: 1rem;
   z-index: 2000;
 }

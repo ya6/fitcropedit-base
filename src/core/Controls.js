@@ -40,9 +40,13 @@ export default class Controls {
 
       const id = targetElement.id;
       let action;
+      let role;
 
       if (targetElement.dataset?.action) {
         action = targetElement.dataset?.action;
+      }
+      if (targetElement.dataset?.role) {
+        role = targetElement.dataset?.role;
       }
 
       switch (id) {
@@ -92,11 +96,15 @@ export default class Controls {
       }
 
       // diplay Tool
-      if (this.appState.data.baseImage.width > 0) {
+      // if (this.appState.data.baseImage.width > 0) {
+      if (true) {
         switch (action) {
           case "leftsidebar-resize-button":
-            // this.resizeTool.manage(targetElement);
-            this.toolsManager.manage(targetElement, "resize");
+            this.toolsManager.manage(targetElement, role, "resize");
+            break;
+
+          case "leftsidebar-background-button":
+            this.toolsManager.manage(targetElement, role, "background");
             break;
         }
       }
@@ -105,6 +113,10 @@ export default class Controls {
       switch (action) {
         case "close-tool-button":
           this.closeTool();
+          break;
+
+        case "leftsidebar-submenu-toggle":
+          this.appState.elements.leftsidebarSubmenuElement.classList.toggle("open");
           break;
       }
     });

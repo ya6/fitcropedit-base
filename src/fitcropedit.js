@@ -43,7 +43,7 @@ function bootstrap(params) {
   //templates
   const historybar = new Historybar(stateService, history);
   const appbar = new Appbar(stateService, domHandler);
-  const topbar = new Topbar(stateService, domHandler);
+  const txopbar = new Topbar(stateService, domHandler);
   const leftSidebar = new LeftSidebar(stateService, domHandler);
   const mainCanvas = new MainCanvas(stateService, domHandler);
   const rightSidebar = new Rightsidebar(stateService, domHandler);
@@ -70,7 +70,7 @@ function bootstrap(params) {
     progressbarService
   );
 
-  const toolsManager = new ToolsManager(domHandler, closeIconButton, resizeTool);
+  const toolsManager = new ToolsManager(stateService, domHandler, closeIconButton, resizeTool);
 
   const imageLoader = new ImageLoader(
     stateService,
