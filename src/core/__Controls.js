@@ -1,21 +1,6 @@
 export default class Controls {
   rootElement;
 
-  perform = {
-    image: { // ? name
-      "set-output-format-png": () => { this.changeOuputFormat("png"); },
-      "set-output-format-jpeg": () => { this.changeOuputFormat("jpeg"); },
-      "set-output-format-webp": () => { this.changeOuputFormat("webp"); },
-      "save-image": () => { this.saveImage(); },
-      "close-image": () => { this.closeImage(); },
-      "reset-image": () => { this.progressbarService.run(this.restoreOriginImage.bind(this)); },
-      "close-tool-button": () => { this.closeTool(); },
-      "leftsidebar-submenu-toggle": () => { this.appState.elements.leftsidebarSubmenuElement.classList.toggle("open"); }, // ) breaks solid: hi + low
-    },
-    leftsidebar: (targetElement, options, action) => { this.toolsManager.manage(targetElement, options, action); },
-  };
-
-
   constructor(
     stateService,
     imageLoader,
@@ -37,6 +22,8 @@ export default class Controls {
     this.history = history;
     this.historybar = historybar;
     this.progressbarService = progressbarService;
+
+    // tools
     this.toolsManager = toolsManager;
 
     this.init();
@@ -49,12 +36,11 @@ export default class Controls {
   addListener() {
     this.rootElement.addEventListener("click", (e) => {
       const targetElement = e.target;
-      
       // console.log(targetElement);
 
+      const id = targetElement.id;
       let action;
       let role;
-      let options;
 
       if (targetElement.dataset?.action) {
         action = targetElement.dataset?.action;
@@ -62,16 +48,76 @@ export default class Controls {
       if (targetElement.dataset?.role) {
         role = targetElement.dataset?.role;
       }
-      if (targetElement.dataset?.options) {
-        options = targetElement.dataset?.options;
+
+      switch (id) {
+        //close
+        case this.appState.selectors.rightSidebarCloseButtonSelector:
+          this.closeImage();
+          break;
+
+        //save
+        case this.appState.selectors.rightSidebarSaveButtonSelector:
+          this.saveImage();
+          break;
       }
 
-      if (action && this.appState.data.baseImage.width > 0) {
-        this.perform.image[action] && this.perform.image[action]();
+      // rigthSidebar
+      switch (action) {
+        // change ouput format
+        case "set-output-format-png":
+          this.changeOuputFormat("png");
+          break;
 
-        if (role === "leftsidebar-button") {
-          this.perform.leftsidebar && this.perform.leftsidebar(targetElement, options, action);
+        case "set-output-format-jpeg":
+          this.changeOuputFormat("jpeg");
+          break;
+
+        case "set-output-format-webp":
+          this.changeOuputFormat("webp");
+          break;
+
+        // save
+        case "save-image":
+          this.saveImage();
+          break;
+
+        // close
+        case "close-image":
+          this.closeImage();
+          break;
+
+        // close
+        case "reset-image":
+          this.progressbarService.run(this.restoreOriginImage.bind(this));
+
+          // this.history.resetToLoadImage();
+          // this.originImage.restoreOriginImage();
+          break;
+      }
+
+      // diplay Tool
+      // if (this.appState.data.baseImage.width > 0) {
+      if (true) {
+        switch (action) {
+          case "leftsidebar-resize-button":
+            this.toolsManager.manage(targetElement, role, "resize");
+            break;
+
+          case "leftsidebar-background-button":
+            this.toolsManager.manage(targetElement, role, "background");
+            break;
         }
+      }
+
+      // icons
+      switch (action) {
+        case "close-tool-button":
+          this.closeTool();
+          break;
+
+        case "leftsidebar-submenu-toggle":
+          this.appState.elements.leftsidebarSubmenuElement.classList.toggle("open");
+          break;
       }
     });
   }

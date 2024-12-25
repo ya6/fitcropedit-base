@@ -34,8 +34,6 @@ export const initParams = {
     topbarFormatSelector: "fc-topbar-format",
     progressbarSelector: "fc-progressbar",
 
-    rightSidebarCloseButtonSelector: "fc-rightsidebar-close-button",
-    rightSidebarSaveButtonSelector: "fc-rightsidebar-save-button",
     rightSidebarFormatBoxSelector: "fc-rightsidebar-format-box", //? box
     rightSidebarOutpitFormatSelector: "fc-rightsidebar-outpit-format-element",
     rightSidebarToolsContainerSelector: "fc-rightsidebar-tools-container-element",
@@ -56,8 +54,6 @@ export const initParams = {
     topbarFormatElement: null,
     progressbarElement: null,
 
-    rightSidebarCloseButtonElement: null,
-    rightSidebarFormatBoxElement: null,
     rightSidebarOutpitFormatElement: null,
     rightSidebarToolsContainerElement: null,
     rightSidebarHistoryContainerElement: null,

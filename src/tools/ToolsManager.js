@@ -6,18 +6,17 @@ export default class ToolsManager {
     this.resizeTool = resizeTool;
   }
 
-  manage(buttonElement, role, toolName) {
+  manage(buttonElement, options, toolName) {
     this.domHandler.clearToolsContainer();
     this.domHandler.resetLeftSidebarMenu();
 
     const isActive = this.domHandler.toggleActiveClass(buttonElement);
 
-    if (role) {
+    if (options) {
       this.domHandler.clearToolsContainer();
 
-      switch (toolName) {
-        case "background":
-          // this.appState.elements.leftsidebarSubmenuElement.classList.toggle("open");
+      switch (options) {
+        case "has-submenu":
           const submenu = this.appState.elements.leftsidebarSubmenuElement;
           if (!submenu.classList.contains("open")) {
             submenu.classList.add("open");
@@ -26,7 +25,8 @@ export default class ToolsManager {
           break;
       }
     }
-    if (!role) {
+
+    if (!options) {
       if (isActive) {
         this.domHandler.clearToolsContainer();
         //diplay close button
