@@ -9,12 +9,11 @@ export default class Controls {
       "save-image": () => { this.saveImage(); },
       "close-image": () => { this.closeImage(); },
       "reset-image": () => { this.progressbarService.run(this.restoreOriginImage.bind(this)); },
-      "close-tool-button": () => { this.closeTool(); },
+      "close-tool": () => { this.closeTool(); },
       "leftsidebar-submenu-toggle": () => { this.appState.elements.leftsidebarSubmenuElement.classList.toggle("open"); }, // ) breaks solid: hi + low
     },
     leftsidebar: (targetElement, options, action) => { this.toolsManager.manage(targetElement, options, action); },
   };
-
 
   constructor(
     stateService,

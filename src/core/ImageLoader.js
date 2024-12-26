@@ -26,7 +26,8 @@ export default class LoadManager {
     domHandler,
     toolsManager,
     history,
-    progressbarService
+    progressbarService,
+    imageAnalyzer
   ) {
     this.stateService = stateService;
     this.appState = stateService.state;
@@ -37,6 +38,7 @@ export default class LoadManager {
     this.toolsManager = toolsManager;
     this.history = history;
     this.progressbarService = progressbarService;
+    this.imageAnalyzer = imageAnalyzer;
 
     this.init();
   }
@@ -151,7 +153,9 @@ export default class LoadManager {
       this.domHandler.displayOutputFormatUI();
       this.domHandler.displayExtentionUI();
 
-      // this.loadImageFromInput();
+      // analize
+      this.imageAnalyzer.getColorMode( this.originImage.baseImage)
+
     });
   }
 

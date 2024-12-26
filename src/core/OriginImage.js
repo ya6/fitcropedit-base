@@ -40,6 +40,10 @@ export default class OriginImage {
     const { dx, dy, dWidth, dHeight } = this.params;
     this.mainCanvas.clear();
     this.meshCanvas.drawMesh();
+
+    this.mainCanvas.ctx.strokeStyle = "gray";
+    this.mainCanvas.ctx.strokeRect(dx, dy, dWidth, dHeight);
+
     this.mainCanvas.ctx.drawImage(this.baseImage, dx, dy, dWidth, dHeight);
   }
 
