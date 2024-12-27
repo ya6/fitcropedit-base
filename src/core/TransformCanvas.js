@@ -2,6 +2,9 @@ export default class TransformCanvas {
   constructor() {
     this.canvas = document.createElement("canvas");
     this.ctx = this.canvas.getContext("2d", { willReadFrequently: true });
+
+    this.matrixCanvas = document.createElement("canvas");
+    this.matrixCtx = this.matrixCanvas.getContext("2d", { willReadFrequently: true });
   }
 
   clear() {
@@ -9,6 +12,12 @@ export default class TransformCanvas {
     // test
     this.canvas.width = 0;
     this.canvas.height = 0;
+  }
+  clearMatrix() {
+    // this.canvas.width = this.canvas.width;
+    // test
+    this.matrixCanvas.width = 0;
+    this.matrixCanvas.height = 0;
   }
 }
 

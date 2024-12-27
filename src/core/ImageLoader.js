@@ -44,8 +44,9 @@ export default class LoadManager {
   }
 
   init() {
-    this.handleLoadImage();
     this.loadImageFromMenu();
+    this.handleLoadImage();
+    this.handleLoadInitImage();
   }
 
   loadImageFromInput = (inputElement) => {
@@ -135,8 +136,17 @@ export default class LoadManager {
     this.loadImageFromInput(inputElement);
   }
 
+  handleLoadInitImage() {
+    this.originImage.initialImage.addEventListener("load", () => {
+      // analize
+      this.imageAnalyzer.getColorMode(this.originImage.baseImage)
+    })
+  }
+
+
   handleLoadImage() {
     this.originImage.baseImage.addEventListener("load", () => {
+
       this.appState.data.baseImage.isLoaded = true;
 
       this.imageParams.width = this.originImage.baseImage.width;
@@ -152,10 +162,6 @@ export default class LoadManager {
       this.domHandler.diplayDimentionInUI();
       this.domHandler.displayOutputFormatUI();
       this.domHandler.displayExtentionUI();
-
-      // analize
-      this.imageAnalyzer.getColorMode( this.originImage.baseImage)
-
     });
   }
 
