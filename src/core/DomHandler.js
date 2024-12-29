@@ -14,8 +14,7 @@ export default class DomHandler {
   // leftsidebar <-
 
   // tools ->
-  displayTool(template) {
-    // this.clearElement(this.appState.elements.rightSidebarToolsContainerElement);
+  displayInRightsidebar(template) {
     this.injectString(this.appState.elements.rightSidebarToolsContainerElement, template);
   }
 
@@ -40,7 +39,7 @@ export default class DomHandler {
 
   // rightSidebar ->
   displayExtentionUI() {
-    const formatButtons = this.appState.elements.rightSidebarFormatBoxElement.children;
+    const formatButtons = this.appState.elements.rightSidebarFormatContainerElement.children;
     for (const button of formatButtons) {
       button.classList.remove("fc-active");
 

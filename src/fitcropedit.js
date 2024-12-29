@@ -23,6 +23,7 @@ import Historybar from "./layout/Historybar";
 import ProgressbarService from "./services/progressbarService";
 import CloseIconButton from "./layout/elements/CloseIconButton";
 import ImageAnalyzer from './services/ImageAnalyzer';
+import InfoService from './services/InfoService';
 
 if (!window.document) {
   throw new Error("Ficropedit requires a window with a document");
@@ -62,6 +63,8 @@ function bootstrap(params) {
   const originImage = new OriginImage(stateService, mainCanvas, meshCanvas);
   
   const imageAnalyzer = new ImageAnalyzer(stateService, originImage, transformCanvas);
+  const infoService = new InfoService(stateService, domHandler, closeIconButton);
+
   //tools
 
   const resizeTool = new ResizeTool(
@@ -106,7 +109,8 @@ function bootstrap(params) {
     history,
     historybar,
     progressbarService,
-    toolsManager
+    toolsManager,
+    infoService
   );
 }
 

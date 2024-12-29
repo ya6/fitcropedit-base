@@ -35,7 +35,7 @@ export default class RightSidebar {
   <div class="sub-title text-center">Output Format: 
     <span id = "${this.appState.selectors.rightSidebarOutpitFormatSelector}" class="ms-1 bold"></span>
   </div>
-    <div id=${this.appState.selectors.rightSidebarFormatBoxSelector} class="flex">
+    <div id=${this.appState.selectors.rightSidebarFormatContainerSelector} class="flex">
       <button class="button-with-icon" type="button"  data-action="set-output-format-png" data-format="png">  
         <div class="button-text">  
           png
@@ -105,4 +105,5 @@ export default class RightSidebar {
   storeRightSidebar() {
     this.appState.rightSidebarElement = this.rightSidebarElement;
   }
+
 }

@@ -34,17 +34,18 @@ export const initParams = {
     topbarFormatSelector: "fc-topbar-format",
     progressbarSelector: "fc-progressbar",
 
-    rightSidebarFormatBoxSelector: "fc-rightsidebar-format-box", //? box
+    rightSidebarFormatContainerSelector: "fc-rightsidebar-format-container",
     rightSidebarOutpitFormatSelector: "fc-rightsidebar-outpit-format-element",
-    rightSidebarToolsContainerSelector: "fc-rightsidebar-tools-container-element",
-    rightSidebarHistoryContainerSelector: "fc-rightsidebar-history-container-element",
-
+    rightSidebarToolsContainerSelector: "fc-rightsidebar-tools-container",
+    rightSidebarHistoryContainerSelector: "fc-rightsidebar-history-container",
+    rightSidebarImageInfoSelector: "fc-rightsidebar-image-info-container",
+    //tools
+    rightSidebarResizeToolSelector: "fc-rightsidebar-resize-tool",
+    
     leftsidebarResizeSelector: "fc-leftsidebar-resolution-button",
     leftsidebarMenuSelector: "fc-left-sidebar-menu",
     leftsidebarSubmenuSelector: "fc-left-sidebar-submenu",
-    //tools
-    rightSidebarResizeToolSelector: "fc-rightsidebar-resize-tool",
-
+    
     historybarContentSelector: "fc-historybar-content",
   },
   elements: {
@@ -54,18 +55,21 @@ export const initParams = {
     topbarFormatElement: null,
     progressbarElement: null,
 
+    rightSidebarFormatContainerElement: null,
     rightSidebarOutpitFormatElement: null,
     rightSidebarToolsContainerElement: null,
     rightSidebarHistoryContainerElement: null,
+    rightSidebarImageInfoElement: null,
 
+    //tools
+    rightSidebarResizeToolElement: null,
+    
     leftsidebarResizeElement: null,
     leftsidebarMenuElement: null,
     leftsidebarSubmenuElement: null,
 
     historybarContentElement: null,
 
-    //tools
-    rightSidebarResizeToolElement: null,
   },
   template: {
     mobileContainerHeight: "95vh",
@@ -86,6 +90,12 @@ export const initParams = {
       lastModified: 0,
       format: "",
       outputFormat: "",
+      pixels: 0,
+      color: 0,
+      alpha0: 0,
+      black: 0,
+      white: 0,
+      gray: 0,
     },
     postfix: "-fce",
     // formatList: { png: "png", jpeg: "jpg", webp: "webp", gif: "gif", bmp: "bmp" },

@@ -31,6 +31,9 @@ export default class Topbar {
 		<div id="${this.appState.selectors.topbarHeightSelector}">0</div>	
 		<div class="ms-1">F:</div>
 		<div id="${this.appState.selectors.topbarFormatSelector}"></div>	
+     <button class="button-with-icon ms-3 " type="button"  data-action="show-image-info" style="ma rgin-left: 1rem">  
+        <div class="button-text">Image Info</div>  
+      </button>
 	</div>
 	`;
 
@@ -45,8 +48,4 @@ export default class Topbar {
   storeTopbar() {
     this.appState.topbarElement = this.topbarElement;
   }
-
-  // injectString(host, template) {
-  //   host.insertAdjacentHTML("afterbegin", template);
-  // }
 }

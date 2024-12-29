@@ -13,8 +13,6 @@ export default class ToolsManager {
     const isActive = this.domHandler.toggleActiveClass(buttonElement);
 
     if (options) {
-      this.domHandler.clearToolsContainer();
-
       switch (options) {
         case "has-submenu":
           const submenu = this.appState.elements.leftsidebarSubmenuElement;
@@ -28,13 +26,12 @@ export default class ToolsManager {
 
     if (!options) {
       if (isActive) {
-        this.domHandler.clearToolsContainer();
         //diplay close button
-        this.domHandler.displayTool(this.closeIconButton.template());
+        this.domHandler.displayInRightsidebar(this.closeIconButton.template());
 
         switch (toolName) {
           case "resize":
-            this.domHandler.displayTool(this.resizeTool.template()); //? one func
+            this.domHandler.displayInRightsidebar(this.resizeTool.template()); //? one func
             this.resizeTool.activateTemplate();
             break;
         }

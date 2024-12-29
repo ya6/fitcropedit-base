@@ -11,6 +11,7 @@ export default class Controls {
       "reset-image": () => { this.progressbarService.run(this.restoreOriginImage.bind(this)); },
       "close-tool": () => { this.closeTool(); },
       "leftsidebar-submenu-toggle": () => { this.appState.elements.leftsidebarSubmenuElement.classList.toggle("open"); }, // ) breaks solid: hi + low
+      "show-image-info": () => { this.showImageInfo() },
     },
     leftsidebar: (targetElement, options, action) => { this.toolsManager.manage(targetElement, options, action); },
   };
@@ -24,7 +25,8 @@ export default class Controls {
     history,
     historybar,
     progressbarService,
-    toolsManager
+    toolsManager,
+    infoService
   ) {
     this.stateService = stateService;
     this.appState = stateService.state;
@@ -37,6 +39,7 @@ export default class Controls {
     this.historybar = historybar;
     this.progressbarService = progressbarService;
     this.toolsManager = toolsManager;
+    this.infoService = infoService;
 
     this.init();
   }
@@ -48,7 +51,7 @@ export default class Controls {
   addListener() {
     this.rootElement.addEventListener("click", (e) => {
       const targetElement = e.target;
-      
+
       // console.log(targetElement);
 
       let action;
@@ -120,5 +123,10 @@ export default class Controls {
 
   saveImage() {
     this.imageLoader.saveImage();
+  }
+
+  showImageInfo() {
+    this.infoService.showImageInfo()
+
   }
 }

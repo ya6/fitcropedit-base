@@ -23,8 +23,6 @@ export default class ResizeTool {
     const size = `
     <div data-action="resize-panel">
       <div class="sub-title">Size
-        <span class="ms-05"
-        </span>
       </div>
       <div class="flex my-3">
         <label>W:</label>
