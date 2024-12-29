@@ -12,10 +12,13 @@ export default class Controls {
       "close-tool": () => { this.closeTool(); },
       "leftsidebar-submenu-toggle": () => { this.appState.elements.leftsidebarSubmenuElement.classList.toggle("open"); }, // ) breaks solid: hi + low
       "show-image-info": () => { this.showImageInfo() },
+      "vertical-flip": () => { this.verticalFlip() },
+      "horizontal-flip": () => { this.horizontalFlip() },
     },
     leftsidebar: (targetElement, options, action) => { this.toolsManager.manage(targetElement, options, action); },
   };
 
+  
   constructor(
     stateService,
     imageLoader,
@@ -84,7 +87,7 @@ export default class Controls {
     this.closeTool();
   }
 
-  closeTool() {
+  closeTool() { 
     this.domHandler.clearToolsContainer();
     this.domHandler.resetLeftSidebarMenu();
   }
@@ -126,7 +129,14 @@ export default class Controls {
   }
 
   showImageInfo() {
-    this.infoService.showImageInfo()
+    this.infoService.showImageInfo();
+  }
 
+  verticalFlip() {
+   this.toolsManager.verticalFlip();
+  }
+
+  horizontalFlip() {
+    this.toolsManager.horizontalFlip();
   }
 }

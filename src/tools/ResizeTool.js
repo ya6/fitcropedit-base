@@ -27,7 +27,7 @@ export default class ResizeTool {
       <div class="flex my-3">
         <label>W:</label>
         <input class="rounded-sub-input" data-action="resize-width-input" type="text" placeholder="width">
-        <label class="ms-1">H:</label>
+        <label class="fc-ms-1">H:</label>
         <input class="rounded-sub-input" data-action="resize-height-input" type="text" placeholder="height">
         <span> px</span>
       </div>
@@ -45,7 +45,7 @@ export default class ResizeTool {
       Apply
       </button>
   
-      <button type="button" class="control-button ms-1" data-action="tools-resize-cancel-button">
+      <button type="button" class="control-button fc-ms-1" data-action="tools-resize-cancel-button">
         <div class="custom-icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
           <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>

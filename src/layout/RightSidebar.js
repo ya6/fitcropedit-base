@@ -33,7 +33,7 @@ export default class RightSidebar {
     const controls = `
 <div>
   <div class="sub-title text-center">Output Format: 
-    <span id = "${this.appState.selectors.rightSidebarOutpitFormatSelector}" class="ms-1 bold"></span>
+    <span id = "${this.appState.selectors.rightSidebarOutpitFormatSelector}" class="fc-ms-1 bold"></span>
   </div>
     <div id=${this.appState.selectors.rightSidebarFormatContainerSelector} class="flex">
       <button class="button-with-icon" type="button"  data-action="set-output-format-png" data-format="png">  

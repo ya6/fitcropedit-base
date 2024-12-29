@@ -100,16 +100,16 @@
   margin-left: 0.25rem;
 }
 
-.ms-1 {
-  margin-left: 0.5rem;
+.fc-ms-1 {
+  margin-left: 0.5rem !important;
 }
 
-.ms-2 {
-  margin-left: 1rem;
+.fc-ms-2 {
+  margin-left: 1rem !important;
 }
 
-.ms-3 {
-  margin-left: 1.5rem !important;;
+.fc-ms-3 {
+  margin-left: 1.5rem !important;
 }
 
 .ms-4 {

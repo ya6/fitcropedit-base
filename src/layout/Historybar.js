@@ -69,7 +69,7 @@ export default class Historybar {
       </div>
 
      <div class="fc-historybar-buttons">
-      <div class="control-button ms-2" data-action="reset-image">
+      <div class="control-button fc-ms-2" data-action="reset-image">
           <div class="custom-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" viewBox="0 0 9.99 4.51">
               <path fill-rule="evenodd" d="m4.35 0-3.91 2.25 3.91 2.25v-1.97h5.36c0.15 0 0.28-0.13 0.28-0.28s-0.13-0.28-0.28-0.28h-5.36v-1.97zm-4.35 4.33v-4.15c0-0.09 0.08-0.17 0.17-0.17s0.17 0.08 0.17 0.17v4.15c0 0.09-0.08 0.17-0.17 0.17s-0.17-0.08-0.17-0.17z"/>

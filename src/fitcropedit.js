@@ -24,6 +24,7 @@ import ProgressbarService from "./services/progressbarService";
 import CloseIconButton from "./layout/elements/CloseIconButton";
 import ImageAnalyzer from './services/ImageAnalyzer';
 import InfoService from './services/InfoService';
+import MirrorTool from './tools/MirrorTool';
 
 if (!window.document) {
   throw new Error("Ficropedit requires a window with a document");
@@ -75,8 +76,8 @@ function bootstrap(params) {
     transformCanvas,
     progressbarService
   );
-
-  const toolsManager = new ToolsManager(stateService, domHandler, closeIconButton, resizeTool);
+  const mirrorTool = new MirrorTool(originImage, transformCanvas, history, progressbarService)
+  const toolsManager = new ToolsManager(stateService, domHandler, closeIconButton, resizeTool, mirrorTool);
 
   const imageLoader = new ImageLoader(
     stateService,
