@@ -1,8 +1,9 @@
 export default class OriginImage {
   baseImage;
   initialImage;
+  secondImage;
 
-  params = { width: 0, height: 0, scale: 1, xCenter: 0, yCenter: 0, dWidth: 0, dHeight: 0, format: "?" };
+  params = { width: 0, height: 0, scale: 1, xCenter: 0, yCenter: 0, dWidth: 0, dHeight: 0, format: "" };
 
   constructor(stateService, mainCanvas, meshCanvas) {
     this.stateService = stateService;
@@ -11,11 +12,13 @@ export default class OriginImage {
     this.meshCanvas = meshCanvas;
     this.baseImage = new Image();
     this.initialImage = new Image();
+    this.secondImage = new Image();
   }
 
   closeOriginImage() {
     this.baseImage.src = "";
     this.initialImage.src = "";
+    this.secondImage.src = "";
 
     this.appState.data.baseImage.isLoaded = false;
     this.resetParams();

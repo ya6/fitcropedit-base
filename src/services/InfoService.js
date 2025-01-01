@@ -11,7 +11,7 @@ export default class InfoService {
 		 <h3 class="no-mp">Parameters</h3> 
      	 <div>File: <span data-target="ingo-file">${baseImage.fullName}</span></div>
      	 <div>Size: <span data-target="info-size">${baseImage.size} b</span></div>
-     	 <div>Dimentions: <span data-target="info-dimentions">${baseImage.width}x${baseImage.height}</span></div>
+     	 <div>Resolution: <span data-target="info-dimentions">${baseImage.width}x${baseImage.height}</span></div>
      	 <div>Points: <span data-target="info-points">${baseImage.width * baseImage.width}</span></div>
      	 <div>Alpha 0: <span data-target="info-alpha0">${baseImage.alpha0}</span></div>
      	 <div>Color: <span data-target="info-color">${baseImage.color}</span></div>

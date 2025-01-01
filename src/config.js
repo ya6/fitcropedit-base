@@ -32,8 +32,10 @@ export const initParams = {
     topbarWidthSelector: "fc-topbar-width",
     topbarHeightSelector: "fc-topbar-height",
     topbarFormatSelector: "fc-topbar-format",
+    topbarAngleSelector: "fc-topbar-angle",
+    
     progressbarSelector: "fc-progressbar",
-
+    
     rightSidebarFormatContainerSelector: "fc-rightsidebar-format-container",
     rightSidebarOutpitFormatSelector: "fc-rightsidebar-outpit-format-element",
     rightSidebarToolsContainerSelector: "fc-rightsidebar-tools-container",
@@ -53,6 +55,8 @@ export const initParams = {
     topbarWidthElement: null,
     topbarWidthElement: null,
     topbarFormatElement: null,
+    topbarAngleElement: null,
+
     progressbarElement: null,
 
     rightSidebarFormatContainerElement: null,

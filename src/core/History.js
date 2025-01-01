@@ -41,6 +41,10 @@ export default class History {
     this.updateHistoryUI();
   }
 
+  last() {
+    return this.project.history.at(-1);
+  }
+
   clearHistory() {
     this.project.history = [];
     this.updateHistoryUI();

@@ -1,10 +1,11 @@
 export default class ToolsManager {
-  constructor(stateService, domHandler, closeIconButton, resizeTool, mirrorTool) {
+  constructor(stateService, domHandler, closeIconButton, resizeTool, mirrorTool, rotateTool) {
     this.appState = stateService.state;
     this.domHandler = domHandler;
     this.closeIconButton = closeIconButton;
     this.resizeTool = resizeTool;
     this.mirrorTool = mirrorTool;
+    this.rotateTool = rotateTool;
   }
 
   manage(buttonElement, options, toolName) {
@@ -59,5 +60,13 @@ export default class ToolsManager {
   
 	verticalFlip() {
   this.mirrorTool.verticalFlip();
+  }
+
+  rotateLeft() {
+    this.rotateTool.rotateLeft();
+  }
+
+  rotateRight() {
+    this.rotateTool.rotateRight();
   }
 }

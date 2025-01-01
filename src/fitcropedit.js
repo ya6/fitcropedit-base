@@ -25,6 +25,7 @@ import CloseIconButton from "./layout/elements/CloseIconButton";
 import ImageAnalyzer from './services/ImageAnalyzer';
 import InfoService from './services/InfoService';
 import MirrorTool from './tools/MirrorTool';
+import RotateTool from './tools/RotateTool';
 
 if (!window.document) {
   throw new Error("Ficropedit requires a window with a document");
@@ -41,7 +42,7 @@ function bootstrap(params) {
   const deviceService = new DeviceService(stateService);
   //elements
   const closeIconButton = new CloseIconButton();
-  
+
   //templates
   const historybar = new Historybar(stateService, history);
   const appbar = new Appbar(stateService, domHandler);
@@ -51,18 +52,18 @@ function bootstrap(params) {
   const rightSidebar = new Rightsidebar(stateService, domHandler);
   const template = new Template(stateService, deviceService, mainCanvas, domHandler);
   //
-  
+
   const progressbarService = new ProgressbarService(stateService);
-  
+
   const transformCanvas = new TransformCanvas();
   const meshCanvas = new MeshCanvas(stateService, mainCanvas);
-  
-  
-  
+
+
+
   const notificationService = new NotificationService(stateService, domHandler);
-  
+
   const originImage = new OriginImage(stateService, mainCanvas, meshCanvas);
-  
+
   const imageAnalyzer = new ImageAnalyzer(stateService, originImage, transformCanvas);
   const infoService = new InfoService(stateService, domHandler, closeIconButton);
 
@@ -76,8 +77,9 @@ function bootstrap(params) {
     transformCanvas,
     progressbarService
   );
-  const mirrorTool = new MirrorTool(originImage, transformCanvas, history, progressbarService)
-  const toolsManager = new ToolsManager(stateService, domHandler, closeIconButton, resizeTool, mirrorTool);
+  const mirrorTool = new MirrorTool(originImage, transformCanvas, history, progressbarService);
+  const rotateTool = new RotateTool(stateService, originImage, transformCanvas, domHandler, history, progressbarService)
+  const toolsManager = new ToolsManager(stateService, domHandler, closeIconButton, resizeTool, mirrorTool, rotateTool);
 
   const imageLoader = new ImageLoader(
     stateService,

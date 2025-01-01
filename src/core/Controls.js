@@ -14,6 +14,8 @@ export default class Controls {
       "show-image-info": () => { this.showImageInfo() },
       "vertical-flip": () => { this.verticalFlip() },
       "horizontal-flip": () => { this.horizontalFlip() },
+      "rotate-left": () => { this.rotateLeft() },
+      "rotate-right": () => { this.rotateRight() },
     },
     leftsidebar: (targetElement, options, action) => { this.toolsManager.manage(targetElement, options, action); },
   };
@@ -72,6 +74,7 @@ export default class Controls {
       }
 
       if (action && this.appState.data.baseImage.width > 0) {
+      // if (action) {
         this.perform.image[action] && this.perform.image[action]();
 
         if (role === "leftsidebar-button") {
@@ -85,6 +88,7 @@ export default class Controls {
     this.history.resetToLoadImage();
     this.originImage.restoreOriginImage();
     this.closeTool();
+    this.domHandler.setAngle(0);
   }
 
   closeTool() { 
@@ -111,17 +115,20 @@ export default class Controls {
     this.originImage.closeOriginImage();
 
     this.stateService.clearBaseImageData();
-
+    
+    //
     this.domHandler.diplayDimentionInUI();
     this.domHandler.displayOutputFormatUI();
     this.domHandler.displayExtentionUI();
     this.domHandler.clearToolsContainer();
     this.domHandler.resetLeftSidebarMenu();
+    this.domHandler.setAngle(0);
 
+    this.history.resetHistory();
+    
     this.mainCanvas.clear();
     this.mainCanvas.drawPromo();
 
-    this.history.resetHistory();
   }
 
   saveImage() {
@@ -138,5 +145,15 @@ export default class Controls {
 
   horizontalFlip() {
     this.toolsManager.horizontalFlip();
+  }
+
+  rotateLeft() {
+    // console.log('rotateLeft');
+    this.toolsManager.rotateLeft();
+  }
+
+  rotateRight() {
+    // console.log('rotateRight');
+    this.toolsManager.rotateRight();
   }
 }

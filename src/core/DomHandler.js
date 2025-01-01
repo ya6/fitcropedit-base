@@ -82,6 +82,10 @@ export default class DomHandler {
     element.value = value;
   }
 
+  setAngle(angle) {
+    this.setInputValue(this.appState.elements.topbarAngleElement, angle);
+  }
+
   toggleActiveClass(element, className = "fc-active") {
     element.classList.toggle(className);
     return element.classList.contains(className);

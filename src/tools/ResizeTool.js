@@ -20,6 +20,17 @@ export default class ResizeTool {
   }
 
   template() {
+
+const isUseOrigin =`
+<div>
+Use Source Image
+<input type="checkbox" checked disabled>
+</div>
+`;
+
+  
+
+
     const size = `
     <div data-action="resize-panel">
       <div class="sub-title">Size
@@ -59,6 +70,7 @@ export default class ResizeTool {
     return `
 	 <h3 class="no-mp">Resize</h3>
     ${size}
+    ${isUseOrigin}
     ${applyButtons}
 	</div>
 	`;
