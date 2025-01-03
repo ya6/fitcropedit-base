@@ -1,10 +1,10 @@
 /* ----------Flex---------- */
 
-.flex {
+.fc-flex {
   display: flex;
 }
 
-.align-center {
+.fc-align-center {
   align-items: center;
 }
 
@@ -120,8 +120,12 @@
   margin-left: 2.5rem;
 }
 
-.me-1 {
-  margin-right: 0.5rem;
+.fc-me-05 {
+  margin-right: 0.25rem !important;
+}
+
+.fc-me-1 {
+  margin-right: 0.5rem !important;
 }
 
 .no-mp {

@@ -45,7 +45,7 @@
 
 /* ----------Icons---------- */
 
-.custom-icon {
+.fc-custom-icon {
   width: 1rem;
   height: 1rem;
   pointer-events: none;
@@ -79,7 +79,7 @@
 
 
 
-.fc-button {
+.fc-sq-button {
   box-sizing: border-box;
   width: 1.7rem;
   height: 1.7rem;
@@ -94,7 +94,7 @@
   border: 1px solid #ccc;
 }
 
-.fc-button:hover {
+.fc-sq-button:hover {
   background: #cccccc;
 }
 
