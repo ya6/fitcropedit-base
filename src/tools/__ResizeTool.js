@@ -20,6 +20,17 @@ export default class ResizeTool {
   }
 
   template() {
+
+const isUseOrigin =`
+<div>
+Use Source Image
+<input type="checkbox" checked disabled>
+</div>
+`;
+
+  
+
+
     const size = `
     <div data-action="resize-panel">
       <div class="sub-title">Size
@@ -59,6 +70,7 @@ export default class ResizeTool {
     return `
 	 <h3 class="no-mp">Resize</h3>
     ${size}
+    ${isUseOrigin}
     ${applyButtons}
 	</div>
 	`;
@@ -96,18 +108,13 @@ export default class ResizeTool {
     });
 
     cancelButtonElement.addEventListener("click", async () => {
-
-      if (this.history.last().action !== 'resize') {
-        return
-      }
-
-      const result = await this.progressbarService.run(this.resetToPrevious.bind(this));
+      const result = await this.progressbarService.run(this.resetToOrigin.bind(this));
       if (result) {
         this.history.add({
           title: "Resize: Restored",
           imageSrc: null,
           imageData: null, // ? stored in originImage
-          action: "resize restored",
+          action: "resize",
         });
       }
     });
@@ -124,37 +131,6 @@ export default class ResizeTool {
     if (this.newWidth === width && this.newHeight === height) {
       return null;
     }
-    // need resert  secondImage!!!
-    this.originImage.secondImage.src = this.originImage.baseImage.src
-
-    this.transformCanvas.canvas.width = this.newWidth;
-    this.transformCanvas.canvas.height = this.newHeight;
-
-    this.transformCanvas.ctx.drawImage(this.originImage.baseImage, 0, 0, this.newWidth, this.newHeight);
-
-    this.originImage.baseImage.src = this.transformCanvas.canvas.toDataURL();
-    this.transformCanvas.clear();
-
-    // collect params
-    this.originImage.collectParams();
-    //save to state
-    this.stateService.saveBaseImageParams({ width: this.newWidth, height: this.newHeight });
-    return { width: this.newWidth, height: this.newHeight };
-  };
-
-  __applyResize = () => {
-    const { width, height } = this.appState.data.baseImage;
-    this.newWidth = Number(this.inputWidthElement.value);
-    this.newHeight = Number(this.inputHeightElement.value);
-    if (!this.newWidth || !this.newHeight) {
-      this.resetSize();
-      return null;
-    }
-    if (this.newWidth === width && this.newHeight === height) {
-      return null;
-    }
-    // need resert  secondImage!!!
-    this.originImage.secondImage.src = this.originImage.baseImage.src
 
     this.transformCanvas.canvas.width = this.newWidth;
     this.transformCanvas.canvas.height = this.newHeight;
@@ -171,24 +147,8 @@ export default class ResizeTool {
     return { width: this.newWidth, height: this.newHeight };
   };
 
-  resetToPrevious = () => {
-
-    const { width, height } = this.originImage.secondImage;
-    this.newWidth = Number(this.inputWidthElement.value);
-    this.newHeight = Number(this.inputHeightElement.value);
-
-    if (this.newWidth === width && this.newHeight === height) {
-      return null;
-    }
-
-    this.originImage.restorePreviosImage();
-
-    this.domHandler.setInputValue(this.inputWidthElement, width);
-    this.domHandler.setInputValue(this.inputHeightElement, height);
-    return { width, height };
-  };
-
-  __resetToOrigin = () => {
+  resetToOrigin = () => {
+    // Perhaps reset to the previous size???
     const { width, height } = this.originImage.initialImage;
     this.newWidth = Number(this.inputWidthElement.value);
     this.newHeight = Number(this.inputHeightElement.value);
@@ -205,15 +165,15 @@ export default class ResizeTool {
   };
 
   resetSize = () => {
-    const { width, height } = this.originImage.baseImage;
+    const { width, height } = this.originImage.initialImage;
     this.newWidth = width;
     this.newHeight = height;
     this.domHandler.setInputValue(this.inputWidthElement, width);
     this.domHandler.setInputValue(this.inputHeightElement, height);
   };
 
-  __resetToOriginSize = () => {
-    const { width, height } = this.appState.data.originImage;
+  resetToOriginSize = () => {
+    const { width, height } = this.appState.data.baseImage;
     this.newWidth = width;
     this.newHeight = height;
     this.domHandler.setInputValue(this.inputWidthElement, width);

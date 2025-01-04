@@ -11,26 +11,27 @@ export default class RotateTool {
 	}
 
 	getAngle() {
+
 		const angle = this.appState.elements.topbarAngleElement.value
 		let angleNum = Math.abs(Number(angle));
 		if (isNaN(angleNum)) {
 			return this.angle;
 		}
+		console.log('1-->', angleNum);
 		while (angleNum > 90) {
 			angleNum -= 90;
 		}
+		console.log('2-->', angleNum);
+
 		return angleNum;
 	}
 
 	async rotateLeft() {
-		if (this.history.last().action !== 'rotated') {
-			this.originImage.secondImage.src = this.originImage.baseImage.src;
-		}
-
+		
 		await this.progressbarService.run(this._rotateLeft.bind(this));
-
+		
 		this.setAngleUI();
-
+		
 		this.history.add({
 			title: `Rotated ${this.angle} deg`,
 			imageSrc: null,
@@ -40,12 +41,9 @@ export default class RotateTool {
 	}
 
 	async rotateRight() {
-		if (this.history.last().action !== 'rotated') {
-			this.originImage.secondImage.src = this.originImage.baseImage.src;
-		}
-
+		
 		await this.progressbarService.run(this._rotateRight.bind(this));
-
+		
 		this.setAngleUI();
 
 		this.history.add({
@@ -58,11 +56,12 @@ export default class RotateTool {
 
 	_rotateLeft() {
 		this.angle = -this.getAngle();
-	
+		console.log('', this.angle);
+
 		if (this.angle === -90) {
 			this.rotateLeft90();
 		} else {
-			this.basisRotate();
+			this.basisRotate(this.angle);
 		}
 	}
 
@@ -76,8 +75,13 @@ export default class RotateTool {
 		}
 	}
 
-	basisRotate() {
-		const angleRad = (this.angle * Math.PI) / 180;
+	basisRotate(angleDeg) {
+		if (this.history.last().action !== 'rotated') {
+			this.originImage.secondImage.src = this.originImage.baseImage.src;
+		}
+
+
+		const angleRad = (angleDeg * Math.PI) / 180;
 
 		this.setBiggerSize(angleRad);
 
@@ -94,8 +98,8 @@ export default class RotateTool {
 		);
 
 		this.originImage.baseImage.src = this.transformCanvas.canvas.toDataURL();
-		this.transformCanvas.canvas.width = 0
 
+		this.transformCanvas.ctx.reset();
 	}
 
 	rotateLeft90() {
@@ -103,9 +107,8 @@ export default class RotateTool {
 		this.transformCanvas.ctx.translate(this.transformCanvas.canvas.width / 2, this.transformCanvas.canvas.height / 2);
 		this.transformCanvas.ctx.rotate((-1 * Math.PI) / 2);
 
-		this.transformCanvas.ctx.drawImage(this.originImage.secondImage, (-1 * this.originImage.secondImage.width) / 2, (-1 * this.originImage.secondImage.height) / 2);
+		this.transformCanvas.ctx.drawImage(this.originImage.baseImage, (-1 * this.originImage.baseImage.width) / 2, (-1 * this.originImage.baseImage.height) / 2);
 		this.originImage.baseImage.src = this.transformCanvas.canvas.toDataURL();
-		this.transformCanvas.canvas.width = this.transformCanvas.canvas.width;
 	}
 
 	rotateRight90() {
@@ -113,14 +116,13 @@ export default class RotateTool {
 		this.transformCanvas.ctx.translate(this.transformCanvas.canvas.width / 2, this.transformCanvas.canvas.height / 2);
 		this.transformCanvas.ctx.rotate((1 * Math.PI) / 2);
 
-		this.transformCanvas.ctx.drawImage(this.originImage.secondImage, (-1 * this.originImage.secondImage.width) / 2, (-1 * this.originImage.secondImage.height) / 2);
+		this.transformCanvas.ctx.drawImage(this.originImage.baseImage, (-1 * this.originImage.baseImage.width) / 2, (-1 * this.originImage.baseImage.height) / 2);
 		this.originImage.baseImage.src = this.transformCanvas.canvas.toDataURL();
-		this.transformCanvas.canvas.width = this.transformCanvas.canvas.width;
 	}
 
 	setTransformSize() {
-		this.transformCanvas.canvas.width = this.originImage.secondImage.height;
-		this.transformCanvas.canvas.height = this.originImage.secondImage.width;
+		this.transformCanvas.canvas.width = this.originImage.baseImage.height;
+		this.transformCanvas.canvas.height = this.originImage.baseImage.width;
 	}
 
 	setBiggerSize(angle) {
@@ -136,9 +138,9 @@ export default class RotateTool {
 		this.domHandler.setAngle(this.angle);
 	}
 
-	// resetRotateData() {
-	// 	this.originImage.secondImage.src = "";
-	// 	this.setAngleUI(0);
-	// }
+	resetRotateData() {
+		this.originImage.secondImage = new Image();
+		this.setAngleUI(0);
+	}
 
 }

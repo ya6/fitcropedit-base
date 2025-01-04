@@ -28,6 +28,10 @@ export default class OriginImage {
     this.baseImage.src = this.initialImage.src;
   }
 
+  resetToPrevious() {
+    this.baseImage.src = this.secondImage.src;
+  }
+
   restoreOriginImage() {
     this.resetToOrigin();
 
@@ -38,6 +42,20 @@ export default class OriginImage {
       height: this.initialImage.height,
     });
   }
+
+
+  restorePreviosImage() {
+    this.resetToPrevious();
+
+    this.collectParams();
+
+    this.stateService.saveBaseImageParams({
+      width: this.baseImage.width,
+      height: this.baseImage.height,
+    });
+    this.secondImage.src = '';
+  }
+
 
   drawImage() {
     const { dx, dy, dWidth, dHeight } = this.params;
