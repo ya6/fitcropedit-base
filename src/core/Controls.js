@@ -10,7 +10,7 @@ export default class Controls {
       "close-image": () => { this.closeImage(); },
       "reset-image": () => { this.progressbarService.run(this.restoreOriginImage.bind(this)); },
       "close-tool": () => { this.closeTool(); },
-      "leftsidebar-submenu-toggle": () => { this.appState.elements.leftsidebarSubmenuElement.classList.toggle("open"); }, // ) breaks solid: hi + low
+      "leftsidebar-submenu-toggle": () => { this.toggleSubMenu() },
       "show-image-info": () => { this.showImageInfo() },
       "vertical-flip": () => { this.verticalFlip() },
       "horizontal-flip": () => { this.horizontalFlip() },
@@ -74,7 +74,7 @@ export default class Controls {
       }
 
       if (action && this.appState.data.baseImage.width > 0) {
-        // if (action) {
+      // if (action) {
         this.perform.image[action] && this.perform.image[action]();
 
         if (role === "leftsidebar-button") {
@@ -157,5 +157,10 @@ export default class Controls {
   rotateRight() {
     this.toolsManager.rotateRight();
     this.closeTool();
+  }
+
+  toggleSubMenu() {
+    let controlClassName = this.appState.device.isSmall ? "open-down" : 'open-left'; 
+    this.appState.elements.leftsidebarSubmenuElement.classList.toggle(controlClassName);
   }
 }

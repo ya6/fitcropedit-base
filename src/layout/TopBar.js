@@ -24,16 +24,17 @@ export default class Topbar {
   <div  id="${this.appState.selectors.progressbarSelector}">
   </div>
   <div class="fc-topbar-box">
-		<div class="mx-1">Image</div>
-		<div>W:</div>
-		<div id="${this.appState.selectors.topbarWidthSelector}">0</div>
-		<div class="fc-ms-1">H:</div>
-		<div id="${this.appState.selectors.topbarHeightSelector}">0</div>	
-		<div class="fc-ms-1">F:</div>
-		<div id="${this.appState.selectors.topbarFormatSelector}"></div>
-
+  	<div class="fc-flex fc-align-center">
+	  <div class="mx-1">Image</div>
+	  <div>W:</div>
+	  <div id="${this.appState.selectors.topbarWidthSelector}">0</div>
+	  <div class="fc-ms-1">H:</div>
+	  <div id="${this.appState.selectors.topbarHeightSelector}">0</div>	
+	  <div class="fc-ms-1">F:</div>
+	  <div id="${this.appState.selectors.topbarFormatSelector}"></div>
+	</div>
+	  
     <!--Flip -->
-    
     <div class="fc-sq-button fc-ms-3" data-action="horizontal-flip">
     <div class="fc-custom-icon">
     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-symmetry-vertical" viewBox="0 0 16 16">
@@ -51,7 +52,7 @@ export default class Topbar {
 		</div>
     
     <!--Rotate -->
-
+ 	<div class="fc-topbar-box">
     	<div class="fc-sq-button fc-ms-1" data-action="rotate-left">
 			<div class="fc-custom-icon">
 				<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
@@ -60,23 +61,22 @@ export default class Topbar {
 			</svg>
 			</div>
 		</div>
-		
+
+		<div class="">
+			<input type="text" id="${this.appState.selectors.topbarAngleSelector}" class="fc-rounded-input-type-2" value="0">
+		</div>
+
 		<div class="fc-sq-button" data-action="rotate-right">
 			<div class="fc-custom-icon">
-			<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"  viewBox="0 0 16 16">
-			<path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
-			<path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
-			</svg>
+				<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"  viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
+					<path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
+				</svg>
 			</div>
 		</div>
 		
-		<div class="fc-flex fc-ms-05">
-		<input type="text" id="${this.appState.selectors.topbarAngleSelector}" class="fc-left-rounded-input" value="0">
-		<div class="fc-right-rounded-postfix" >
-			deg
-		</div>
-		</div>
-    
+    </div>
+
      <button class="button-with-icon fc-ms-3" type="button"  data-action="show-image-info">  
         <div class="button-text">Info</div>  
       </button>

@@ -6,6 +6,7 @@ export const initParams = {
     width: 0,
     height: 0,
     mobileBP: 768,
+    isSmall: false,
   },
 
   rootSelector: "fitcropedit",

@@ -13,13 +13,14 @@ export default class ToolsManager {
     this.domHandler.resetLeftSidebarMenu();
 
     const isActive = this.domHandler.toggleActiveClass(buttonElement);
-
+    // todo check for layout vertical or horizontal
     if (options) {
       switch (options) {
         case "has-submenu":
           const submenu = this.appState.elements.leftsidebarSubmenuElement;
-          if (!submenu.classList.contains("open")) {
-            submenu.classList.add("open");
+          if (!submenu.classList.contains("open-left") && !submenu.classList.contains("open-down")) {
+            let controlClassName = this.appState.device.isSmall ? "open-down" : 'open-left';
+            submenu.classList.add(controlClassName);
           }
 
           break;
@@ -55,11 +56,11 @@ export default class ToolsManager {
   }
 
   horizontalFlip() {
-	 this.mirrorTool.horizontalFlip();
-	}
-  
-	verticalFlip() {
-  this.mirrorTool.verticalFlip();
+    this.mirrorTool.horizontalFlip();
+  }
+
+  verticalFlip() {
+    this.mirrorTool.verticalFlip();
   }
 
   rotateLeft() {

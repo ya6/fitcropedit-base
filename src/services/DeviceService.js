@@ -1,5 +1,5 @@
 export default class DeviceService {
-  deviceData = { type: undefined, width: undefined, height: undefined };
+  deviceData = { type: undefined, width: undefined, height: undefined, isSmall: false };
   constructor(stateService) {
     this.appState = stateService.state;
 
@@ -15,6 +15,11 @@ export default class DeviceService {
     this.deviceData.type = this.getDeviceType();
     this.deviceData.width = window?.innerWidth;
     this.deviceData.height = window?.innerHeight;
+    if (this.deviceData.width <= this.appState.device.mobileBP) {
+      this.deviceData.isSmall = true;
+    } else {
+      this.deviceData.isSmall = false;
+    }
   }
 
   getDeviceType() {

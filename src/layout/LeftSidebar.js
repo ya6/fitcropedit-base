@@ -18,12 +18,13 @@ export default class LeftSidebar {
   }
 
   dispatch() {
-    this.leftSidebarElement.addEventListener("click", (e) => {});
+    this.leftSidebarElement.addEventListener("click", (e) => { });
   }
 
   createTemplate() {
     this.leftSidebarElement = document.createElement("div");
     this.leftSidebarElement.setAttribute("id", this.appState.leftSidebarSelector);
+    this.leftSidebarElement.setAttribute("class", "fc-left-sidebar-container");
     this.domHandler.injectString(this.leftSidebarElement, this.innerTemplate());
   }
 
@@ -130,7 +131,7 @@ export default class LeftSidebar {
   `;
 
     const sidebarTemplate = `
-    <div id=${this.appState.selectors.leftsidebarMenuSelector}>
+    <div id=${this.appState.selectors.leftsidebarMenuSelector} class="fc-left-sidebar-menu-container">
       ${cropButton}
       ${zoomButton}
       ${handButton}

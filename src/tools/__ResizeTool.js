@@ -37,9 +37,9 @@ Use Source Image
       </div>
       <div class="fc-flex my-3">
         <label>W:</label>
-        <input class="rounded-sub-input" data-action="resize-width-input" type="text" placeholder="width">
+        <input class="fc-rounded-sub-input" data-action="resize-width-input" type="text" placeholder="width">
         <label class="fc-ms-1">H:</label>
-        <input class="rounded-sub-input" data-action="resize-height-input" type="text" placeholder="height">
+        <input class="fc-rounded-sub-input" data-action="resize-height-input" type="text" placeholder="height">
         <span> px</span>
       </div>
     </div>
