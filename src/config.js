@@ -34,6 +34,7 @@ export const initParams = {
     topbarHeightSelector: "fc-topbar-height",
     topbarFormatSelector: "fc-topbar-format",
     topbarAngleSelector: "fc-topbar-angle",
+    topbarZoomSelector: "fc-topbar-zoom",
     
     progressbarSelector: "fc-progressbar",
     
@@ -57,6 +58,7 @@ export const initParams = {
     topbarWidthElement: null,
     topbarFormatElement: null,
     topbarAngleElement: null,
+    topbarZoomElement: null,
 
     progressbarElement: null,
 

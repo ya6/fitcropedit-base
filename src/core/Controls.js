@@ -11,11 +11,13 @@ export default class Controls {
       "reset-image": () => { this.progressbarService.run(this.restoreOriginImage.bind(this)); },
       "close-tool": () => { this.closeTool(); },
       "leftsidebar-submenu-toggle": () => { this.toggleSubMenu() },
-      "show-image-info": () => { this.showImageInfo() },
       "vertical-flip": () => { this.verticalFlip() },
       "horizontal-flip": () => { this.horizontalFlip() },
       "rotate-left": () => { this.rotateLeft() },
       "rotate-right": () => { this.rotateRight() },
+      "zoom-in": () => { this.zoomIn() },
+      "zoom-out": () => { this.zoomOut() },
+      "show-image-info": () => { this.showImageInfo() },
     },
     leftsidebar: (targetElement, options, action) => { this.toolsManager.manage(targetElement, options, action); },
   };
@@ -74,7 +76,7 @@ export default class Controls {
       }
 
       if (action && this.appState.data.baseImage.width > 0) {
-      // if (action) {
+        // if (action) {
         this.perform.image[action] && this.perform.image[action]();
 
         if (role === "leftsidebar-button") {
@@ -119,6 +121,7 @@ export default class Controls {
     //
     this.domHandler.diplayDimentionInUI();
     this.domHandler.displayOutputFormatUI();
+    this.domHandler.displayZoomUI(1);
     this.domHandler.displayExtentionUI();
     this.domHandler.clearToolsContainer();
     this.domHandler.resetLeftSidebarMenu();
@@ -160,7 +163,15 @@ export default class Controls {
   }
 
   toggleSubMenu() {
-    let controlClassName = this.appState.device.isSmall ? "open-down" : 'open-left'; 
+    let controlClassName = this.appState.device.isSmall ? "open-down" : 'open-left';
     this.appState.elements.leftsidebarSubmenuElement.classList.toggle(controlClassName);
+  }
+
+  zoomIn() {
+    this.toolsManager.zoomIn();
+  }
+
+  zoomOut() {
+    this.toolsManager.zoomOut();
   }
 }

@@ -35,6 +35,12 @@ export default class DomHandler {
     this.appState.elements.topbarHeightElement.innerText = height;
     this.appState.elements.topbarFormatElement.innerText = format;
   }
+
+
+  displayZoomUI(zoom) {
+    this.appState.elements.topbarZoomElement.textContent = zoom
+  }
+
   // appbar <-
 
   // rightSidebar ->
@@ -90,6 +96,10 @@ export default class DomHandler {
     element.classList.toggle(className);
     return element.classList.contains(className);
   }
+
+
+
+
 
   isIterable(pretender) {
     return typeof pretender[Symbol.iterator] === "function";

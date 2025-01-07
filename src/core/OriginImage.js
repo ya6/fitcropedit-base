@@ -3,7 +3,7 @@ export default class OriginImage {
   initialImage;
   secondImage;
 
-  params = { width: 0, height: 0, scale: 1, xCenter: 0, yCenter: 0, dWidth: 0, dHeight: 0, format: "" };
+  params = { width: 0, height: 0, scale: 1, zoom: 1, xCenter: 0, yCenter: 0, dWidth: 0, dHeight: 0, format: "" };
 
   constructor(stateService, mainCanvas, meshCanvas) {
     this.stateService = stateService;
@@ -63,9 +63,9 @@ export default class OriginImage {
     this.meshCanvas.drawMesh();
 
     this.mainCanvas.ctx.strokeStyle = "gray";
-    this.mainCanvas.ctx.strokeRect(dx, dy, dWidth, dHeight);
+    this.mainCanvas.ctx.strokeRect(dx, dy, dWidth * this.params.zoom, dHeight * this.params.zoom);
 
-    this.mainCanvas.ctx.drawImage(this.baseImage, dx, dy, dWidth, dHeight);
+    this.mainCanvas.ctx.drawImage(this.baseImage, dx, dy, dWidth * this.params.zoom, dHeight * this.params.zoom);
   }
 
   collectParams() {
@@ -95,14 +95,19 @@ export default class OriginImage {
   }
 
   calcInitCoords() {
-    this.params.dx = this.mainCanvas.params.xCenter - this.params.dWidth / 2;
-    this.params.dy = this.mainCanvas.params.yCenter - this.params.dHeight / 2;
+    this.params.dx = this.mainCanvas.params.xCenter - (this.params.dWidth / 2) * this.params.zoom;
+    this.params.dy = this.mainCanvas.params.yCenter - (this.params.dHeight / 2) * this.params.zoom;
   }
   // refactor, move to utils
   resetParams() {
     for (let key in this.params) {
       if (typeof this.params[key] === "number") {
-        this.params[key] = 0;
+        if (key === "zoom") {
+          this.params.zoom = 1;
+        } else {
+          this.params[key] = 0;
+        }
+
       } else if (typeof this.params[key] === "boolean") {
         this.params[key] = false;
       } else {

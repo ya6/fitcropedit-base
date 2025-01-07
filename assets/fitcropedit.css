@@ -132,7 +132,7 @@
   background: #cccccc;
 }
 
-.small-button {
+/* .small-button {
   border-radius: 0.25rem;
   margin: 0.2rem;
   padding: 0.2rem 0.4rem;
@@ -142,14 +142,14 @@
   background-color: #fff;
   cursor: pointer;
   transition: background-color 0.38s;
-}
+} */
 
 /* ----------Rounded box---------- */
 
-.rounded-box {
+.fc-rounded-box {
   border-radius: 0.15rem;
   border: 1px solid #ccc;
-  padding: 0.1rem 0.2rem;
+  padding: 0.2rem 0.2rem;
   color: #616161;
   min-width: 2rem;
   text-align: center;
@@ -172,7 +172,7 @@
   border-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
   border: 1px solid #ccc;
-  padding: 0.25rem 0.6rem 0.35rem;
+  padding: 0.3rem 0.6rem 0.35rem;
   color: #616161;
   text-align: center;
 }

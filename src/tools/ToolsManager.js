@@ -1,11 +1,12 @@
 export default class ToolsManager {
-  constructor(stateService, domHandler, closeIconButton, resizeTool, mirrorTool, rotateTool) {
+  constructor(stateService, domHandler, closeIconButton, resizeTool, mirrorTool, rotateTool, zoomTool) {
     this.appState = stateService.state;
     this.domHandler = domHandler;
     this.closeIconButton = closeIconButton;
     this.resizeTool = resizeTool;
     this.mirrorTool = mirrorTool;
     this.rotateTool = rotateTool;
+    this.zoomTool = zoomTool;
   }
 
   manage(buttonElement, options, toolName) {
@@ -69,5 +70,13 @@ export default class ToolsManager {
 
   rotateRight() {
     this.rotateTool.rotateRight();
+  }
+
+  zoomIn() { 
+    this.zoomTool.zoomIn();
+  }
+
+  zoomOut() {
+    this.zoomTool.zoomOut();
   }
 }
