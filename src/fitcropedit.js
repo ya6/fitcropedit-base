@@ -81,7 +81,7 @@ function bootstrap(params) {
   const mirrorTool = new MirrorTool(originImage, transformCanvas, history, progressbarService);
   const rotateTool = new RotateTool(stateService, originImage, transformCanvas, domHandler, history, progressbarService)
   const zoomTool = new ZoomTool(originImage, domHandler);
-  const toolsManager = new ToolsManager(stateService, domHandler, closeIconButton, resizeTool, mirrorTool, rotateTool, zoomTool);
+  const toolsManager = new ToolsManager(stateService, domHandler, notificationService, closeIconButton, resizeTool, mirrorTool, rotateTool, zoomTool);
 
   const imageLoader = new ImageLoader(
     stateService,
@@ -115,7 +115,8 @@ function bootstrap(params) {
     historybar,
     progressbarService,
     toolsManager,
-    infoService
+    infoService,
+    notificationService
   );
 }
 

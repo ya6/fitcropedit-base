@@ -58,7 +58,7 @@ export default class Appbar {
         </label>
       </div> 
       </li>
-      <li class="items-link"><span class="item-link-text" data-role="dropdown-item" data-action="save-image">Save</span></li>
+      <li class="items-link"><span class="item-link-text" data-role="dropdown-item" data-action="save-image" data-active="requires-image">Save</span></li>
       <li class="items-link"><span class="item-link-text" data-role="dropdown-item" data-action="reset-image">Reset</span></li>
       <li class="items-link"><span class="item-link-text" data-role="dropdown-item" data-action="close-image">Close</span></li>
     </ul>

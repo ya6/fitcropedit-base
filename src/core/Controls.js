@@ -33,7 +33,8 @@ export default class Controls {
     historybar,
     progressbarService,
     toolsManager,
-    infoService
+    infoService,
+    notificationService
   ) {
     this.stateService = stateService;
     this.appState = stateService.state;
@@ -47,6 +48,7 @@ export default class Controls {
     this.progressbarService = progressbarService;
     this.toolsManager = toolsManager;
     this.infoService = infoService;
+    this.notificationService = notificationService;
 
     this.init();
   }
@@ -64,6 +66,7 @@ export default class Controls {
       let action;
       let role;
       let options;
+      let active;
 
       if (targetElement.dataset?.action) {
         action = targetElement.dataset?.action;
@@ -74,14 +77,24 @@ export default class Controls {
       if (targetElement.dataset?.options) {
         options = targetElement.dataset?.options;
       }
+      if (targetElement.dataset?.active) {
+        active = targetElement.dataset?.active;
+      }
+      // console.log('role--> ', role);
+      // console.log('action--> ', action);
+      // console.log('options--> ', options);
+      // console.log('active--> ', active);
 
-      if (action && this.appState.data.baseImage.width > 0) {
+          if (action && this.appState.data.baseImage.width > 0) {
         // if (action) {
         this.perform.image[action] && this.perform.image[action]();
 
         if (role === "leftsidebar-button") {
           this.perform.leftsidebar && this.perform.leftsidebar(targetElement, options, action);
         }
+      } else {
+        // notify
+        active === "requires-image" && this.notificationService.notify("No image loaded. Please open an image to edit.");
       }
     });
   }

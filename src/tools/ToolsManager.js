@@ -1,7 +1,9 @@
 export default class ToolsManager {
-  constructor(stateService, domHandler, closeIconButton, resizeTool, mirrorTool, rotateTool, zoomTool) {
+  constructor(stateService, domHandler, notificationService, closeIconButton, resizeTool, mirrorTool, rotateTool, zoomTool) {
     this.appState = stateService.state;
     this.domHandler = domHandler;
+    this.notificationService = notificationService;
+
     this.closeIconButton = closeIconButton;
     this.resizeTool = resizeTool;
     this.mirrorTool = mirrorTool;
@@ -35,6 +37,9 @@ export default class ToolsManager {
 
         switch (toolName) {
           case "resize":
+            //tepm  
+            this.notificationService.removeNotification();
+
             this.domHandler.displayInRightsidebar(this.resizeTool.template()); //? one func
             this.resizeTool.activateTemplate();
             break;
@@ -72,7 +77,7 @@ export default class ToolsManager {
     this.rotateTool.rotateRight();
   }
 
-  zoomIn() { 
+  zoomIn() {
     this.zoomTool.zoomIn();
   }
 
