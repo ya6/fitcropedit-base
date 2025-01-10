@@ -23,6 +23,8 @@ npm install
 
 ---
 
+![alt text](fce.JPG)
+
 The application supports the following file formats: **JPG, PNG, WEBP, GIF**.
 
 ### **Currently Implemented Functionality:**  
