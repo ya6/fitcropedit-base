@@ -27,8 +27,12 @@ The application supports the following file formats: **JPG, PNG, WEBP, GIF**.
 
 ### **Currently Implemented Functionality:**  
 - Files can be exported in the following formats: **JPG, PNG, WEBP**.  
-- **Image Resize Feature:** Resize images by entering custom dimensions to adjust their size.  
-- **Save-to-Computer Feature:** Save images directly to your device.  
+- **Save** Save images directly to your device.  
+- **Resize:** Resize images by entering custom dimensions to adjust their size.  
+- **Flip:** Flip images horizontally or vertically. 
+- **Rotate:** Rotate images by custom angles.
+- **Zoom:** Use the top menu to zoom in or out of the image.
+- **Hand:** Move the image around the canvas.
 
 
 
