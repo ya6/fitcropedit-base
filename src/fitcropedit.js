@@ -27,6 +27,7 @@ import InfoService from './services/InfoService';
 import MirrorTool from './tools/MirrorTool';
 import RotateTool from './tools/RotateTool';
 import ZoomTool from './tools/ZoomTool';
+import HandTool from './tools/HandTool';
 
 if (!window.document) {
   throw new Error("Ficropedit requires a window with a document");
@@ -81,7 +82,9 @@ function bootstrap(params) {
   const mirrorTool = new MirrorTool(originImage, transformCanvas, history, progressbarService);
   const rotateTool = new RotateTool(stateService, originImage, transformCanvas, domHandler, history, progressbarService)
   const zoomTool = new ZoomTool(originImage, domHandler);
-  const toolsManager = new ToolsManager(stateService, domHandler, notificationService, closeIconButton, resizeTool, mirrorTool, rotateTool, zoomTool);
+  const handTool = new HandTool(originImage, mainCanvas);
+  const toolsManager = new ToolsManager(stateService, originImage, domHandler, notificationService,
+    closeIconButton, resizeTool, mirrorTool, rotateTool, zoomTool, handTool);
 
   const imageLoader = new ImageLoader(
     stateService,

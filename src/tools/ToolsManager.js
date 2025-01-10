@@ -1,7 +1,12 @@
 export default class ToolsManager {
-  constructor(stateService, domHandler, notificationService, closeIconButton, resizeTool, mirrorTool, rotateTool, zoomTool) {
+
+
+  tools = ['resize', 'rotate', 'zoom', 'hand']
+
+  constructor(stateService, originImage, domHandler, notificationService, closeIconButton, resizeTool, mirrorTool, rotateTool, zoomTool, handTool) {
     this.appState = stateService.state;
     this.domHandler = domHandler;
+    this.originImage = originImage;
     this.notificationService = notificationService;
 
     this.closeIconButton = closeIconButton;
@@ -9,6 +14,7 @@ export default class ToolsManager {
     this.mirrorTool = mirrorTool;
     this.rotateTool = rotateTool;
     this.zoomTool = zoomTool;
+    this.handTool = handTool;
   }
 
   manage(buttonElement, options, toolName) {
@@ -16,7 +22,7 @@ export default class ToolsManager {
     this.domHandler.resetLeftSidebarMenu();
 
     const isActive = this.domHandler.toggleActiveClass(buttonElement);
-    // todo check for layout vertical or horizontal
+    // todo - check - hard to read code
     if (options) {
       switch (options) {
         case "has-submenu":
@@ -25,23 +31,25 @@ export default class ToolsManager {
             let controlClassName = this.appState.device.isSmall ? "open-down" : 'open-left';
             submenu.classList.add(controlClassName);
           }
-
           break;
       }
     }
 
     if (!options) {
       if (isActive) {
+        //tepm  
+        this.notificationService.removeNotification();
         //diplay close button
         this.domHandler.displayInRightsidebar(this.closeIconButton.template());
 
         switch (toolName) {
           case "resize":
-            //tepm  
-            this.notificationService.removeNotification();
-
             this.domHandler.displayInRightsidebar(this.resizeTool.template()); //? one func
             this.resizeTool.activateTemplate();
+            break;
+
+          case "hand":
+            this.handTool.activate();
             break;
         }
       } else {
@@ -51,9 +59,31 @@ export default class ToolsManager {
   }
 
   reset(toolsArr = []) {
-    toolsArr.forEach((tool) => {
+    const toolsToReset = typeof toolsArr === 'string' ? [toolsArr] : toolsArr;
+
+    toolsToReset.forEach((tool) => {
       switch (tool) {
         case "reset":
+          break;
+
+        case "zoom":
+          this.originImage.params.zoom = 1;
+          this.domHandler.displayZoomUI(1);
+          break;
+      }
+    });
+    this.domHandler.clearToolsContainer();
+    this.domHandler.resetLeftSidebarMenu();
+    //todo set all itit UI
+  }
+
+  stop(toolsArr = []) {
+    const toolsToReset = typeof toolsArr === 'string' ? [toolsArr] : toolsArr;
+
+    toolsToReset.forEach((tool) => {
+      switch (tool) {
+        case "hand":
+          this.handTool.stop();
           break;
       }
     });

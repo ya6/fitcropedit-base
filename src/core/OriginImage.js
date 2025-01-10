@@ -3,7 +3,7 @@ export default class OriginImage {
   initialImage;
   secondImage;
 
-  params = { width: 0, height: 0, scale: 1, zoom: 1, xCenter: 0, yCenter: 0, dWidth: 0, dHeight: 0, format: "" };
+  params = { width: 0, height: 0, dx: 0, dy: 0, scale: 1, zoom: 1, xCenter: 0, yCenter: 0, dWidth: 0, dHeight: 0, format: "" };
 
   constructor(stateService, mainCanvas, meshCanvas) {
     this.stateService = stateService;
@@ -78,8 +78,10 @@ export default class OriginImage {
   getBaseParams() {
     this.params.width = this.baseImage.width;
     this.params.height = this.baseImage.height;
-    this.params.xCenter = Math.round(this.baseImage.width / 2);
-    this.params.yCenter = Math.round(this.baseImage.height / 2);
+    // this.params.xCenterOr = Math.round(this.baseImage.width / 2);
+    // this.params.yCenterOr = Math.round(this.baseImage.height / 2);
+    this.params.xCenter = this.mainCanvas.params.xCenter;
+    this.params.yCenter = this.mainCanvas.params.yCenter;
   }
 
   setScales() {
@@ -95,9 +97,10 @@ export default class OriginImage {
   }
 
   calcInitCoords() {
-    this.params.dx = this.mainCanvas.params.xCenter - (this.params.dWidth / 2) * this.params.zoom;
-    this.params.dy = this.mainCanvas.params.yCenter - (this.params.dHeight / 2) * this.params.zoom;
+    this.params.dx = this.mainCanvas.params.xCenter + (this.params.xCenter - this.mainCanvas.params.xCenter) - (this.params.dWidth / 2) * this.params.zoom;
+    this.params.dy = this.mainCanvas.params.yCenter + (this.params.yCenter - this.mainCanvas.params.yCenter) - (this.params.dHeight / 2) * this.params.zoom;
   }
+
   // refactor, move to utils
   resetParams() {
     for (let key in this.params) {

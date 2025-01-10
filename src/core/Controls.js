@@ -19,7 +19,6 @@ export default class Controls {
       "zoom-out": () => { this.zoomOut() },
       "show-image-info": () => { this.showImageInfo() },
     },
-    leftsidebar: (targetElement, options, action) => { this.toolsManager.manage(targetElement, options, action); },
   };
 
 
@@ -85,12 +84,12 @@ export default class Controls {
       // console.log('options--> ', options);
       // console.log('active--> ', active);
 
-          if (action && this.appState.data.baseImage.width > 0) {
+      if (action && this.appState.data.baseImage.width > 0) {
         // if (action) {
         this.perform.image[action] && this.perform.image[action]();
 
         if (role === "leftsidebar-button") {
-          this.perform.leftsidebar && this.perform.leftsidebar(targetElement, options, action);
+          this.toolsManager.manage(targetElement, options, action);
         }
       } else {
         // notify
@@ -103,12 +102,17 @@ export default class Controls {
     this.history.resetToLoadImage();
     this.originImage.restoreOriginImage();
     this.closeTool();
+
+    // reset transformations
+    this.toolsManager.reset(['zoom'])
     this.domHandler.setAngle(0);
   }
+
 
   closeTool() {
     this.domHandler.clearToolsContainer();
     this.domHandler.resetLeftSidebarMenu();
+    this.toolsManager.stop(['hand']);
   }
 
   changeOuputFormat(format) {
